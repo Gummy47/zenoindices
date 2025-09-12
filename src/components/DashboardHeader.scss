@@ -1,21 +1,22 @@
-@import "../styles/mixins";
+@use "../styles/mixins";
+@use "../styles/variables";
 
 .dashboard-header {
-  @include flex-between;
+  @include mixins.flex-between;
   background-color: transparent;
   padding: 23px 0;
-  border-bottom: 1px solid $secondary-bg;
+  border-bottom: 1px solid variables.$secondary-bg;
 }
 
 .company-title {
   width: 75%;
-  border-left: 4px solid $accent-orange;
-  padding-left: $spacing-md
+  border-left: 4px solid variables.$accent-orange;
+  padding-left: variables.$spacing-md
 }
 
 .company-name {
-  @include heading-large;
-  color: $text-dark;
+  @include mixins.heading-large;
+  color: variables.$text-dark;
 }
 
 .header-actions {
@@ -30,21 +31,21 @@
 }
 
 .toggle-btn {
-  @include button-base;
-  padding: $spacing-md $spacing-xl;
-  background: $text-secondary;
-  color: $text-muted;
+  @include mixins.button-base;
+  padding: variables.$spacing-md variables.$spacing-xl;
+  background: variables.$text-secondary;
+  color: variables.$text-muted;
   width: 100px;
   border-left: 6px solid transparent;
   &:hover {
-    color: $accent-orange;
+    color: variables.$accent-orange;
   }
 
-  @include text-small;
+  @include mixins.text-small;
 
   &.active {
-    background-color: $accent-orange;
-    color: $text-primary;
+    background-color: variables.$accent-orange;
+    color: variables.$text-primary;
     border-left: 6px solid black;
   }
 }
@@ -55,9 +56,9 @@
 }
 
 .icon-btn {
-  @include button-base;
-  background: $text-secondary;
-  color: $text-muted;
+  @include mixins.button-base;
+  background: variables.$text-secondary;
+  color: variables.$text-muted;
   height: 41px;
   width: 41px;
 
@@ -66,6 +67,6 @@
   }
 
   &:hover {
-    color: $accent-orange;
+    color: variables.$accent-orange;
   }
 }

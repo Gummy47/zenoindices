@@ -1,15 +1,16 @@
-@import "../styles/mixins";
+@use "../styles/mixins";
+@use "../styles/variables";
 
 .sidebar {
-  @include flex-column;
-  width: $sidebar-width;
-  background-color: $secondary-bg;
+  @include mixins.flex-column;
+  width: variables.$sidebar-width;
+  background-color: variables.$secondary-bg;
   padding: 0 1.2rem;
 }
 
 .sidebar-header {
-  padding: $spacing-xl;
-  border-bottom: 1px solid $text-muted;
+  padding: variables.$spacing-xl;
+  border-bottom: 1px solid variables.$text-muted;
 }
 
 .logo {
@@ -27,55 +28,55 @@
 }
 
 .company-list {
-  @include scrollable;
+  @include mixins.scrollable;
   flex: 1;
   margin: 1rem 0;
 }
 
 .company-item {
-  @include text-mid;
-  margin: $spacing-sm 0;
-  padding: 10px $spacing-xl $spacing-sm 0;
+  @include mixins.text-mid;
+  margin: variables.$spacing-sm 0;
+  padding: 10px variables.$spacing-xl variables.$spacing-sm 0;
   cursor: pointer;
-  border-right: 2px solid $primary-bg;
-  color: $text-secondary;
+  border-right: 2px solid variables.$primary-bg;
+  color: variables.$text-secondary;
   text-align: right;
-  transition: all $transition-fast;
+  transition: all variables.$transition-fast;
   user-select: none;
 
   &:hover {
-    background-color: $secondary-bg-hover;
+    background-color: variables.$secondary-bg-hover;
   }
 
   &.active {
-    background-color: $primary-bg;
-    color: $secondary-bg;
+    background-color: variables.$primary-bg;
+    color: variables.$secondary-bg;
     font-weight: bold;
-    border-right: 6px solid $accent-orange;
+    border-right: 6px solid variables.$accent-orange;
   }
 }
 
 .add-button {
-  padding: $spacing-lg 0;
-  border-top: 1px solid $text-muted;
+  padding: variables.$spacing-lg 0;
+  border-top: 1px solid variables.$text-muted;
 
   button {
-    @include button-base;
+    @include mixins.button-base;
     font-size: 18px;
     width: 100%;
     text-align: right;
-    color: $accent-orange;
+    color: variables.$accent-orange;
     background-color: transparent;
     display: flex;
     justify-content: flex-end;
     align-items: center;
 
     &:hover {
-      background-color: $primary-bg;
+      background-color: variables.$primary-bg;
     }
 
     svg {
-      fill: $accent-orange;
+      fill: variables.$accent-orange;
       width: 36px;
       height: 36px;
     }
