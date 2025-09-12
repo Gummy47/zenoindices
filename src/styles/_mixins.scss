@@ -25,9 +25,10 @@
   transition: all $transition-fast;
   font-family: $font-family;
   
-  &:focus {
-    outline: none;
-  }
+  // Not sure if needed
+  // &:focus {
+  //   outline: none;
+  // }
 }
 
 // Card mixins

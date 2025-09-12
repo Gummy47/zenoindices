@@ -34,6 +34,44 @@ export default function Dashboard() {
                     <DashboardHeader />
                     <div className="dashboard-body">
                         <div className="top-section">
+                            <div className="company-details">
+                                <div className="detail-item">
+                                    <span className="detail-label">ISIN:</span>
+                                    <span className="detail-value isin">
+                                        {currentData.Details.ISIN}
+                                    </span>
+                                </div>
+                                <div className="detail-item">
+                                    <span className="detail-label">
+                                        Industry:
+                                    </span>
+                                    <span className="detail-value industry">
+                                        {currentData.Details.Sector.Name}
+                                    </span>
+                                </div>
+                                <div className="detail-item">
+                                    <span className="detail-label">
+                                        Place of Exchange:
+                                    </span>
+                                    <span className="detail-value exchange">
+                                        {currentData.Details.PlaceOfExchange}
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="market-cap">
+                                <div className="market-cap-label">
+                                    Market Capitalization:
+                                </div>
+                                <div className="market-cap-content">
+                                    <div className="market-cap-value">
+                                        {currentData.Details.MarketCapitalization.toLocaleString(
+                                            "de-DE",
+                                        )}
+                                    </div>
+                                    <div className="market-cap-currency">€</div>
+                                </div>
+                            </div>
+                            <br/>
                             <div className="uco-section">
                                 <div className="uco-item">
                                     <div className="uco-label">UCO1</div>

@@ -1,4 +1,4 @@
-@import '../styles/mixins';
+@import "../styles/mixins";
 
 .dashboard {
   display: flex;
@@ -19,6 +19,62 @@
   @include scrollable;
   @include flex-column;
   gap: $spacing-3xl;
+}
+
+.company-details {
+  display: flex;
+  gap: $spacing-xl;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  @include text-small;
+}
+
+.detail-label {
+  color: $text-muted;
+}
+
+.detail-value {
+  &.isin,
+  &.industry {
+    color: $accent-orange;
+    font-weight: 500;
+  }
+
+  &.exchange {
+    color: $text-secondary;
+  }
+}
+
+.market-cap {
+  text-align: right;
+  @include flex-column;
+  gap: $spacing-xs;
+}
+
+.market-cap-label {
+  color: $text-muted;
+  @include text-small;
+}
+
+.market-cap-content {
+  display: flex;
+  align-items: baseline;
+  gap: $spacing-xs;
+}
+
+.market-cap-value {
+  font-size: 32px;
+  font-weight: 600;
+  color: $accent-orange;
+}
+
+.market-cap-currency {
+  @include text-medium;
+  color: $text-secondary;
 }
 
 .top-section {
@@ -107,7 +163,8 @@
   gap: $spacing-3xl;
 }
 
-.recent-changes, .group-section {
+.recent-changes,
+.group-section {
   @include flex-column;
   gap: $spacing-md;
 }
