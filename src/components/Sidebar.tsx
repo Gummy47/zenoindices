@@ -28,6 +28,10 @@ export default function Sidebar() {
         state => state.dashboard.selectedCompany,
     );
 
+    const handleAdd = () => {
+        alert("Add company - feature not implemented yet.");
+    }
+
     return (
         <div className="sidebar">
             <div className="sidebar-header">
@@ -50,10 +54,15 @@ export default function Sidebar() {
                 ))}
             </div>
             <div className="add-button">
-                <span>Add</span>
-                <span className="plus-icon">
+                <button
+                    title="Add company"
+                    onClick={handleAdd}>
+                    <span>Add</span>
+                    <AddIcon />
+                </button>
+                {/* <span className="plus-icon">
                     <AddIcon width={18} height={18} />
-                </span>
+                </span> */}
             </div>
         </div>
     );
