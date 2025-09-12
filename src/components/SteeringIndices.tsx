@@ -180,7 +180,7 @@ export default function SteeringIndices() {
                                             size: 12,
                                         },
                                         color: "#666",
-                                        callback: function (label, index) {
+                                        callback: function (_label, index) {
                                             return (index + 1).toString();
                                         },
                                     },

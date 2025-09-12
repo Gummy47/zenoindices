@@ -1,32 +1,33 @@
-@import '../styles/mixins';
+@use '../styles/mixins';
+@use "../styles/variables";
 
 .steering-indices {
   flex: 1;
-  @include card;
+  @include mixins.card;
 }
 
 .steering-header {
-  @include flex-between;
-  margin-bottom: $spacing-2xl;
+  @include mixins.flex-between;
+  margin-bottom: variables.$spacing-2xl;
 
   h3 {
-    @include heading-small;
-    color: $text-primary;
+    @include mixins.heading-small;
+    color: variables.$text-primary;
     margin: 0;
   }
 }
 
 .legend {
-  @include flex-column;
-  gap: $spacing-sm;
+  @include mixins.flex-column;
+  gap: variables.$spacing-sm;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  gap: $spacing-sm;
-  @include text-small;
-  color: $text-dark;
+  gap: variables.$spacing-sm;
+  @include mixins.text-small;
+  color: variables.$text-dark;
 }
 
 .legend-color {
@@ -35,17 +36,17 @@
   border-radius: 2px;
 
   &.vallourec {
-    background-color: $accent-orange-light;
+    background-color: variables.$accent-orange-light;
   }
 
   &.sector {
-    background-color: $accent-blue;
+    background-color: variables.$accent-blue;
   }
 }
 
 .radar-container {
   display: flex;
-  gap: $spacing-3xl;
+  gap: variables.$spacing-3xl;
   align-items: center;
 }
 
@@ -62,40 +63,40 @@
 
 // Indices List
 .indices-list {
-  @include flex-column;
-  gap: $spacing-md;
+  @include mixins.flex-column;
+  gap: variables.$spacing-md;
   min-width: 200px;
 }
 
 .index-item {
   display: flex;
   align-items: center;
-  gap: $spacing-lg;
-  padding: $spacing-sm;
-  background-color: $border-color;
-  border-radius: $border-radius-sm;
+  gap: variables.$spacing-lg;
+  padding: variables.$spacing-sm;
+  background-color: variables.$border-color;
+  border-radius: variables.$border-radius-sm;
 }
 
 .index-position {
   width: 20px;
   height: 20px;
   background-color: #666;
-  color: $text-primary;
-  @include flex-center;
+  color: variables.$text-primary;
+  @include mixins.flex-center;
   border-radius: 50%;
-  @include text-xs;
+  @include mixins.text-xs;
   font-weight: 600;
 }
 
 .index-label {
   flex: 1;
-  @include text-small;
-  color: $text-secondary;
+  @include mixins.text-small;
+  color: variables.$text-secondary;
 }
 
 .index-score {
-  @include text-medium;
-  color: $accent-orange;
+  @include mixins.text-medium;
+  color: variables.$accent-orange;
   min-width: 40px;
   text-align: right;
 }
@@ -103,8 +104,8 @@
 .index-trend {
   width: 32px;
   height: 32px;
-  @include flex-center;
-  border-radius: $border-radius-sm;
+  @include mixins.flex-center;
+  border-radius: variables.$border-radius-sm;
   font-size: 16px;
 
   svg {
@@ -112,14 +113,14 @@
   }
 
   &.trend-up {
-    background-color: $success-color;
+    background-color: variables.$success-color;
   }
 
   &.trend-down {
-    background-color: $error-color;
+    background-color: variables.$error-color;
   }
 
   &.trend-equal {
-    background-color: $neutral-color;
+    background-color: variables.$neutral-color;
   }
 }

@@ -1,67 +1,68 @@
-@import '../styles/mixins';
+@use '../styles/mixins';
+@use "../styles/variables";
 
 .metrics-section {
   flex: 1;
-  @include flex-column;
-  gap: $spacing-2xl;
+  @include mixins.flex-column;
+  gap: variables.$spacing-2xl;
 }
 
 .metrics-row {
   display: flex;
-  gap: $spacing-3xl;
+  gap: variables.$spacing-3xl;
   align-items: flex-start;
 }
 
 // UCO Section
 .uco-section {
-  @include flex-column;
-  gap: $spacing-md;
+  @include mixins.flex-column;
+  gap: variables.$spacing-md;
 }
 
 .uco-item {
-  @include flex-column;
-  gap: $spacing-xs;
+  @include mixins.flex-column;
+  gap: variables.$spacing-xs;
 }
 
 .uco-label {
-  @include text-small;
-  color: $text-muted;
+  @include mixins.text-small;
+  color: variables.$text-muted;
   font-weight: 500;
 }
 
 .uco-value {
   font-size: 16px;
-  color: $text-primary;
+  color: variables.$text-primary;
   font-weight: 500;
 }
 
 // Z Values
 .z-values {
-  @include flex-column;
-  gap: $spacing-md;
+  @include mixins.flex-column;
+  gap: variables.$spacing-md;
 }
 
 .z-item, 
 .data-source {
-  @include flex-column;
-  gap: $spacing-xs;
+  @include mixins.flex-column;
+  gap: variables.$spacing-xs;
 }
 
 .z-label, 
 .data-label {
   font-size: 18px;
-  color: $text-muted;
+  color: variables.$text-muted;
   font-weight: 600;
 }
 
 .z-value {
-  @include text-large;
-  color: $accent-orange;
+  @include mixins.text-large;
+  color: variables.$accent-orange;
 }
 
 .data-value {
-  @include text-medium;
-  color: $text-primary;
+  @include mixins.text-medium;
+  color: variables.$text-primary;
 }
 
 // Altares Chart
@@ -71,7 +72,7 @@
 }
 
 .chart-container {
-  @include card;
+  @include mixins.card;
 }
 
 .line-chart {
@@ -80,89 +81,89 @@
 }
 
 .chart-axes {
-  margin-top: $spacing-sm;
+  margin-top: variables.$spacing-sm;
 }
 
 .x-axis {
-  @include flex-between;
-  @include text-xs;
-  color: $text-muted;
+  @include mixins.flex-between;
+  @include mixins.text-xs;
+  color: variables.$text-muted;
 }
 
 // Risk Section
 .risk-section {
-  @include card;
+  @include mixins.card;
 }
 
 .risk-header {
-  @include heading-medium;
-  color: $accent-orange;
-  margin-bottom: $spacing-lg;
+  @include mixins.heading-medium;
+  color: variables.$accent-orange;
+  margin-bottom: variables.$spacing-lg;
 }
 
 .risk-metrics {
-  @include flex-column;
-  gap: $spacing-lg;
+  @include mixins.flex-column;
+  gap: variables.$spacing-lg;
 }
 
 .risk-item {
-  @include flex-column;
-  gap: $spacing-xs;
+  @include mixins.flex-column;
+  gap: variables.$spacing-xs;
 }
 
 .risk-label {
-  @include text-small;
-  color: $text-muted;
+  @include mixins.text-small;
+  color: variables.$text-muted;
 }
 
 .risk-value {
   font-size: 48px;
   font-weight: 600;
-  color: $text-primary;
+  color: variables.$text-primary;
 }
 
 // Recent Changes
 .recent-changes {
-  @include card;
+  @include mixins.card;
 }
 
 .changes-header {
   font-size: 18px;
   font-weight: 600;
-  color: $text-primary;
-  margin-bottom: $spacing-lg;
+  color: variables.$text-primary;
+  margin-bottom: variables.$spacing-lg;
 }
 
 .changes-content {
-  @include flex-column;
-  gap: $spacing-md;
+  @include mixins.flex-column;
+  gap: variables.$spacing-md;
 }
 
 .changes-label {
-  @include text-medium;
-  color: $accent-orange;
+  @include mixins.text-medium;
+  color: variables.$accent-orange;
 }
 
 .liquidity-section {
-  @include flex-column;
-  gap: $spacing-xs;
+  @include mixins.flex-column;
+  gap: variables.$spacing-xs;
 }
 
 .liquidity-label {
-  @include text-small;
-  color: $text-muted;
+  @include mixins.text-small;
+  color: variables.$text-muted;
 }
 
 .liquidity-value {
-  @include text-large;
-  color: $accent-orange;
+  @include mixins.text-large;
+  color: variables.$accent-orange;
 }
 
 .group-info {
-  margin-top: $spacing-md;
+  margin-top: variables.$spacing-md;
 }
 
 .group-label {
-  @include text-small;
-  color: $text-muted;
+  @include mixins.text-small;
+  color: variables.$text-muted;
 }
