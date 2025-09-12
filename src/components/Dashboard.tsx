@@ -5,6 +5,27 @@ import Sidebar from "./Sidebar";
 import DashboardHeader from "./DashboardHeader";
 import SteeringIndices from "./SteeringIndices";
 import Spinner from "./Spinner";
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+} from "chart.js";
+import { Scatter } from "react-chartjs-2";
+
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+);
 import data from "../../data.json";
 import "./Dashboard.scss";
 
@@ -119,15 +140,135 @@ export default function Dashboard() {
                                 </div>
                             </div>
 
-                            <div className="grid-item col">Graph triangle</div>
+                            <div className="grid-item col space-between">
+                                <div className="legend">
+                                    <div className="legend-item">
+                                        <span className="legend-color vallourec"></span>
+                                        <span>
+                                            {currentCompany?.commonName}
+                                        </span>
+                                    </div>
+                                    <div className="legend-item">
+                                        <span className="legend-color sector"></span>
+                                        <span>Sector mean</span>
+                                    </div>
+                                </div>
+
+                                <div className="triangle-graph">
+                                    <Scatter
+                                        data={{
+                                            datasets: [
+                                                {
+                                                    label:
+                                                        currentCompany?.commonName ||
+                                                        "Company",
+                                                    data: [
+                                                        {
+                                                            x: currentData.Z1,
+                                                            y: currentData.Z2,
+                                                        },
+                                                    ],
+                                                    backgroundColor: "#DE4D12",
+                                                    borderColor: "#DE4D12",
+                                                    pointRadius: 6,
+                                                },
+                                                {
+                                                    label: "Sector mean",
+                                                    data: [
+                                                        {
+                                                            x: currentData
+                                                                .Details.Sector
+                                                                .Z1Mean,
+                                                            y: currentData
+                                                                .Details.Sector
+                                                                .Z2Mean,
+                                                        },
+                                                    ],
+                                                    backgroundColor: "#5D699C",
+                                                    borderColor: "#5D699C",
+                                                    pointRadius: 6,
+                                                },
+                                                {
+                                                    label: "Risk Boundary",
+                                                    data: [
+                                                        { x: 0.0, y: 0.0 },
+                                                        { x: 0.5, y: 0.5 },
+                                                        { x: 1.0, y: 0.0 },
+                                                    ],
+                                                    showLine: true,
+                                                    borderColor: "#bbb",
+                                                    borderDash: [4, 4],
+                                                    borderWidth: 1,
+                                                    backgroundColor:
+                                                        "transparent",
+                                                    pointRadius: 0,
+                                                    fill: false,
+                                                },
+                                            ],
+                                        }}
+                                        options={{
+                                            responsive: true,
+                                            maintainAspectRatio: false,
+                                            plugins: {
+                                                legend: {
+                                                    display: false,
+                                                },
+                                                tooltip: {
+                                                    callbacks: {
+                                                        label: function (
+                                                            context,
+                                                        ) {
+                                                            return `${context.dataset.label} (Z1: ${context.parsed.x}, Z2: ${context.parsed.y})`;
+                                                        },
+                                                    },
+                                                },
+                                            },
+                                            scales: {
+                                                x: {
+                                                    type: "linear",
+                                                    position: "bottom",
+                                                    min: 0,
+                                                    max: 1,
+                                                    title: {
+                                                        display: true,
+                                                        align: "end",
+                                                        text: "Z1",
+                                                    },
+                                                    grid: {
+                                                        display: false,
+                                                    },
+                                                },
+                                                y: {
+                                                    type: "linear",
+                                                    min: 0,
+                                                    max: 1,
+                                                    title: {
+                                                        display: true,
+                                                        align: "end",
+                                                        text: "Z2",
+                                                    },
+                                                    grid: {
+                                                        display: false,
+                                                    },
+                                                },
+                                            },
+                                        }}
+                                        height={200}
+                                    />
+                                </div>
+                            </div>
 
                             <div className="grid-item col">
                                 <div className="risks-details">
                                     <h1>Risks</h1>
                                     <div className="risks-values">
                                         <div className="risk-values-item">
-                                            <div className="risk-label">Value at risk</div>
-                                            <p>{currentData.Risks.ValueAtRisk}</p>
+                                            <div className="risk-label">
+                                                Value at risk
+                                            </div>
+                                            <p>
+                                                {currentData.Risks.ValueAtRisk}
+                                            </p>
                                         </div>
                                         <div className="risk-values-item">
                                             <div className="risk-label">CE</div>

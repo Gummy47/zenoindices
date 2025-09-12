@@ -59,8 +59,8 @@
                 "ISIN": "FR0587IS58",
                 "Sector": {
                     "Name": "Energy",
-                    "Z1 Mean": 0.5,
-                    "Z2 Mean": 0.3,
+                    "Z1 Mean": 0.4,
+                    "Z2 Mean": 0.2,
                     "Steering Indices": {
                         "Profitability": 50,
                         "Leverage": 70,
@@ -69,33 +69,33 @@
                         "Controversies": 40
                     }
                 },
-                "Market Capitalization": 268145667,
+                "Market Capitalization": 245132458,
                 "Place of Exchange": "Paris"
             },
             "Data": "Altares",
             "UCO1": "BNP Paribas",
-            "Z1": 0.6,
+            "Z1": 0.5,
             "UCO2": "BlackRock Group",
-            "Z2": 0.3,
+            "Z2": 0.2,
             "Steering Indices": {
                 "Profitability": {
-                    "Score": 55,
+                    "Score": 45,
                     "Trends": "Up"
                 },
                 "Leverage": {
-                    "Score": 77,
+                    "Score": 62,
                     "Trends": "Down"
                 },
                 "Environment": {
-                    "Score": 65,
+                    "Score": 32,
                     "Trends": "Equal"
                 },
                 "Social": {
-                    "Score": 55,
+                    "Score": 15,
                     "Trends": "Up"
                 },
                 "Controversies": {
-                    "Score": 41,
+                    "Score": 88,
                     "Trends": "Down"
                 }
             },
@@ -103,8 +103,8 @@
             "Liquidity": 76.6,
             "Group": "BNP Paribas",
             "Risks": {
-                "Value At Risk": 0.8,
-                "CE": 77
+                "Value At Risk": 0.9,
+                "CE": 54
             }
         }
     }

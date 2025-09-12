@@ -29,7 +29,20 @@
 }
 
 .grid-item {
-  // padding: $spacing-lg;
+  padding-bottom: $spacing-lg;
+
+  &:nth-child(-n + 3) {
+    border-bottom: 6px solid $secondary-bg;
+  }
+  &:nth-child(4) {
+    border-bottom: 6px solid $accent-orange;
+  }
+  &:nth-child(5) {
+    border-bottom: 10px solid $secondary-bg;
+  }
+  &:nth-child(6) {
+    border-bottom: 10px solid $accent-orange;
+  }
 
   &.col {
     @include flex-column;
@@ -231,7 +244,7 @@
 
   h1 {
     @include heading-large;
-    padding: $spacing-lg $spacing-sm $spacing-sm $spacing-sm;
+    padding: $spacing-lg $spacing-sm $spacing-sm $spacing-xl;
     color: $accent-orange;
     text-transform: uppercase;
     border: 2px solid $text-dark;
@@ -239,9 +252,24 @@
   }
 
   .risks-values {
+    @include flex-column;
+    justify-content: space-evenly;
+
     background-color: $accent-blue-dark;
     padding: $spacing-lg;
-    height: 100%;
-    min-height: 100%;
+    gap: 2rem;
+    padding: $spacing-3xl $spacing-xl;
+
+    .risk-values-item {
+      .risk-label {
+        @include text-medium;
+        font-weight: normal;
+      }
+
+      p {
+        @include heading-xlarge;
+        font-weight: normal;
+      }
+    }
   }
 }
