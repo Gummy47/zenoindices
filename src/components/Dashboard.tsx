@@ -4,6 +4,7 @@ import { loadCompanyData } from "../store/dashboardSlice";
 import Sidebar from "./Sidebar";
 import DashboardHeader from "./DashboardHeader";
 import SteeringIndices from "./SteeringIndices";
+import Spinner from "./Spinner";
 import data from "../../data.json";
 import "./Dashboard.scss";
 
@@ -28,7 +29,11 @@ export default function Dashboard() {
         <div className="dashboard">
             <Sidebar />
             {!currentData ? (
-                <p>Loading...</p>
+                <div className="main-content">
+                    <div className="dashboard-body">
+                        <Spinner text="Loading dashboard data..." size={64} />
+                    </div>
+                </div>
             ) : (
                 <div className="main-content">
                     <DashboardHeader />
@@ -71,7 +76,7 @@ export default function Dashboard() {
                                     <div className="market-cap-currency">€</div>
                                 </div>
                             </div>
-                            <br/>
+                            <br />
                             <div className="uco-section">
                                 <div className="uco-item">
                                     <div className="uco-label">UCO1</div>
