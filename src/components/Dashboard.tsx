@@ -11,6 +11,7 @@ import {
     LinearScale,
     PointElement,
     LineElement,
+    RadialLinearScale,
     Title,
     Tooltip,
     Legend,
@@ -22,6 +23,7 @@ ChartJS.register(
     LinearScale,
     PointElement,
     LineElement,
+    RadialLinearScale,
     Title,
     Tooltip,
     Legend,
@@ -253,7 +255,6 @@ export default function Dashboard() {
                                                 },
                                             },
                                         }}
-                                        height={200}
                                     />
                                 </div>
                             </div>

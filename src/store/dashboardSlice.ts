@@ -1,27 +1,24 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
-export type WithTrends<T> = T & {
-    Trends: "Up" | "Down" | "Equal";
-};
-
-export interface SteeringIndex {
+export interface ISteeringIndex {
     Score: number;
+    Trends: "Up" | "Down" | "Equal";
 }
 
-export interface SteeringIndices {
-    Profitability: SteeringIndex;
-    Leverage: SteeringIndex;
-    Environment: SteeringIndex;
-    Social: SteeringIndex;
-    Controversies: SteeringIndex;
+export interface ISteeringIndices {
+    Profitability: ISteeringIndex;
+    Leverage: ISteeringIndex;
+    Environment: ISteeringIndex;
+    Social: ISteeringIndex;
+    Controversies: ISteeringIndex;
 }
 
-export interface SteeringIndicesWithTrends {
-    Profitability: WithTrends<SteeringIndex>;
-    Leverage: WithTrends<SteeringIndex>;
-    Environment: WithTrends<SteeringIndex>;
-    Social: WithTrends<SteeringIndex>;
-    Controversies: WithTrends<SteeringIndex>;
+export interface IRawSteeringIndices {
+    Profitability: number;
+    Leverage: number;
+    Environment: number;
+    Social: number;
+    Controversies: number;
 }
 
 export interface CompanyData {
@@ -31,7 +28,7 @@ export interface CompanyData {
             Name: string;
             Z1Mean: number;
             Z2Mean: number;
-            SteeringIndices: SteeringIndices;
+            SteeringIndices: IRawSteeringIndices;
         };
         MarketCapitalization: number;
         PlaceOfExchange: string;
@@ -41,7 +38,7 @@ export interface CompanyData {
     Z1: number;
     UCO2: string;
     Z2: number;
-    SteeringIndices: SteeringIndicesWithTrends;
+    SteeringIndices: ISteeringIndices;
     RecentChanges: string;
     Liquidity: number;
     Group: string;
