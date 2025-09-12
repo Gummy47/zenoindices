@@ -15,129 +15,47 @@
 
 .dashboard-body {
   flex: 1;
-  padding: $spacing-3xl;
+  padding: $spacing-3xl 0;
   @include scrollable;
   @include flex-column;
   gap: $spacing-3xl;
 }
 
-.company-details {
-  display: flex;
-  gap: $spacing-xl;
-}
-
-.detail-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  @include text-small;
-}
-
-.detail-label {
-  color: $text-muted;
-}
-
-.detail-value {
-  &.isin,
-  &.industry {
-    color: $accent-orange;
-    font-weight: 500;
-  }
-
-  &.exchange {
-    color: $text-secondary;
-  }
-}
-
-.market-cap {
-  text-align: right;
-  @include flex-column;
-  gap: $spacing-xs;
-}
-
-.market-cap-label {
-  color: $text-muted;
-  @include text-small;
-}
-
-.market-cap-content {
-  display: flex;
-  align-items: baseline;
-  gap: $spacing-xs;
-}
-
-.market-cap-value {
-  font-size: 32px;
-  font-weight: 600;
-  color: $accent-orange;
-}
-
-.market-cap-currency {
-  @include text-medium;
-  color: $text-secondary;
-}
-
-.top-section {
+.dashboard-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
   gap: $spacing-3xl;
-  margin-bottom: $spacing-xl;
 }
 
-.uco-section {
-  @include flex-column;
-  gap: $spacing-md;
-}
+.grid-item {
+  // padding: $spacing-lg;
 
-.uco-item {
-  @include flex-column;
-  gap: $spacing-xs;
-}
+  &.col {
+    @include flex-column;
+    gap: $spacing-5xl;
 
-.uco-label {
-  background-color: $accent-blue-dark;
-  color: $text-primary;
-  padding: $spacing-xs $spacing-sm;
-  @include text-small;
-  font-weight: 600;
-  text-align: center;
-  border-radius: $border-radius-sm;
-}
+    &.space-between {
+      justify-content: space-between;
+    }
+  }
 
-.uco-value {
-  color: $text-primary;
-  @include text-mid;
-  font-weight: 500;
-}
+  &.data-section {
+    @include flex-column;
+    gap: $spacing-xs;
+    text-align: right;
+  }
 
-.z-metrics {
-  display: flex;
-  gap: $spacing-xl;
-  align-items: center;
-}
+  &.left-panel {
+    @include flex-column;
+    gap: $spacing-xl;
+  }
 
-.z-item {
-  @include flex-column;
-  align-items: center;
-  gap: $spacing-xs;
-}
-
-.z-label {
-  color: $text-primary;
-  @include text-small;
-  font-weight: 600;
-}
-
-.z-value {
-  color: $accent-orange;
-  font-size: 48px;
-  font-weight: 700;
-}
-
-.data-section {
-  @include flex-column;
-  gap: $spacing-xs;
-  text-align: right;
+  &.steering-panel {
+    grid-column: span 3;
+    display: flex;
+    justify-content: flex-end;
+  }
 }
 
 .data-header {
@@ -150,12 +68,6 @@
   color: $accent-orange;
   font-size: 48px;
   font-weight: 700;
-}
-
-.bottom-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: $spacing-3xl;
 }
 
 .left-panel {
@@ -209,45 +121,127 @@
   font-weight: 700;
 }
 
-.right-panel {
-  display: flex;
-  justify-content: flex-end;
+.accent {
+  color: $accent-orange;
 }
 
-.rishs-section {
-  background-color: $accent-blue-dark;
-  border-radius: $border-radius-lg;
-  padding: $spacing-lg;
+.company-details {
+  ul {
+    list-style: none;
+    li {
+      margin: $spacing-xs 0;
+    }
+  }
+
+  border-left: 4px solid $secondary-bg;
+  padding-left: $spacing-xl;
+  color: $text-dark;
+}
+
+.uco-details {
   @include flex-column;
-  gap: $spacing-md;
-}
-
-.rishs-header {
-  color: $text-primary;
-  font-size: 20px;
-  font-weight: 700;
-  text-align: center;
-}
-
-.rishs-metrics {
-  @include flex-column;
-  gap: $spacing-lg;
-}
-
-.risk-item {
-  text-align: center;
-  @include flex-column;
+  color: $text-dark;
   gap: $spacing-xs;
+
+  .uco-item {
+    display: flex;
+    align-items: center;
+    color: $text-dark;
+    gap: $spacing-sm;
+
+    .uco-label {
+      background-color: $accent-blue-dark;
+      color: $text-primary;
+      padding: $spacing-xs $spacing-sm;
+      @include text-small;
+      font-weight: 600;
+      text-align: center;
+    }
+  }
 }
 
-.risk-label {
-  color: $text-primary;
-  @include text-small;
-  font-weight: 500;
+.z-details {
+  display: flex;
+  justify-content: space-between;
+  color: $text-dark;
+
+  .z-item {
+    width: 50%;
+    @include flex-column;
+    color: $text-dark;
+    gap: $spacing-sm;
+
+    .z-label {
+      @include text-medium;
+      color: $text-dark;
+      font-weight: 400;
+    }
+
+    p {
+      @include heading-large;
+      font-weight: 600;
+      color: $accent-orange;
+    }
+  }
 }
 
-.risk-value {
-  color: $text-primary;
-  font-size: 36px;
-  font-weight: 700;
+.market-cap-details {
+  @include flex-column;
+  gap: $spacing-sm;
+  border-left: 4px solid $secondary-bg;
+  padding-left: $spacing-xl;
+  color: $text-dark;
+  font-size: 24px;
+
+  .market-cap-label {
+    @include text-medium;
+    color: $text-dark;
+    font-weight: normal;
+  }
+
+  .market-cap-value {
+    @include heading-large;
+    font-weight: 500;
+    color: $accent-orange;
+  }
+}
+
+.data-details {
+  @include flex-column;
+  gap: $spacing-sm;
+  border-left: 4px solid $secondary-bg;
+  padding-left: $spacing-xl;
+  color: $text-dark;
+  font-size: 24px;
+
+  .data-label {
+    @include text-medium;
+    color: $text-dark;
+    font-weight: normal;
+  }
+
+  p {
+    @include heading-large;
+    font-weight: 500;
+  }
+}
+
+.risks-details {
+  @include flex-column;
+
+  h1 {
+    @include heading-large;
+    padding: $spacing-lg $spacing-sm $spacing-sm $spacing-sm;
+    color: $accent-orange;
+    text-transform: uppercase;
+    border: 2px solid $text-dark;
+    margin-bottom: $spacing-sm;
+  }
+
+  .risks-values {
+    background-color: $accent-blue-dark;
+    padding: $spacing-lg;
+    height: 100%;
+    min-height: 100%;
+  }
 }

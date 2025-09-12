@@ -38,101 +38,107 @@ export default function Dashboard() {
                 <div className="main-content">
                     <DashboardHeader />
                     <div className="dashboard-body">
-                        <div className="top-section">
-                            <div className="company-details">
-                                <div className="detail-item">
-                                    <span className="detail-label">ISIN:</span>
-                                    <span className="detail-value isin">
-                                        {currentData.Details.ISIN}
-                                    </span>
+                        <div className="dashboard-grid">
+                            {/* First row - 4 columns */}
+                            {/* Company details column */}
+                            <div className="grid-item col">
+                                <div className="company-details">
+                                    <ul>
+                                        <li>
+                                            <p>
+                                                ISIN :{" "}
+                                                <span className="accent">
+                                                    {currentData.Details.ISIN}
+                                                </span>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                Industry :{" "}
+                                                <span className="accent">
+                                                    {
+                                                        currentData.Details
+                                                            .Sector.Name
+                                                    }
+                                                </span>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                Place of exchange :{" "}
+                                                <span className="accent">
+                                                    {
+                                                        currentData.Details
+                                                            .PlaceOfExchange
+                                                    }
+                                                </span>
+                                            </p>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div className="detail-item">
-                                    <span className="detail-label">
-                                        Industry:
-                                    </span>
-                                    <span className="detail-value industry">
-                                        {currentData.Details.Sector.Name}
-                                    </span>
-                                </div>
-                                <div className="detail-item">
-                                    <span className="detail-label">
-                                        Place of Exchange:
-                                    </span>
-                                    <span className="detail-value exchange">
-                                        {currentData.Details.PlaceOfExchange}
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="market-cap">
-                                <div className="market-cap-label">
-                                    Market Capitalization:
-                                </div>
-                                <div className="market-cap-content">
-                                    <div className="market-cap-value">
-                                        {currentData.Details.MarketCapitalization.toLocaleString(
-                                            "de-DE",
-                                        )}
+                                <div className="uco-details">
+                                    <div className="uco-item">
+                                        <div className="uco-label">UCO1</div>
+                                        <p>{currentData.UCO1}</p>
                                     </div>
-                                    <div className="market-cap-currency">€</div>
-                                </div>
-                            </div>
-                            <br />
-                            <div className="uco-section">
-                                <div className="uco-item">
-                                    <div className="uco-label">UCO1</div>
-                                    <div className="uco-value">
-                                        {currentData.UCO1}
-                                    </div>
-                                </div>
-                                <div className="uco-item">
-                                    <div className="uco-label">UCO2</div>
-                                    <div className="uco-value">
-                                        {currentData.UCO2}
+                                    <div className="uco-item">
+                                        <div className="uco-label">UCO2</div>
+                                        <p>{currentData.UCO2}</p>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="z-metrics">
-                                <div className="z-item">
-                                    <div className="z-label">Z1</div>
-                                    <div className="z-value">
-                                        {currentData.Z1}
+                                <div className="z-details">
+                                    <div className="z-item">
+                                        <div className="z-label">Z1</div>
+                                        <p>{currentData.Z1}</p>
                                     </div>
-                                </div>
-                                <div className="z-item">
-                                    <div className="z-label">Z2</div>
-                                    <div className="z-value">
-                                        {currentData.Z2}
+                                    <div className="z-item">
+                                        <div className="z-label">Z2</div>
+                                        <p>{currentData.Z2}</p>
                                     </div>
                                 </div>
                             </div>
-                            <div className="data-section">
-                                <div className="data-header">Data</div>
-                                <div className="data-provider">
-                                    {currentData.Data}
+
+                            {/* Market details column */}
+                            <div className="grid-item col space-between">
+                                <div className="market-cap-details">
+                                    <div className="market-cap-label">
+                                        Market capitalization
+                                    </div>
+                                    <p>
+                                        <span className="market-cap-value">
+                                            {currentData.Details.MarketCapitalization.toLocaleString(
+                                                "de-DE",
+                                            )}
+                                        </span>
+                                        €
+                                    </p>
+                                </div>
+                                <div className="data-details">
+                                    <div className="data-label">Data</div>
+                                    <p>{currentData.Data}</p>
                                 </div>
                             </div>
-                            <div className="rishs-section">
-                                <div className="rishs-header">RISHS</div>
-                                <div className="rishs-metrics">
-                                    <div className="risk-item">
-                                        <div className="risk-label">
-                                            Value At Risk
+
+                            <div className="grid-item col">Graph triangle</div>
+
+                            <div className="grid-item col">
+                                <div className="risks-details">
+                                    <h1>Risks</h1>
+                                    <div className="risks-values">
+                                        <div className="risk-values-item">
+                                            <div className="risk-label">Value at risk</div>
+                                            <p>{currentData.Risks.ValueAtRisk}</p>
                                         </div>
-                                        <div className="risk-value">
-                                            {currentData.Risks.ValueAtRisk}
-                                        </div>
-                                    </div>
-                                    <div className="risk-item">
-                                        <div className="risk-label">CE</div>
-                                        <div className="risk-value">
-                                            {currentData.Risks.CE}
+                                        <div className="risk-values-item">
+                                            <div className="risk-label">CE</div>
+                                            <p>{currentData.Risks.CE}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="bottom-section">
-                            <div className="left-panel">
+
+                            {/* Second row - 1 column + 3 column span */}
+                            <div className="grid-item left-panel">
                                 <div className="recent-changes">
                                     <div className="section-header">
                                         Recent Changes
@@ -158,7 +164,8 @@ export default function Dashboard() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="right-panel">
+
+                            <div className="grid-item steering-panel">
                                 <SteeringIndices />
                             </div>
                         </div>
