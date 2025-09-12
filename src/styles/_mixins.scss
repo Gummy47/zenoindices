@@ -1,0 +1,131 @@
+@import 'variables';
+
+// Flexbox mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Button mixins
+@mixin button-base {
+  border: none;
+  cursor: pointer;
+  transition: all $transition-fast;
+  font-family: $font-family;
+  
+  &:focus {
+    outline: none;
+  }
+}
+
+// Card mixins
+@mixin card {
+  background-color: $secondary-bg;
+  border-radius: $border-radius-lg;
+  padding: $spacing-xl;
+}
+
+// Text mixins
+@mixin text-large {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+@mixin text-medium {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+@mixin text-mid {
+  font-size: 16px;
+}
+
+@mixin text-small {
+  font-size: 14px;
+}
+
+@mixin text-xs {
+  font-size: 12px;
+}
+
+// Heading mixins with Rippen font
+@mixin heading-large {
+  font-family: $font-heading;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+@mixin heading-medium {
+  font-family: $font-heading;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.25px;
+}
+
+@mixin heading-small {
+  font-family: $font-heading;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0px;
+}
+
+// Layout mixins
+@mixin full-size {
+  width: 100vw;
+  height: 100vh;
+}
+
+@mixin scrollable {
+  overflow-y: auto;
+  
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  // &::-webkit-scrollbar-thumb {
+  //   background: $border-color;
+  //   border-radius: $border-radius-sm;
+  // }
+  
+  // &::-webkit-scrollbar-thumb:hover {
+  //   background: #555;
+  // }
+}
+
+// Responsive mixins
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == md {
+    @media (max-width: $breakpoint-md) {
+      @content;
+    }
+  }
+  
+  @if $breakpoint == lg {
+    @media (max-width: $breakpoint-lg) {
+      @content;
+    }
+  }
+  
+  @if $breakpoint == xl {
+    @media (max-width: $breakpoint-xl) {
+      @content;
+    }
+  }
+}

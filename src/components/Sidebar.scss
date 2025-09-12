@@ -1,0 +1,79 @@
+@import '../styles/mixins';
+
+.sidebar {
+  width: $sidebar-width;
+  background-color: $secondary-bg;
+  border-right: 1px solid $border-color;
+  padding: 0 1.2rem;
+  @include flex-column;
+}
+
+.sidebar-header {
+  padding: $spacing-xl;
+  border-bottom: 1px solid $primary-bg;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.logo-image {
+  height: 80px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.company-list {
+  flex: 1;
+  @include scrollable;
+  // padding: 1rem 0;
+  margin: 1rem 0;
+}
+
+.company-item {
+  margin: $spacing-sm 0;
+  padding: 10px $spacing-xl $spacing-sm 0;
+  cursor: pointer;
+  // border-bottom: 1px solid $border-color;
+  border-right: 2px solid $primary-bg;
+  color: $text-secondary;
+  @include text-mid;
+  text-align: right;
+  // margin-right: $spacing-sm;
+  transition: all $transition-fast;
+  user-select: none;
+
+  &:hover {
+    background-color: #3a3a3a;
+  }
+
+  &.active {
+    background-color: $primary-bg;
+    color: $secondary-bg;
+    font-weight: 500;
+    border-right: 6px solid $accent-orange;
+    // margin-right: 8px;
+  }
+}
+
+.add-button {
+  padding: $spacing-lg $spacing-xl;
+  border-top: 1px solid $border-color;
+  @include flex-between;
+  color: $accent-orange;
+  cursor: pointer;
+  @include text-small;
+}
+
+.plus-icon {
+  font-size: 18px;
+  font-weight: bold;
+  
+  svg {
+    fill: $accent-orange;
+  }
+}

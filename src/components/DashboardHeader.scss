@@ -1,0 +1,129 @@
+@import '../styles/mixins';
+
+.dashboard-header {
+  background-color: $primary-bg;
+  padding: $spacing-lg $spacing-3xl;
+  border-bottom: 1px solid $border-color;
+  @include flex-between;
+}
+
+.company-info {
+  @include flex-column;
+  gap: $spacing-md;
+}
+
+.company-title {
+  position: relative;
+  
+  .orange-bar {
+    position: absolute;
+    left: -6px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: $accent-orange;
+  }
+}
+
+.company-name {
+  @include heading-large;
+  color: $text-dark;
+}
+
+.company-details {
+  display: flex;
+  gap: $spacing-xl;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  @include text-small;
+}
+
+.detail-label {
+  color: $text-muted;
+}
+
+.detail-value {
+  &.isin, &.industry {
+    color: $accent-orange;
+    font-weight: 500;
+  }
+
+  &.exchange {
+    color: $text-secondary;
+  }
+}
+
+.market-cap {
+  text-align: right;
+  @include flex-column;
+  gap: $spacing-xs;
+}
+
+.market-cap-label {
+  color: $text-muted;
+  @include text-small;
+}
+
+.market-cap-content {
+  display: flex;
+  align-items: baseline;
+  gap: $spacing-xs;
+}
+
+.market-cap-value {
+  font-size: 32px;
+  font-weight: 600;
+  color: $accent-orange;
+}
+
+.market-cap-currency {
+  @include text-medium;
+  color: $text-secondary;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xl;
+}
+
+.view-toggle {
+  display: flex;
+  background-color: $border-color;
+  border-radius: $border-radius-md;
+  padding: 2px;
+}
+
+.toggle-btn {
+  @include button-base;
+  padding: $spacing-sm $spacing-lg;
+  background: transparent;
+  color: $text-secondary;
+  @include text-small;
+  border-radius: $border-radius-sm;
+
+  &.active {
+    background-color: $accent-orange;
+    color: $text-primary;
+  }
+}
+
+.header-icons {
+  display: flex;
+  gap: $spacing-sm;
+}
+
+.icon-btn {
+  font-size: 16px;
+  color: #000;
+  background-color: $text-secondary;
+  transition: color $transition-fast;
+  
+  &:hover {
+    color: $accent-orange;
+  }
+}

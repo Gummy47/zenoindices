@@ -1,0 +1,196 @@
+@import '../styles/mixins';
+
+.dashboard {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.main-content {
+  flex: 1;
+  @include flex-column;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.dashboard-body {
+  flex: 1;
+  padding: $spacing-3xl;
+  @include scrollable;
+  @include flex-column;
+  gap: $spacing-3xl;
+}
+
+.top-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: $spacing-3xl;
+  margin-bottom: $spacing-xl;
+}
+
+.uco-section {
+  @include flex-column;
+  gap: $spacing-md;
+}
+
+.uco-item {
+  @include flex-column;
+  gap: $spacing-xs;
+}
+
+.uco-label {
+  background-color: $accent-blue-dark;
+  color: $text-primary;
+  padding: $spacing-xs $spacing-sm;
+  @include text-small;
+  font-weight: 600;
+  text-align: center;
+  border-radius: $border-radius-sm;
+}
+
+.uco-value {
+  color: $text-primary;
+  @include text-mid;
+  font-weight: 500;
+}
+
+.z-metrics {
+  display: flex;
+  gap: $spacing-xl;
+  align-items: center;
+}
+
+.z-item {
+  @include flex-column;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.z-label {
+  color: $text-primary;
+  @include text-small;
+  font-weight: 600;
+}
+
+.z-value {
+  color: $accent-orange;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.data-section {
+  @include flex-column;
+  gap: $spacing-xs;
+  text-align: right;
+}
+
+.data-header {
+  color: $text-primary;
+  @include text-mid;
+  font-weight: 600;
+}
+
+.data-provider {
+  color: $accent-orange;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.bottom-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-3xl;
+}
+
+.left-panel {
+  @include flex-column;
+  gap: $spacing-3xl;
+}
+
+.recent-changes, .group-section {
+  @include flex-column;
+  gap: $spacing-md;
+}
+
+.section-header {
+  color: $text-primary;
+  @include text-mid;
+  font-weight: 600;
+  margin-bottom: $spacing-sm;
+}
+
+.changes-content {
+  @include flex-column;
+  gap: $spacing-sm;
+}
+
+.change-label {
+  color: $accent-orange;
+  @include text-mid;
+  font-weight: 600;
+}
+
+.change-item {
+  @include flex-column;
+  gap: $spacing-xs;
+}
+
+.change-metric {
+  color: $text-primary;
+  @include text-small;
+}
+
+.change-value {
+  color: $accent-orange;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.group-value {
+  color: $accent-orange;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.right-panel {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.rishs-section {
+  background-color: $accent-blue-dark;
+  border-radius: $border-radius-lg;
+  padding: $spacing-lg;
+  @include flex-column;
+  gap: $spacing-md;
+}
+
+.rishs-header {
+  color: $text-primary;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.rishs-metrics {
+  @include flex-column;
+  gap: $spacing-lg;
+}
+
+.risk-item {
+  text-align: center;
+  @include flex-column;
+  gap: $spacing-xs;
+}
+
+.risk-label {
+  color: $text-primary;
+  @include text-small;
+  font-weight: 500;
+}
+
+.risk-value {
+  color: $text-primary;
+  font-size: 36px;
+  font-weight: 700;
+}
