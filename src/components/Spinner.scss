@@ -1,0 +1,32 @@
+@import '../styles/mixins';
+
+.spinner-container {
+    @include flex-column;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-md;
+    padding: $spacing-xl;
+}
+
+.spinner {
+    border: 3px solid rgba($text-secondary, 0.3);
+    border-top: 3px solid $accent-orange;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.spinner-text {
+    color: $text-muted;
+    @include text-small;
+    font-weight: 500;
+    text-align: center;
+}
+
+@keyframes spin {
+    0% { 
+        transform: rotate(0deg); 
+    }
+    100% { 
+        transform: rotate(360deg); 
+    }
+}

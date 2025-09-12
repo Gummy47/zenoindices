@@ -1,13 +1,15 @@
 {
-    "permissions": {
-        "allow": [
-            "Bash(npm install)",
-            "Bash(npm install:*)",
-            "Bash(npm run dev:*)",
-            "Bash(npx tsc:*)",
-            "Bash(npx prettier:*)"
-        ],
-        "deny": [],
-        "ask": []
-    }
+  "permissions": {
+    "allow": [
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx prettier:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run lint)"
+    ],
+    "deny": [],
+    "ask": []
+  }
 }

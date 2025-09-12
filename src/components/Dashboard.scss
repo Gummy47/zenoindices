@@ -1,0 +1,263 @@
+@import "../styles/mixins";
+
+.dashboard {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.main-content {
+  flex: 1;
+  @include flex-column;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.dashboard-body {
+  flex: 1;
+  padding: $spacing-3xl 0;
+  @include scrollable;
+  @include flex-column;
+  gap: $spacing-3xl;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
+  gap: $spacing-3xl;
+}
+
+.grid-item {
+  padding-bottom: $spacing-lg;
+
+  &:nth-child(-n + 3) {
+    border-bottom: 6px solid $secondary-bg;
+  }
+  &:nth-child(4) {
+    border-bottom: 6px solid $accent-orange;
+  }
+  &:nth-child(5) {
+    border-bottom: 10px solid $secondary-bg;
+  }
+  &:nth-child(6) {
+    border-bottom: 10px solid $accent-orange;
+  }
+
+  &.col {
+    @include flex-column;
+    gap: $spacing-5xl;
+
+    &.space-between {
+      justify-content: space-between;
+    }
+  }
+
+  &.data-section {
+    @include flex-column;
+    gap: $spacing-xs;
+    text-align: right;
+  }
+
+  &.steering-panel {
+    grid-column: span 3;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.data-header {
+  color: $text-primary;
+  @include text-mid;
+  font-weight: 600;
+}
+
+.data-provider {
+  color: $accent-orange;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.left-panel {
+  @include flex-column;
+  gap: $spacing-3xl;
+}
+
+.accent {
+  color: $accent-orange;
+}
+
+.company-details {
+  ul {
+    list-style: none;
+    li {
+      margin: $spacing-xs 0;
+    }
+  }
+
+  border-left: 4px solid $secondary-bg;
+  padding-left: $spacing-xl;
+  color: $text-dark;
+}
+
+.uco-details {
+  @include flex-column;
+  color: $text-dark;
+  gap: $spacing-xs;
+
+  .uco-item {
+    display: flex;
+    align-items: center;
+    color: $text-dark;
+    gap: $spacing-sm;
+
+    .uco-label {
+      background-color: $accent-blue-dark;
+      color: $text-primary;
+      padding: $spacing-xs $spacing-sm;
+      @include text-small;
+      font-weight: 600;
+      text-align: center;
+    }
+  }
+}
+
+.z-details {
+  display: flex;
+  justify-content: space-between;
+  color: $text-dark;
+
+  .z-item {
+    width: 50%;
+    @include flex-column;
+    color: $text-dark;
+    gap: $spacing-sm;
+
+    .z-label {
+      @include text-medium;
+      color: $text-dark;
+      font-weight: 400;
+    }
+
+    p {
+      @include heading-large;
+      font-weight: 600;
+      color: $accent-orange;
+    }
+  }
+}
+
+.market-cap-details {
+  @include flex-column;
+  gap: $spacing-sm;
+  border-left: 4px solid $secondary-bg;
+  padding-left: $spacing-xl;
+  color: $text-dark;
+  font-size: 24px;
+
+  .market-cap-label {
+    @include text-medium;
+    color: $text-dark;
+    font-weight: normal;
+  }
+
+  .market-cap-value {
+    @include heading-large;
+    font-weight: 500;
+    color: $accent-orange;
+  }
+}
+
+.data-details {
+  @include flex-column;
+  gap: $spacing-sm;
+  border-left: 4px solid $secondary-bg;
+  padding-left: $spacing-xl;
+  color: $text-dark;
+  font-size: 24px;
+
+  .data-label {
+    @include text-medium;
+    color: $text-dark;
+    font-weight: normal;
+  }
+
+  p {
+    @include heading-large;
+    font-weight: 500;
+  }
+}
+
+.triangle-graph {
+  height: 200px;
+}
+
+.risks-details {
+  @include flex-column;
+
+  h1 {
+    @include heading-large;
+    padding: $spacing-lg $spacing-sm $spacing-sm $spacing-xl;
+    color: $accent-orange;
+    text-transform: uppercase;
+    border: 2px solid $text-dark;
+    margin-bottom: $spacing-sm;
+  }
+
+  .risks-values {
+    @include flex-column;
+    justify-content: space-evenly;
+
+    background-color: $accent-blue-dark;
+    padding: $spacing-lg;
+    gap: 2rem;
+    padding: $spacing-3xl $spacing-xl;
+
+    .risk-values-item {
+      .risk-label {
+        @include text-medium;
+        font-weight: normal;
+      }
+
+      p {
+        @include heading-xlarge;
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+.change-liquidity-group {
+  @include flex-column;
+  gap: $spacing-2xl;
+}
+
+.market-cap-details,
+.change-details,
+.group-details,
+.liquidity-details {
+  @include flex-column;
+  gap: $spacing-sm;
+  border-left: 4px solid $secondary-bg;
+  padding-left: $spacing-xl;
+  color: $text-dark;
+  font-size: 24px;
+
+  .market-cap-label,
+  .change-label,
+  .group-label,
+  .liquidity-label {
+    @include text-medium;
+    color: $text-dark;
+    font-weight: normal;
+  }
+
+  .market-cap-value,
+  .change-value,
+  .group-value,
+  .liquidity-value {
+    @include heading-large;
+    font-weight: 500;
+    color: $accent-orange;
+  }
+}

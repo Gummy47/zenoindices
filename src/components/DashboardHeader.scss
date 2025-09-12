@@ -1,0 +1,71 @@
+@import "../styles/mixins";
+
+.dashboard-header {
+  @include flex-between;
+  background-color: transparent;
+  padding: 23px 0;
+  border-bottom: 1px solid $secondary-bg;
+}
+
+.company-title {
+  width: 75%;
+  border-left: 4px solid $accent-orange;
+  padding-left: $spacing-md
+}
+
+.company-name {
+  @include heading-large;
+  color: $text-dark;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.view-toggle {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.toggle-btn {
+  @include button-base;
+  padding: $spacing-md $spacing-xl;
+  background: $text-secondary;
+  color: $text-muted;
+  width: 100px;
+  border-left: 6px solid transparent;
+  &:hover {
+    color: $accent-orange;
+  }
+
+  @include text-small;
+
+  &.active {
+    background-color: $accent-orange;
+    color: $text-primary;
+    border-left: 6px solid black;
+  }
+}
+
+.header-icons {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.icon-btn {
+  @include button-base;
+  background: $text-secondary;
+  color: $text-muted;
+  height: 41px;
+  width: 41px;
+
+  svg {
+    scale: 1.5;
+  }
+
+  &:hover {
+    color: $accent-orange;
+  }
+}

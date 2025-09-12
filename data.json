@@ -1,0 +1,111 @@
+{
+    "Company": {
+        "Company Common Name": "Vallourec SA",
+        "Actual": {
+            "Details": {
+                "ISIN": "FR0587IS58",
+                "Sector": {
+                    "Name": "Energy",
+                    "Z1 Mean": 0.5,
+                    "Z2 Mean": 0.3,
+                    "Steering Indices": {
+                        "Profitability": 50,
+                        "Leverage": 70,
+                        "Environment": 60,
+                        "Social": 50,
+                        "Controversies": 40
+                    }
+                },
+                "Market Capitalization": 268145667,
+                "Place of Exchange": "Paris"
+            },
+            "Data": "Altares",
+            "UCO1": "BNP Paribas",
+            "Z1": 0.6,
+            "UCO2": "BlackRock Group",
+            "Z2": 0.3,
+            "Steering Indices": {
+                "Profitability": {
+                    "Score": 55,
+                    "Trends": "Up"
+                },
+                "Leverage": {
+                    "Score": 77,
+                    "Trends": "Up"
+                },
+                "Environment": {
+                    "Score": 32,
+                    "Trends": "Equal"
+                },
+                "Social": {
+                    "Score": 55,
+                    "Trends": "Up"
+                },
+                "Controversies": {
+                    "Score": 41,
+                    "Trends": "Down"
+                }
+            },
+            "Recent Changes": "UCOs",
+            "Liquidity": 76.6,
+            "Group": "BNP Paribas",
+            "Risks": {
+                "Value At Risk": 0.8,
+                "CE": 77
+            }
+        },
+        "Previous": {
+            "Details": {
+                "ISIN": "FR0587IS58",
+                "Sector": {
+                    "Name": "Energy",
+                    "Z1 Mean": 0.4,
+                    "Z2 Mean": 0.2,
+                    "Steering Indices": {
+                        "Profitability": 50,
+                        "Leverage": 70,
+                        "Environment": 60,
+                        "Social": 50,
+                        "Controversies": 40
+                    }
+                },
+                "Market Capitalization": 245132458,
+                "Place of Exchange": "Paris"
+            },
+            "Data": "Altares",
+            "UCO1": "BNP Paribas",
+            "Z1": 0.5,
+            "UCO2": "BlackRock Group",
+            "Z2": 0.2,
+            "Steering Indices": {
+                "Profitability": {
+                    "Score": 45,
+                    "Trends": "Up"
+                },
+                "Leverage": {
+                    "Score": 62,
+                    "Trends": "Down"
+                },
+                "Environment": {
+                    "Score": 32,
+                    "Trends": "Equal"
+                },
+                "Social": {
+                    "Score": 15,
+                    "Trends": "Down"
+                },
+                "Controversies": {
+                    "Score": 88,
+                    "Trends": "Up"
+                }
+            },
+            "Recent Changes": "UCOs",
+            "Liquidity": 84.2,
+            "Group": "BNP Paribas",
+            "Risks": {
+                "Value At Risk": 0.9,
+                "CE": 54
+            }
+        }
+    }
+}

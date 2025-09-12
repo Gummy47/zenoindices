@@ -1,0 +1,21 @@
+@import 'styles/fonts';
+@import 'styles/variables';
+
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font-family;
+  background-color: $primary-bg;
+  color: $text-primary;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
