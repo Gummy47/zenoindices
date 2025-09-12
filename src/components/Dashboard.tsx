@@ -279,30 +279,36 @@ export default function Dashboard() {
                             </div>
 
                             {/* Second row - 1 column + 3 column span */}
-                            <div className="grid-item left-panel">
-                                <div className="recent-changes">
-                                    <div className="section-header">
-                                        Recent Changes
-                                    </div>
-                                    <div className="changes-content">
+                            <div className="grid-item col space-between">
+                                <div className="change-liquidity-group">
+                                    <div className="change-details">
                                         <div className="change-label">
-                                            {currentData.RecentChanges}
+                                            Recent changes
                                         </div>
-                                        <div className="change-item">
-                                            <div className="change-metric">
-                                                Liquidity
-                                            </div>
-                                            <div className="change-value">
+                                        <p>
+                                            <span className="change-value">
+                                                {currentData.RecentChanges}
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div className="liquidity-details">
+                                        <div className="liquidity-label">
+                                            Liquidity
+                                        </div>
+                                        <p>
+                                            <span className="liquidity-value">
                                                 {currentData.Liquidity} %
-                                            </div>
-                                        </div>
+                                            </span>
+                                        </p>
                                     </div>
                                 </div>
-                                <div className="group-section">
-                                    <div className="section-header">Group</div>
-                                    <div className="group-value">
-                                        {currentData.Group}
-                                    </div>
+                                <div className="group-details">
+                                    <div className="group-label">Group</div>
+                                    <p>
+                                        <span className="group-value">
+                                            {currentData.Group}
+                                        </span>
+                                    </p>
                                 </div>
                             </div>
 

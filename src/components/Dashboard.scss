@@ -59,11 +59,6 @@
     text-align: right;
   }
 
-  &.left-panel {
-    @include flex-column;
-    gap: $spacing-xl;
-  }
-
   &.steering-panel {
     grid-column: span 3;
     display: flex;
@@ -86,52 +81,6 @@
 .left-panel {
   @include flex-column;
   gap: $spacing-3xl;
-}
-
-.recent-changes,
-.group-section {
-  @include flex-column;
-  gap: $spacing-md;
-}
-
-.section-header {
-  color: $text-primary;
-  @include text-mid;
-  font-weight: 600;
-  margin-bottom: $spacing-sm;
-}
-
-.changes-content {
-  @include flex-column;
-  gap: $spacing-sm;
-}
-
-.change-label {
-  color: $accent-orange;
-  @include text-mid;
-  font-weight: 600;
-}
-
-.change-item {
-  @include flex-column;
-  gap: $spacing-xs;
-}
-
-.change-metric {
-  color: $text-primary;
-  @include text-small;
-}
-
-.change-value {
-  color: $accent-orange;
-  font-size: 24px;
-  font-weight: 700;
-}
-
-.group-value {
-  color: $accent-orange;
-  font-size: 24px;
-  font-weight: 700;
 }
 
 .accent {
@@ -271,5 +220,40 @@
         font-weight: normal;
       }
     }
+  }
+}
+
+.change-liquidity-group {
+  @include flex-column;
+  gap: $spacing-2xl;
+}
+
+.market-cap-details,
+.change-details,
+.group-details,
+.liquidity-details {
+  @include flex-column;
+  gap: $spacing-sm;
+  border-left: 4px solid $secondary-bg;
+  padding-left: $spacing-xl;
+  color: $text-dark;
+  font-size: 24px;
+
+  .market-cap-label,
+  .change-label,
+  .group-label,
+  .liquidity-label {
+    @include text-medium;
+    color: $text-dark;
+    font-weight: normal;
+  }
+
+  .market-cap-value,
+  .change-value,
+  .group-value,
+  .liquidity-value {
+    @include heading-large;
+    font-weight: 500;
+    color: $accent-orange;
   }
 }
