@@ -4,7 +4,7 @@ import Modal from '../components/Modal';
 interface ModalConfig {
     title: string;
     content: ReactNode;
-    size?: "small" | "medium" | "large";
+    size?: "small" | "medium" | "large" | "xlarge";
     closeOnOverlayClick?: boolean;
 }
 

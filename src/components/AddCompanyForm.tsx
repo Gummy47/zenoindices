@@ -246,11 +246,366 @@ export default function AddCompanyForm({
         }
     };
 
+    const renderFieldGroup = (prefix: "actual" | "previous", title: string) => (
+        <div className="column">
+            <h4 className="column-header">{title}</h4>
+            
+            {/* Details Section */}
+            <div className="field-group">
+                <div className="field-group-title">Details</div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}ISIN`}>ISIN</label>
+                    <input
+                        id={`${prefix}ISIN`}
+                        type="text"
+                        value={formData[`${prefix}ISIN` as keyof typeof formData] as string}
+                        onChange={e => handleInputChange(`${prefix}ISIN`, e.target.value)}
+                        placeholder="e.g. US0378331005"
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}SectorName`}>Sector Name</label>
+                    <input
+                        id={`${prefix}SectorName`}
+                        type="text"
+                        value={formData[`${prefix}SectorName` as keyof typeof formData] as string}
+                        onChange={e => handleInputChange(`${prefix}SectorName`, e.target.value)}
+                        placeholder="e.g. Technology, Healthcare"
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}MarketCapitalization`}>Market Capitalization</label>
+                    <input
+                        id={`${prefix}MarketCapitalization`}
+                        type="number"
+                        value={formData[`${prefix}MarketCapitalization` as keyof typeof formData] as number}
+                        onChange={e => handleInputChange(`${prefix}MarketCapitalization`, parseFloat(e.target.value) || 0)}
+                        placeholder="Market cap in millions"
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}PlaceOfExchange`}>Place of Exchange</label>
+                    <input
+                        id={`${prefix}PlaceOfExchange`}
+                        type="text"
+                        value={formData[`${prefix}PlaceOfExchange` as keyof typeof formData] as string}
+                        onChange={e => handleInputChange(`${prefix}PlaceOfExchange`, e.target.value)}
+                        placeholder="e.g. NYSE, NASDAQ"
+                    />
+                </div>
+            </div>
+
+            {/* Sector Means */}
+            <div className="field-group">
+                <div className="field-group-title">Sector Means</div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}Z1Mean`}>Z1 Mean</label>
+                    <input
+                        id={`${prefix}Z1Mean`}
+                        type="number"
+                        step="0.01"
+                        value={formData[`${prefix}Z1Mean` as keyof typeof formData] as number}
+                        onChange={e => handleInputChange(`${prefix}Z1Mean`, parseFloat(e.target.value) || 0)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}Z2Mean`}>Z2 Mean</label>
+                    <input
+                        id={`${prefix}Z2Mean`}
+                        type="number"
+                        step="0.01"
+                        value={formData[`${prefix}Z2Mean` as keyof typeof formData] as number}
+                        onChange={e => handleInputChange(`${prefix}Z2Mean`, parseFloat(e.target.value) || 0)}
+                    />
+                </div>
+            </div>
+
+            {/* Core Data */}
+            <div className="field-group">
+                <div className="field-group-title">Core Data</div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}Data`}>Data</label>
+                    <input
+                        id={`${prefix}Data`}
+                        type="text"
+                        value={formData[`${prefix}Data` as keyof typeof formData] as string}
+                        onChange={e => handleInputChange(`${prefix}Data`, e.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}UCO1`}>UCO1</label>
+                    <input
+                        id={`${prefix}UCO1`}
+                        type="text"
+                        value={formData[`${prefix}UCO1` as keyof typeof formData] as string}
+                        onChange={e => handleInputChange(`${prefix}UCO1`, e.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}Z1`}>Z1</label>
+                    <input
+                        id={`${prefix}Z1`}
+                        type="number"
+                        step="0.01"
+                        value={formData[`${prefix}Z1` as keyof typeof formData] as number}
+                        onChange={e => handleInputChange(`${prefix}Z1`, parseFloat(e.target.value) || 0)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}UCO2`}>UCO2</label>
+                    <input
+                        id={`${prefix}UCO2`}
+                        type="text"
+                        value={formData[`${prefix}UCO2` as keyof typeof formData] as string}
+                        onChange={e => handleInputChange(`${prefix}UCO2`, e.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}Z2`}>Z2</label>
+                    <input
+                        id={`${prefix}Z2`}
+                        type="number"
+                        step="0.01"
+                        value={formData[`${prefix}Z2` as keyof typeof formData] as number}
+                        onChange={e => handleInputChange(`${prefix}Z2`, parseFloat(e.target.value) || 0)}
+                    />
+                </div>
+            </div>
+
+            {/* Sector Steering Indices */}
+            <div className="field-group">
+                <div className="field-group-title">Sector Steering Indices</div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}SectorProfitability`}>Profitability</label>
+                    <input
+                        id={`${prefix}SectorProfitability`}
+                        type="number"
+                        step="0.01"
+                        value={formData[`${prefix}SectorProfitability` as keyof typeof formData] as number}
+                        onChange={e => handleInputChange(`${prefix}SectorProfitability`, parseFloat(e.target.value) || 0)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}SectorLeverage`}>Leverage</label>
+                    <input
+                        id={`${prefix}SectorLeverage`}
+                        type="number"
+                        step="0.01"
+                        value={formData[`${prefix}SectorLeverage` as keyof typeof formData] as number}
+                        onChange={e => handleInputChange(`${prefix}SectorLeverage`, parseFloat(e.target.value) || 0)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}SectorEnvironment`}>Environment</label>
+                    <input
+                        id={`${prefix}SectorEnvironment`}
+                        type="number"
+                        step="0.01"
+                        value={formData[`${prefix}SectorEnvironment` as keyof typeof formData] as number}
+                        onChange={e => handleInputChange(`${prefix}SectorEnvironment`, parseFloat(e.target.value) || 0)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}SectorSocial`}>Social</label>
+                    <input
+                        id={`${prefix}SectorSocial`}
+                        type="number"
+                        step="0.01"
+                        value={formData[`${prefix}SectorSocial` as keyof typeof formData] as number}
+                        onChange={e => handleInputChange(`${prefix}SectorSocial`, parseFloat(e.target.value) || 0)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}SectorControversies`}>Controversies</label>
+                    <input
+                        id={`${prefix}SectorControversies`}
+                        type="number"
+                        step="0.01"
+                        value={formData[`${prefix}SectorControversies` as keyof typeof formData] as number}
+                        onChange={e => handleInputChange(`${prefix}SectorControversies`, parseFloat(e.target.value) || 0)}
+                    />
+                </div>
+            </div>
+
+            {/* Steering Indices */}
+            <div className="field-group">
+                <div className="field-group-title">Steering Indices</div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}SteeringProfitabilityScore`}>Profitability Score</label>
+                    <input
+                        id={`${prefix}SteeringProfitabilityScore`}
+                        type="number"
+                        step="0.01"
+                        value={formData[`${prefix}SteeringProfitabilityScore` as keyof typeof formData] as number}
+                        onChange={e => handleInputChange(`${prefix}SteeringProfitabilityScore`, parseFloat(e.target.value) || 0)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}SteeringProfitabilityTrends`}>Profitability Trends</label>
+                    <select
+                        id={`${prefix}SteeringProfitabilityTrends`}
+                        value={formData[`${prefix}SteeringProfitabilityTrends` as keyof typeof formData] as string}
+                        onChange={e => handleInputChange(`${prefix}SteeringProfitabilityTrends`, e.target.value as "Up" | "Down" | "Equal")}
+                    >
+                        <option value="Equal">Equal</option>
+                        <option value="Up">Up</option>
+                        <option value="Down">Down</option>
+                    </select>
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}SteeringLeverageScore`}>Leverage Score</label>
+                    <input
+                        id={`${prefix}SteeringLeverageScore`}
+                        type="number"
+                        step="0.01"
+                        value={formData[`${prefix}SteeringLeverageScore` as keyof typeof formData] as number}
+                        onChange={e => handleInputChange(`${prefix}SteeringLeverageScore`, parseFloat(e.target.value) || 0)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}SteeringLeverageTrends`}>Leverage Trends</label>
+                    <select
+                        id={`${prefix}SteeringLeverageTrends`}
+                        value={formData[`${prefix}SteeringLeverageTrends` as keyof typeof formData] as string}
+                        onChange={e => handleInputChange(`${prefix}SteeringLeverageTrends`, e.target.value as "Up" | "Down" | "Equal")}
+                    >
+                        <option value="Equal">Equal</option>
+                        <option value="Up">Up</option>
+                        <option value="Down">Down</option>
+                    </select>
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}SteeringEnvironmentScore`}>Environment Score</label>
+                    <input
+                        id={`${prefix}SteeringEnvironmentScore`}
+                        type="number"
+                        step="0.01"
+                        value={formData[`${prefix}SteeringEnvironmentScore` as keyof typeof formData] as number}
+                        onChange={e => handleInputChange(`${prefix}SteeringEnvironmentScore`, parseFloat(e.target.value) || 0)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}SteeringEnvironmentTrends`}>Environment Trends</label>
+                    <select
+                        id={`${prefix}SteeringEnvironmentTrends`}
+                        value={formData[`${prefix}SteeringEnvironmentTrends` as keyof typeof formData] as string}
+                        onChange={e => handleInputChange(`${prefix}SteeringEnvironmentTrends`, e.target.value as "Up" | "Down" | "Equal")}
+                    >
+                        <option value="Equal">Equal</option>
+                        <option value="Up">Up</option>
+                        <option value="Down">Down</option>
+                    </select>
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}SteeringSocialScore`}>Social Score</label>
+                    <input
+                        id={`${prefix}SteeringSocialScore`}
+                        type="number"
+                        step="0.01"
+                        value={formData[`${prefix}SteeringSocialScore` as keyof typeof formData] as number}
+                        onChange={e => handleInputChange(`${prefix}SteeringSocialScore`, parseFloat(e.target.value) || 0)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}SteeringSocialTrends`}>Social Trends</label>
+                    <select
+                        id={`${prefix}SteeringSocialTrends`}
+                        value={formData[`${prefix}SteeringSocialTrends` as keyof typeof formData] as string}
+                        onChange={e => handleInputChange(`${prefix}SteeringSocialTrends`, e.target.value as "Up" | "Down" | "Equal")}
+                    >
+                        <option value="Equal">Equal</option>
+                        <option value="Up">Up</option>
+                        <option value="Down">Down</option>
+                    </select>
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}SteeringControversiesScore`}>Controversies Score</label>
+                    <input
+                        id={`${prefix}SteeringControversiesScore`}
+                        type="number"
+                        step="0.01"
+                        value={formData[`${prefix}SteeringControversiesScore` as keyof typeof formData] as number}
+                        onChange={e => handleInputChange(`${prefix}SteeringControversiesScore`, parseFloat(e.target.value) || 0)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}SteeringControversiesTrends`}>Controversies Trends</label>
+                    <select
+                        id={`${prefix}SteeringControversiesTrends`}
+                        value={formData[`${prefix}SteeringControversiesTrends` as keyof typeof formData] as string}
+                        onChange={e => handleInputChange(`${prefix}SteeringControversiesTrends`, e.target.value as "Up" | "Down" | "Equal")}
+                    >
+                        <option value="Equal">Equal</option>
+                        <option value="Up">Up</option>
+                        <option value="Down">Down</option>
+                    </select>
+                </div>
+            </div>
+
+            {/* Additional Data */}
+            <div className="field-group">
+                <div className="field-group-title">Additional Data</div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}RecentChanges`}>Recent Changes</label>
+                    <input
+                        id={`${prefix}RecentChanges`}
+                        type="text"
+                        value={formData[`${prefix}RecentChanges` as keyof typeof formData] as string}
+                        onChange={e => handleInputChange(`${prefix}RecentChanges`, e.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}Liquidity`}>Liquidity</label>
+                    <input
+                        id={`${prefix}Liquidity`}
+                        type="number"
+                        step="0.01"
+                        value={formData[`${prefix}Liquidity` as keyof typeof formData] as number}
+                        onChange={e => handleInputChange(`${prefix}Liquidity`, parseFloat(e.target.value) || 0)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}Group`}>Group</label>
+                    <input
+                        id={`${prefix}Group`}
+                        type="text"
+                        value={formData[`${prefix}Group` as keyof typeof formData] as string}
+                        onChange={e => handleInputChange(`${prefix}Group`, e.target.value)}
+                    />
+                </div>
+            </div>
+
+            {/* Risks */}
+            <div className="field-group">
+                <div className="field-group-title">Risks</div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}ValueAtRisk`}>Value At Risk</label>
+                    <input
+                        id={`${prefix}ValueAtRisk`}
+                        type="number"
+                        step="0.01"
+                        value={formData[`${prefix}ValueAtRisk` as keyof typeof formData] as number}
+                        onChange={e => handleInputChange(`${prefix}ValueAtRisk`, parseFloat(e.target.value) || 0)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}CE`}>CE</label>
+                    <input
+                        id={`${prefix}CE`}
+                        type="number"
+                        step="0.01"
+                        value={formData[`${prefix}CE` as keyof typeof formData] as number}
+                        onChange={e => handleInputChange(`${prefix}CE`, parseFloat(e.target.value) || 0)}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+
     return (
         <form onSubmit={handleSubmit} className="add-company-form">
-            {/* Basic Company Info */}
-            <div className="form-section">
-                <h3>Company Information</h3>
+            {/* Company Name Header - Outside scrollable area */}
+            <div className="company-name-section">
                 <div className="form-group">
                     <label htmlFor="companyCommonName">Company Name *</label>
                     <input
@@ -263,168 +618,41 @@ export default function AddCompanyForm({
                                 e.target.value,
                             )
                         }
+                        placeholder="Enter the company's common name"
                         required
                     />
                 </div>
             </div>
 
-            {/* Actual Data Section */}
-            <div className="form-section">
-                <h3>Actual Data</h3>
-                <div className="form-row">
-                    <div className="form-group">
-                        <label htmlFor="actualISIN">ISIN</label>
-                        <input
-                            id="actualISIN"
-                            type="text"
-                            value={formData.actualISIN}
-                            onChange={e =>
-                                handleInputChange("actualISIN", e.target.value)
-                            }
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="actualSectorName">Sector Name</label>
-                        <input
-                            id="actualSectorName"
-                            type="text"
-                            value={formData.actualSectorName}
-                            onChange={e =>
-                                handleInputChange(
-                                    "actualSectorName",
-                                    e.target.value,
-                                )
-                            }
-                        />
-                    </div>
-                </div>
-
-                <div className="form-row">
-                    <div className="form-group">
-                        <label htmlFor="actualMarketCapitalization">
-                            Market Capitalization
-                        </label>
-                        <input
-                            id="actualMarketCapitalization"
-                            type="number"
-                            value={formData.actualMarketCapitalization}
-                            onChange={e =>
-                                handleInputChange(
-                                    "actualMarketCapitalization",
-                                    parseFloat(e.target.value) || 0,
-                                )
-                            }
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="actualPlaceOfExchange">
-                            Place of Exchange
-                        </label>
-                        <input
-                            id="actualPlaceOfExchange"
-                            type="text"
-                            value={formData.actualPlaceOfExchange}
-                            onChange={e =>
-                                handleInputChange(
-                                    "actualPlaceOfExchange",
-                                    e.target.value,
-                                )
-                            }
-                        />
-                    </div>
-                </div>
-
-                <div className="form-row">
-                    <div className="form-group">
-                        <label htmlFor="actualZ1">Z1</label>
-                        <input
-                            id="actualZ1"
-                            type="number"
-                            step="0.01"
-                            value={formData.actualZ1}
-                            onChange={e =>
-                                handleInputChange(
-                                    "actualZ1",
-                                    parseFloat(e.target.value) || 0,
-                                )
-                            }
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="actualZ2">Z2</label>
-                        <input
-                            id="actualZ2"
-                            type="number"
-                            step="0.01"
-                            value={formData.actualZ2}
-                            onChange={e =>
-                                handleInputChange(
-                                    "actualZ2",
-                                    parseFloat(e.target.value) || 0,
-                                )
-                            }
-                        />
-                    </div>
-                </div>
-
-                <div className="form-row">
-                    <div className="form-group">
-                        <label htmlFor="actualLiquidity">Liquidity (%)</label>
-                        <input
-                            id="actualLiquidity"
-                            type="number"
-                            step="0.1"
-                            value={formData.actualLiquidity}
-                            onChange={e =>
-                                handleInputChange(
-                                    "actualLiquidity",
-                                    parseFloat(e.target.value) || 0,
-                                )
-                            }
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="actualValueAtRisk">Value At Risk</label>
-                        <input
-                            id="actualValueAtRisk"
-                            type="number"
-                            step="0.01"
-                            value={formData.actualValueAtRisk}
-                            onChange={e =>
-                                handleInputChange(
-                                    "actualValueAtRisk",
-                                    parseFloat(e.target.value) || 0,
-                                )
-                            }
-                        />
-                    </div>
+            {/* Scrollable form content */}
+            <div className="form-content">
+                {/* Two-column layout for Actual vs Previous */}
+                <div className="two-column-layout">
+                    {renderFieldGroup("actual", "Current Period")}
+                    {renderFieldGroup("previous", "Previous Period")}
                 </div>
             </div>
 
-            {/* Previous Data Section (simplified for brevity) */}
-            <div className="form-section">
-                <h3>Previous Data</h3>
-                <p className="form-note">
-                    Previous period data (similar structure to actual data)
-                </p>
-                {/* Add similar fields for previous data if needed */}
-            </div>
-
-            {/* Form Actions */}
+            {/* Form Actions - Outside scrollable area */}
             <div className="form-actions">
-                <button
-                    type="button"
-                    onClick={onCancel}
-                    className="btn btn-secondary"
-                    disabled={isSubmitting}>
-                    Cancel
-                </button>
-                <button
-                    type="submit"
-                    className="btn btn-primary"
-                    disabled={isSubmitting}>
-                    {isSubmitting ? "Adding..." : "Add Company"}
-                </button>
+                <div className="form-actions-info">
+                    Review all data before submitting. All fields are optional except company name.
+                </div>
+                <div className="form-actions-buttons">
+                    <button
+                        type="button"
+                        onClick={onCancel}
+                        className="btn btn-secondary"
+                        disabled={isSubmitting}>
+                        Cancel
+                    </button>
+                    <button
+                        type="submit"
+                        className="btn btn-primary"
+                        disabled={isSubmitting}>
+                        {isSubmitting ? "Adding Company..." : "Add Company"}
+                    </button>
+                </div>
             </div>
         </form>
     );
