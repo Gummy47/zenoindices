@@ -2,6 +2,7 @@ import { useTypedSelector, useAppDispatch } from "../store/hooks";
 import { setCurrent } from "../store/companiesSlice";
 import { addCompany } from "../store/actions/companies/addCompany";
 import { AddIcon } from "./icons";
+import { customToast } from "../utils/toast";
 import "./Sidebar.scss";
 import type { ICompanyDocument } from "../core/interfaces";
 import { useEffect, useMemo, useRef } from "react";
@@ -48,7 +49,7 @@ export default function Sidebar() {
         if (!file) return;
 
         if (!file.name.endsWith(".json")) {
-            alert("Please select a JSON file");
+            customToast.error("Please select a JSON file");
             return;
         }
 
@@ -58,8 +59,8 @@ export default function Sidebar() {
 
             // Validate that the JSON has the expected structure
             if (!jsonData.Company || !jsonData.Company["Company Common Name"]) {
-                alert(
-                    "Invalid JSON format. Expected a company data structure.",
+                customToast.error(
+                    "Invalid JSON format. Expected a company data structure."
                 );
                 return;
             }
@@ -71,12 +72,12 @@ export default function Sidebar() {
 
             // Dispatch the addCompany action
             await dispatch(addCompany(companyDocument));
-            alert(
-                `Successfully imported: ${jsonData.Company["Company Common Name"]}`,
+            customToast.success(
+                `Successfully imported: ${jsonData.Company["Company Common Name"]}`
             );
         } catch (error) {
             console.error("Error importing company data:", error);
-            alert("Error importing file. Please check the file format.");
+            customToast.error("Error importing file. Please check the file format.");
         } finally {
             // Clear the file input
             if (fileInputRef.current) {

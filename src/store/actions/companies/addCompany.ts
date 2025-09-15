@@ -11,7 +11,7 @@ export const addCompany = createAsyncThunk<
 >(
     "companies/addCompany",
     async (
-        companyData: Pick<ICompanyDocument, "data">,
+        companyData,
         { rejectWithValue },
     ) => {
         try {
