@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAppDispatch } from "../store/hooks";
 import { addCompany } from "../store/actions/companies/addCompany";
+import { updateCompany } from "../store/actions/companies/updateCompany";
 import { customToast } from "../utils/toast";
 import type { ICompanyDocument } from "../core/interfaces";
 import "./AddCompanyForm.scss";
@@ -8,17 +9,95 @@ import "./AddCompanyForm.scss";
 interface AddCompanyFormProps {
     onSuccess: () => void;
     onCancel: () => void;
+    company?: ICompanyDocument;
 }
 
 export default function AddCompanyForm({
     onSuccess,
     onCancel,
+    company,
 }: AddCompanyFormProps) {
     const dispatch = useAppDispatch();
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const isEditing = !!company;
 
-    // Form state for company data
-    const [formData, setFormData] = useState({
+    // Helper function to extract form data from company document
+    const extractFormDataFromCompany = (companyDoc: ICompanyDocument) => {
+        const companyData = companyDoc.data.Company;
+        return {
+            // Company Basic Info
+            companyCommonName: companyData["Company Common Name"] || "",
+            
+            // Actual Details
+            actualISIN: companyData.Actual?.Details?.ISIN || "",
+            actualSectorName: companyData.Actual?.Details?.Sector?.Name || "",
+            actualZ1Mean: companyData.Actual?.Details?.Sector?.["Z1 Mean"] || 0,
+            actualZ2Mean: companyData.Actual?.Details?.Sector?.["Z2 Mean"] || 0,
+            actualSectorProfitability: companyData.Actual?.Details?.Sector?.["Steering Indices"]?.Profitability || 0,
+            actualSectorLeverage: companyData.Actual?.Details?.Sector?.["Steering Indices"]?.Leverage || 0,
+            actualSectorEnvironment: companyData.Actual?.Details?.Sector?.["Steering Indices"]?.Environment || 0,
+            actualSectorSocial: companyData.Actual?.Details?.Sector?.["Steering Indices"]?.Social || 0,
+            actualSectorControversies: companyData.Actual?.Details?.Sector?.["Steering Indices"]?.Controversies || 0,
+            actualMarketCapitalization: companyData.Actual?.Details?.["Market Capitalization"] || 0,
+            actualPlaceOfExchange: companyData.Actual?.Details?.["Place of Exchange"] || "",
+            actualData: companyData.Actual?.Data || "",
+            actualUCO1: companyData.Actual?.UCO1 || "",
+            actualZ1: companyData.Actual?.Z1 || 0,
+            actualUCO2: companyData.Actual?.UCO2 || "",
+            actualZ2: companyData.Actual?.Z2 || 0,
+            actualSteeringProfitabilityScore: companyData.Actual?.["Steering Indices"]?.Profitability?.Score || 0,
+            actualSteeringProfitabilityTrends: companyData.Actual?.["Steering Indices"]?.Profitability?.Trends || "Equal" as "Up" | "Down" | "Equal",
+            actualSteeringLeverageScore: companyData.Actual?.["Steering Indices"]?.Leverage?.Score || 0,
+            actualSteeringLeverageTrends: companyData.Actual?.["Steering Indices"]?.Leverage?.Trends || "Equal" as "Up" | "Down" | "Equal",
+            actualSteeringEnvironmentScore: companyData.Actual?.["Steering Indices"]?.Environment?.Score || 0,
+            actualSteeringEnvironmentTrends: companyData.Actual?.["Steering Indices"]?.Environment?.Trends || "Equal" as "Up" | "Down" | "Equal",
+            actualSteeringSocialScore: companyData.Actual?.["Steering Indices"]?.Social?.Score || 0,
+            actualSteeringSocialTrends: companyData.Actual?.["Steering Indices"]?.Social?.Trends || "Equal" as "Up" | "Down" | "Equal",
+            actualSteeringControversiesScore: companyData.Actual?.["Steering Indices"]?.Controversies?.Score || 0,
+            actualSteeringControversiesTrends: companyData.Actual?.["Steering Indices"]?.Controversies?.Trends || "Equal" as "Up" | "Down" | "Equal",
+            actualRecentChanges: companyData.Actual?.["Recent Changes"] || "",
+            actualLiquidity: companyData.Actual?.Liquidity || 0,
+            actualGroup: companyData.Actual?.Group || "",
+            actualValueAtRisk: companyData.Actual?.Risks?.["Value At Risk"] || 0,
+            actualCE: companyData.Actual?.Risks?.CE || 0,
+
+            // Previous Details
+            previousISIN: companyData.Previous?.Details?.ISIN || "",
+            previousSectorName: companyData.Previous?.Details?.Sector?.Name || "",
+            previousZ1Mean: companyData.Previous?.Details?.Sector?.["Z1 Mean"] || 0,
+            previousZ2Mean: companyData.Previous?.Details?.Sector?.["Z2 Mean"] || 0,
+            previousSectorProfitability: companyData.Previous?.Details?.Sector?.["Steering Indices"]?.Profitability || 0,
+            previousSectorLeverage: companyData.Previous?.Details?.Sector?.["Steering Indices"]?.Leverage || 0,
+            previousSectorEnvironment: companyData.Previous?.Details?.Sector?.["Steering Indices"]?.Environment || 0,
+            previousSectorSocial: companyData.Previous?.Details?.Sector?.["Steering Indices"]?.Social || 0,
+            previousSectorControversies: companyData.Previous?.Details?.Sector?.["Steering Indices"]?.Controversies || 0,
+            previousMarketCapitalization: companyData.Previous?.Details?.["Market Capitalization"] || 0,
+            previousPlaceOfExchange: companyData.Previous?.Details?.["Place of Exchange"] || "",
+            previousData: companyData.Previous?.Data || "",
+            previousUCO1: companyData.Previous?.UCO1 || "",
+            previousZ1: companyData.Previous?.Z1 || 0,
+            previousUCO2: companyData.Previous?.UCO2 || "",
+            previousZ2: companyData.Previous?.Z2 || 0,
+            previousSteeringProfitabilityScore: companyData.Previous?.["Steering Indices"]?.Profitability?.Score || 0,
+            previousSteeringProfitabilityTrends: companyData.Previous?.["Steering Indices"]?.Profitability?.Trends || "Equal" as "Up" | "Down" | "Equal",
+            previousSteeringLeverageScore: companyData.Previous?.["Steering Indices"]?.Leverage?.Score || 0,
+            previousSteeringLeverageTrends: companyData.Previous?.["Steering Indices"]?.Leverage?.Trends || "Equal" as "Up" | "Down" | "Equal",
+            previousSteeringEnvironmentScore: companyData.Previous?.["Steering Indices"]?.Environment?.Score || 0,
+            previousSteeringEnvironmentTrends: companyData.Previous?.["Steering Indices"]?.Environment?.Trends || "Equal" as "Up" | "Down" | "Equal",
+            previousSteeringSocialScore: companyData.Previous?.["Steering Indices"]?.Social?.Score || 0,
+            previousSteeringSocialTrends: companyData.Previous?.["Steering Indices"]?.Social?.Trends || "Equal" as "Up" | "Down" | "Equal",
+            previousSteeringControversiesScore: companyData.Previous?.["Steering Indices"]?.Controversies?.Score || 0,
+            previousSteeringControversiesTrends: companyData.Previous?.["Steering Indices"]?.Controversies?.Trends || "Equal" as "Up" | "Down" | "Equal",
+            previousRecentChanges: companyData.Previous?.["Recent Changes"] || "",
+            previousLiquidity: companyData.Previous?.Liquidity || 0,
+            previousGroup: companyData.Previous?.Group || "",
+            previousValueAtRisk: companyData.Previous?.Risks?.["Value At Risk"] || 0,
+            previousCE: companyData.Previous?.Risks?.CE || 0,
+        };
+    };
+
+    // Default form data
+    const defaultFormData = {
         // Company Basic Info
         companyCommonName: "",
 
@@ -87,7 +166,21 @@ export default function AddCompanyForm({
         previousGroup: "",
         previousValueAtRisk: 0,
         previousCE: 0,
-    });
+    };
+
+    // Form state for company data - initialize with company data if editing
+    const [formData, setFormData] = useState(() => 
+        company ? extractFormDataFromCompany(company) : defaultFormData
+    );
+
+    // Update form data when company prop changes (for editing mode)
+    useEffect(() => {
+        if (company) {
+            setFormData(extractFormDataFromCompany(company));
+        } else {
+            setFormData(defaultFormData);
+        }
+    }, [company]);
 
     const handleInputChange = (field: string, value: any) => {
         setFormData(prev => ({
@@ -233,14 +326,20 @@ export default function AddCompanyForm({
                 },
             };
 
-            await dispatch(addCompany(companyData));
-            customToast.success(
-                `Successfully added: ${formData.companyCommonName}`,
-            );
+            if (isEditing && company) {
+                // Update existing company
+                await dispatch(updateCompany({
+                    id: company.id,
+                    data: companyData
+                }));
+            } else {
+                // Add new company
+                await dispatch(addCompany(companyData));
+            }
             onSuccess();
         } catch (error) {
-            console.error("Error adding company:", error);
-            customToast.error("Failed to add company. Please try again.");
+            console.error(`Error ${isEditing ? 'updating' : 'adding'} company:`, error);
+            customToast.error(`Failed to ${isEditing ? 'update' : 'add'} company. Please try again.`);
         } finally {
             setIsSubmitting(false);
         }
@@ -650,7 +749,10 @@ export default function AddCompanyForm({
                         type="submit"
                         className="btn btn-primary"
                         disabled={isSubmitting}>
-                        {isSubmitting ? "Adding Company..." : "Add Company"}
+                        {isSubmitting 
+                            ? `${isEditing ? 'Updating' : 'Adding'} Company...` 
+                            : `${isEditing ? 'Update' : 'Add'} Company`
+                        }
                     </button>
                 </div>
             </div>

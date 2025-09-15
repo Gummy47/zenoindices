@@ -38,7 +38,7 @@
   margin: variables.$spacing-sm 0;
   padding: 10px variables.$spacing-xl variables.$spacing-sm 0;
   cursor: pointer;
-  border-right: 2px solid variables.$primary-bg;
+  border-right: 2px solid variables.$text-muted;
   color: variables.$text-secondary;
   text-align: right;
   transition: all variables.$transition-fast;
@@ -60,15 +60,26 @@
   padding: variables.$spacing-lg 0;
   border-top: 1px solid variables.$text-muted;
 
+  .button-row {
+    display: flex;
+    gap: variables.$spacing-sm;
+  }
+
   button {
     @include mixins.button-base;
     font-size: 18px;
-    width: 100%;
+    flex: 1;
     text-align: right;
     color: variables.$accent-orange;
     background-color: transparent;
+
     display: flex;
     justify-content: flex-end;
+
+    &:first-child {
+      justify-content: flex-start;
+    }
+
     align-items: center;
 
     &:hover {

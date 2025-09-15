@@ -3,17 +3,44 @@ import { setViewMode } from "../store/companiesSlice";
 import { deleteCompany } from "../store/actions/companies/deleteCompany";
 import { EditIcon, TrashIcon } from "./icons";
 import { customToast } from "../utils/toast";
+import { useGlobalModal } from "../context/ModalContext";
+import AddCompanyForm from "./AddCompanyForm";
 import "./DashboardHeader.scss";
 
 export default function DashboardHeader() {
     const dispatch = useAppDispatch();
+    const { openModal, closeModal } = useGlobalModal();
 
     const { current: currentCompany, viewMode } = useTypedSelector(
         state => state.companies,
     );
 
     const handleEdit = () => {
-        customToast.loading("Edit company - feature not implemented yet.");
+        if (!currentCompany) {
+            customToast.error("No company selected to edit.");
+            return;
+        }
+
+        openModal({
+            title: "Edit Company",
+            content: (
+                <AddCompanyForm
+                    company={currentCompany}
+                    onSuccess={handleEditSuccess}
+                    onCancel={handleEditCancel}
+                />
+            ),
+            size: "large",
+            closeOnOverlayClick: false,
+        });
+    };
+
+    const handleEditSuccess = () => {
+        closeModal();
+    };
+
+    const handleEditCancel = () => {
+        closeModal();
     };
 
     const handleDelete = async () => {
@@ -29,8 +56,10 @@ export default function DashboardHeader() {
 
         if (window.confirm(confirmMessage)) {
             try {
-                await dispatch(deleteCompany(currentCompany.id)).unwrap();
-                customToast.success(`Successfully deleted: ${companyName}`);
+                await dispatch(deleteCompany({ 
+                    id: currentCompany.id, 
+                    name: companyName || "Unknown Company" 
+                })).unwrap();
             } catch (error) {
                 console.error("Error deleting company:", error);
                 customToast.error(`Failed to delete company: ${error}`);

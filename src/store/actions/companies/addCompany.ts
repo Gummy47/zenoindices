@@ -23,7 +23,7 @@ export const addCompany = createAsyncThunk<
             });
 
             customToast.success(
-                `Successfully imported: ${companyData.data.Company["Company Common Name"]}`,
+                `Successfully added company : ${companyData.data.Company["Company Common Name"]}`,
             );
 
             return {
@@ -31,7 +31,7 @@ export const addCompany = createAsyncThunk<
                 ...companyData,
             };
         } catch (error) {
-            console.error("Error adding company:", error);
+            console.error("Error adding company :", error);
             return rejectWithValue(
                 error instanceof Error
                     ? error.message
