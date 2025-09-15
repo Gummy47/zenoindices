@@ -1,12 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchCompanies } from "./actions/companies/fetchCompanies";
-import { fetchCompanyById } from "./actions/companies/fetchCompanyById";
 import { addCompany } from "./actions/companies/addCompany";
 import { updateCompany } from "./actions/companies/updateCompany";
 import { deleteCompany } from "./actions/companies/deleteCompany";
 import {
     handleFetchAll,
-    handleFetchOne,
     handleAdd,
     handleUpdate,
     handleDelete,
@@ -49,7 +47,6 @@ const companiesSlice = createSlice({
     extraReducers: builder => {
         // Use helper functions to reduce boilerplate
         handleFetchAll(builder, fetchCompanies, "entities");
-        handleFetchOne(builder, fetchCompanyById, "current");
         handleAdd(builder, addCompany, "entities");
         handleUpdate(builder, updateCompany, "entities", "current");
         handleDelete(builder, deleteCompany, "entities", "current");

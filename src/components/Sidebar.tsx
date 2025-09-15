@@ -3,6 +3,8 @@ import { setCurrent } from "../store/companiesSlice";
 import { addCompany } from "../store/actions/companies/addCompany";
 import { AddIcon } from "./icons";
 import { customToast } from "../utils/toast";
+import { useGlobalModal } from "../context/ModalContext";
+import AddCompanyForm from "./AddCompanyForm";
 import "./Sidebar.scss";
 import type { ICompanyDocument } from "../core/interfaces";
 import { useEffect, useMemo, useRef } from "react";
@@ -10,6 +12,7 @@ import { useEffect, useMemo, useRef } from "react";
 export default function Sidebar() {
     const dispatch = useAppDispatch();
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const { openModal, closeModal } = useGlobalModal();
 
     const { current: currentCompany, entities: companies } = useTypedSelector(
         state => state.companies,
@@ -35,7 +38,25 @@ export default function Sidebar() {
     }, [currentCompany, dispatch, sortedCompanies]);
 
     const handleAdd = () => {
-        alert("Add company - feature not implemented yet.");
+        openModal({
+            title: "Add New Company",
+            content: (
+                <AddCompanyForm
+                    onSuccess={handleAddSuccess}
+                    onCancel={handleAddCancel}
+                />
+            ),
+            size: "large",
+            closeOnOverlayClick: false,
+        });
+    };
+
+    const handleAddSuccess = () => {
+        closeModal();
+    };
+
+    const handleAddCancel = () => {
+        closeModal();
     };
 
     const handleImport = () => {
@@ -60,24 +81,20 @@ export default function Sidebar() {
             // Validate that the JSON has the expected structure
             if (!jsonData.Company || !jsonData.Company["Company Common Name"]) {
                 customToast.error(
-                    "Invalid JSON format. Expected a company data structure."
+                    "Invalid JSON format. Expected a company data structure.",
                 );
                 return;
             }
 
-            // Create the company document in the format expected by Firestore
-            const companyDocument: Pick<ICompanyDocument, "data"> = {
-                data: jsonData,
-            };
-
             // Dispatch the addCompany action
-            await dispatch(addCompany(companyDocument));
-            customToast.success(
-                `Successfully imported: ${jsonData.Company["Company Common Name"]}`
-            );
+            await dispatch(addCompany({
+                data: jsonData,
+            }));
         } catch (error) {
             console.error("Error importing company data:", error);
-            customToast.error("Error importing file. Please check the file format.");
+            customToast.error(
+                "Error importing file. Please check the file format.",
+            );
         } finally {
             // Clear the file input
             if (fileInputRef.current) {
@@ -105,7 +122,7 @@ export default function Sidebar() {
                         onClick={() => dispatch(setCurrent(company))}>
                         {company.data
                             ? company.data.Company["Company Common Name"]
-                            : "nope"}
+                            : "Malformed data"}
                     </div>
                 ))}
             </div>

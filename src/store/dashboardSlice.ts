@@ -1,18 +1,20 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { ViewMode } from "../core/types";
+import { ViewModes } from "../core/constants";
 
 interface DashboardState {
-    viewMode: "Actual" | "Previous";
+    viewMode: ViewMode;
 }
 
 const initialState: DashboardState = {
-    viewMode: "Actual",
+    viewMode: ViewModes.ACTUAL,
 };
 
 export const dashboardSlice = createSlice({
     name: "dashboard",
     initialState,
     reducers: {
-        setViewMode: (state, action: PayloadAction<"Actual" | "Previous">) => {
+        setViewMode: (state, action: PayloadAction<ViewMode>) => {
             state.viewMode = action.payload;
         },
     },

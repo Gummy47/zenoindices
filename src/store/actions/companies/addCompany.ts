@@ -3,6 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../lib/firebase";
 import type { ICompanyDocument } from "../../../core/interfaces";
+import { customToast } from "../../../utils/toast";
 
 export const addCompany = createAsyncThunk<
     ICompanyDocument,
@@ -20,6 +21,10 @@ export const addCompany = createAsyncThunk<
                 createdAt: DateTime.local().toISO(),
                 updatedAt: DateTime.local().toISO(),
             });
+
+            customToast.success(
+                `Successfully imported: ${companyData.data.Company["Company Common Name"]}`,
+            );
 
             return {
                 id: docRef.id,

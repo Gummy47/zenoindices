@@ -1,21 +1,20 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../lib/firebase";
-import { type Company } from "../../dashboardSlice";
+import type { ICompanyDocument } from "../../../core/interfaces";
 
 export const fetchCompanies = createAsyncThunk<
-    Company[],
+    ICompanyDocument[],
     void,
     { rejectValue: string }
 >("companies/fetchCompanies", async (_, { rejectWithValue }) => {
     try {
         const querySnapshot = await getDocs(collection(db, "companyData"));
+
         const companies = querySnapshot.docs.map(doc => ({
             id: doc.id,
             ...doc.data(),
-        })) as Company[];
-
-        console.warn("Fetch companies!", { companies, querySnapshot });
+        })) as ICompanyDocument[];
 
         return companies;
     } catch (error) {
