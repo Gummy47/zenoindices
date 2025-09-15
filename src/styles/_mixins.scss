@@ -1,4 +1,4 @@
-@use 'variables';
+@use "variables";
 
 // Flexbox mixins
 @mixin flex-center {
@@ -24,11 +24,6 @@
   cursor: pointer;
   transition: all variables.$transition-fast;
   font-family: variables.$font-family;
-  
-  // Not sure if needed
-  // &:focus {
-  //   outline: none;
-  // }
 }
 
 // Card mixins
@@ -60,7 +55,7 @@
   font-size: 12px;
 }
 
-// Heading mixins with Rippen font
+// Heading mixins with Acumin-Variable-Concept font
 @mixin heading-xlarge {
   font-family: variables.$font-heading;
   font-size: 42px;
@@ -97,20 +92,20 @@
 
 @mixin scrollable {
   overflow-y: auto;
-  
+
   &::-webkit-scrollbar {
     width: 0px;
   }
-  
+
   &::-webkit-scrollbar-track {
     background: transparent;
   }
-  
+
   // &::-webkit-scrollbar-thumb {
   //   background: $border-color;
   //   border-radius: $border-radius-sm;
   // }
-  
+
   // &::-webkit-scrollbar-thumb:hover {
   //   background: #555;
   // }
@@ -123,13 +118,13 @@
       @content;
     }
   }
-  
+
   @if $breakpoint == lg {
     @media (max-width: variables.$breakpoint-lg) {
       @content;
     }
   }
-  
+
   @if $breakpoint == xl {
     @media (max-width: variables.$breakpoint-xl) {
       @content;

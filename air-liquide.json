@@ -1,0 +1,111 @@
+{
+    "Company": {
+        "Company Common Name": "Air Liquide",
+        "Actual": {
+            "Details": {
+                "ISIN": "FR0000120073",
+                "Sector": {
+                    "Name": "Chemicals",
+                    "Z1 Mean": 0.7,
+                    "Z2 Mean": 0.5,
+                    "Steering Indices": {
+                        "Profitability": 75,
+                        "Leverage": 55,
+                        "Environment": 85,
+                        "Social": 70,
+                        "Controversies": 20
+                    }
+                },
+                "Market Capitalization": 68521473890,
+                "Place of Exchange": "Paris"
+            },
+            "Data": "Bloomberg",
+            "UCO1": "Credit Agricole",
+            "Z1": 0.8,
+            "UCO2": "Vanguard Group",
+            "Z2": 0.45,
+            "Steering Indices": {
+                "Profitability": {
+                    "Score": 82,
+                    "Trends": "Up"
+                },
+                "Leverage": {
+                    "Score": 58,
+                    "Trends": "Equal"
+                },
+                "Environment": {
+                    "Score": 88,
+                    "Trends": "Up"
+                },
+                "Social": {
+                    "Score": 73,
+                    "Trends": "Up"
+                },
+                "Controversies": {
+                    "Score": 18,
+                    "Trends": "Down"
+                }
+            },
+            "Recent Changes": "ESG Improvements",
+            "Liquidity": 92.3,
+            "Group": "Credit Agricole",
+            "Risks": {
+                "Value At Risk": 0.3,
+                "CE": 91
+            }
+        },
+        "Previous": {
+            "Details": {
+                "ISIN": "FR0000120073",
+                "Sector": {
+                    "Name": "Chemicals",
+                    "Z1 Mean": 0.6,
+                    "Z2 Mean": 0.4,
+                    "Steering Indices": {
+                        "Profitability": 70,
+                        "Leverage": 60,
+                        "Environment": 80,
+                        "Social": 65,
+                        "Controversies": 25
+                    }
+                },
+                "Market Capitalization": 62145832764,
+                "Place of Exchange": "Paris"
+            },
+            "Data": "Bloomberg",
+            "UCO1": "Credit Agricole",
+            "Z1": 0.7,
+            "UCO2": "Vanguard Group",
+            "Z2": 0.38,
+            "Steering Indices": {
+                "Profitability": {
+                    "Score": 76,
+                    "Trends": "Up"
+                },
+                "Leverage": {
+                    "Score": 63,
+                    "Trends": "Down"
+                },
+                "Environment": {
+                    "Score": 79,
+                    "Trends": "Up"
+                },
+                "Social": {
+                    "Score": 68,
+                    "Trends": "Equal"
+                },
+                "Controversies": {
+                    "Score": 28,
+                    "Trends": "Down"
+                }
+            },
+            "Recent Changes": "Acquisitions",
+            "Liquidity": 88.1,
+            "Group": "Credit Agricole",
+            "Risks": {
+                "Value At Risk": 0.4,
+                "CE": 85
+            }
+        }
+    }
+}
