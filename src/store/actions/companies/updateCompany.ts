@@ -3,6 +3,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../lib/firebase";
 import { DateTime } from "luxon";
 import type { ICompanyDocument } from "../../../core/interfaces";
+import { customToast } from "../../../utils/toast";
 
 export const updateCompany = createAsyncThunk<
     ICompanyDocument,
@@ -23,6 +24,11 @@ export const updateCompany = createAsyncThunk<
             };
 
             await updateDoc(docRef, updatedData);
+            
+            customToast.success(
+                `Successfully updated: ${data.data.Company["Company Common Name"]}`,
+            );
+            
             return {
                 id,
                 ...updatedData,

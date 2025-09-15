@@ -6,7 +6,7 @@ interface ModalProps {
     onClose: () => void;
     title: string;
     children: ReactNode;
-    size?: "small" | "medium" | "large";
+    size?: "small" | "medium" | "large" | "xlarge";
     closeOnOverlayClick?: boolean;
 }
 

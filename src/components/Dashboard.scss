@@ -32,11 +32,8 @@
 .grid-item {
   padding-bottom: variables.$spacing-lg;
 
-  &:nth-child(-n + 3) {
-    border-bottom: 6px solid variables.$secondary-bg;
-  }
-  &:nth-child(4) {
-    border-bottom: 6px solid variables.$accent-orange;
+  &:nth-child(-n + 2) {
+    border-bottom: 6px so²lid variables.$text-secondary;
   }
   &:nth-child(5) {
     border-bottom: 10px solid variables.$secondary-bg;

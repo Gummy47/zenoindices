@@ -1,21 +1,102 @@
 @use "../styles/variables" as *;
 
 .add-company-form {
-    max-height: 70vh;
+    max-height: 80vh;
+    background: white;
+    border: 1px solid rgba($border-color, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.company-name-section {
+    padding: $spacing-xl $spacing-xl $spacing-lg $spacing-xl;
+    border-bottom: 1px solid rgba($border-color, 0.3);
+    flex-shrink: 0;
+    
+    .form-group {
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+        gap: $spacing-md;
+        
+        // Change label color when input is focused
+        &:focus-within label {
+            color: $accent-blue;
+            transition: color 0.3s ease;
+        }
+        
+        label {
+            flex: 0 0 13%;
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+            text-align: right;
+            padding-right: $spacing-sm;
+            transition: color 0.3s ease;
+        }
+        
+        input {
+            flex: 1;
+            font-size: 1rem;
+            padding: $spacing-md $spacing-lg;
+            font-weight: 500;
+            border: 2px solid rgba($border-color, 0.4);
+            
+            &:focus {
+                border-color: $accent-blue;
+                box-shadow: 0 0 0 3px rgba($accent-blue, 0.1), 0 2px 8px rgba(0, 0, 0, 0.12);
+            }
+        }
+
+        // Responsive: stack vertically on smaller screens
+        @media (max-width: $breakpoint-md) {
+            flex-direction: column;
+            align-items: stretch;
+            gap: $spacing-sm;
+
+            label {
+                flex: none;
+                text-align: left;
+                padding-right: 0;
+            }
+        }
+    }
+}
+
+.form-content {
+    flex: 1;
     overflow-y: auto;
+    padding: 0 $spacing-xl $spacing-xl $spacing-xl;
 }
 
 .form-section {
-    margin-bottom: $spacing-3xl;
+    margin-bottom: $spacing-4xl;
+    background: white;
+    padding: $spacing-2xl;
+    border-radius: $border-radius-lg;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba($border-color, 0.3);
 
     h3 {
         font-family: $font-heading;
-        font-size: 1.2rem;
-        font-weight: 600;
+        font-size: 1.4rem;
+        font-weight: 700;
         color: $text-dark;
-        margin-bottom: $spacing-lg;
-        border-bottom: 2px solid $border-color;
-        padding-bottom: $spacing-sm;
+        margin-bottom: $spacing-xl;
+        padding-bottom: $spacing-md;
+        border-bottom: 3px solid $accent-orange;
+        position: relative;
+        
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, $accent-orange-light, $accent-orange);
+            border-radius: 2px;
+        }
     }
 }
 
@@ -32,42 +113,73 @@
 
 .form-group {
     margin-bottom: $spacing-lg;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    
+    // Change label color when input is focused
+    &:focus-within label {
+        color: $accent-blue;
+        transition: color 0.3s ease;
+    }
 
     label {
-        display: block;
-        font-weight: 500;
+        flex: 0 0 30%;
+        font-weight: 600;
         color: $text-dark;
-        margin-bottom: $spacing-sm;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        text-transform: capitalize;
+        margin: 0;
+        text-align: right;
+        padding-right: $spacing-sm;
+        transition: color 0.3s ease;
     }
 
     input,
     select {
-        width: 100%;
-        padding: $spacing-md;
-        border: 1px solid $border-color;
-        border-radius: $border-radius-md;
+        flex: 1;
+        padding: $spacing-sm $spacing-md;
+        border: 2px solid rgba($border-color, 0.3);
         font-size: 0.9rem;
-        transition: border-color $transition-fast;
+        transition: all 0.3s ease;
+        background: white;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 
         &:focus {
             outline: none;
-            border-color: $accent-orange;
-            box-shadow: 0 0 0 2px rgba($accent-orange, 0.1);
+            border-color: rgba($accent-blue, 0.7);
+            box-shadow: 0 0 0 3px rgba($accent-blue, 0.1), 0 2px 8px rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+        }
+        
+
+        &:hover:not(:focus) {
+            border-color: rgba($accent-blue, 0.5);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
         }
 
         &:invalid {
             border-color: $error-color;
+            box-shadow: 0 0 0 3px rgba($error-color, 0.1);
+        }
+
+        &::placeholder {
+            color: rgba($text-muted, 0.6);
+            font-style: italic;
         }
     }
 
-    input[type="number"] {
-        -moz-appearance: textfield;
+    // Responsive: stack vertically on smaller screens
+    @media (max-width: $breakpoint-md) {
+        flex-direction: column;
+        align-items: stretch;
+        gap: $spacing-xs;
 
-        &::-webkit-outer-spin-button,
-        &::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
+        label {
+            flex: none;
+            text-align: left;
+            padding-right: 0;
         }
     }
 }
@@ -81,21 +193,36 @@
 
 .form-actions {
     display: flex;
-    justify-content: flex-end;
-    gap: $spacing-md;
-    padding-top: $spacing-2xl;
-    border-top: 1px solid $border-color;
-    margin-top: $spacing-2xl;
+    justify-content: space-between;
+    align-items: center;
+    gap: $spacing-lg;
+    padding: $spacing-lg $spacing-xl;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-top: 1px solid rgba($border-color, 0.3);
+    flex-shrink: 0;
+
+    .form-actions-info {
+        flex: 1;
+        color: $text-muted;
+        font-size: 0.85rem;
+        font-style: italic;
+    }
+
+    .form-actions-buttons {
+        display: flex;
+        gap: $spacing-md;
+    }
 }
 
 .btn {
-    padding: $spacing-md $spacing-xl;
+    padding: $spacing-lg $spacing-2xl;
     border: none;
-    border-radius: $border-radius-md;
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-size: 0.95rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: all $transition-fast;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 
     &:disabled {
         cursor: not-allowed;
@@ -103,23 +230,75 @@
     }
 
     &.btn-primary {
-        background-color: $accent-orange;
+        background: $accent-orange;
         color: white;
+        border: 2px solid $accent-orange;
 
         &:hover:not(:disabled) {
-            background-color: $accent-orange-light;
+            background: white;
+            color: $accent-orange;
         }
     }
 
     &.btn-secondary {
-        background-color: transparent;
-        color: $text-muted;
-        border: 1px solid $border-color;
+        background: white;
+        color: $text-dark;
+        border: 2px solid rgba($border-color, 0.5);
 
         &:hover:not(:disabled) {
-            background-color: $primary-bg;
-            color: $text-dark;
+            color: $accent-orange;
         }
+    }
+}
+
+
+/* Two-column layout for actual vs previous */
+.two-column-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-3xl;
+
+    @media (max-width: $breakpoint-lg) {
+        grid-template-columns: 1fr;
+        gap: $spacing-2xl;
+    }
+}
+
+.column-header {
+    font-family: $font-heading;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $accent-orange;
+    margin-bottom: $spacing-lg;
+    padding: $spacing-md $spacing-lg;
+    text-align: center;
+    border-bottom: 2px solid $accent-orange;
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    margin-left: -$spacing-xl;
+    margin-right: -$spacing-xl;
+    padding-left: $spacing-xl;
+    padding-right: $spacing-xl;
+}
+
+.field-group {
+    margin-bottom: $spacing-lg;
+    padding: $spacing-md $spacing-lg;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 1px solid rgba($border-color, 0.3);
+    position: relative;
+
+    .field-group-title {
+        font-weight: 600;
+        color: $text-dark;
+        margin-bottom: $spacing-md;
+        font-size: 0.9rem;
+        padding-bottom: $spacing-xs;
+        border-bottom: 2px solid $accent-blue;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
 }
 

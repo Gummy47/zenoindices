@@ -134,14 +134,15 @@ export default function Sidebar() {
                     onChange={handleFileUpload}
                     style={{ display: "none" }}
                 />
-                <button title="Add company" onClick={handleAdd}>
-                    <span>Add</span>
-                    <AddIcon />
-                </button>
-                <button title="Import company JSON file" onClick={handleImport}>
-                    <span>Import JSON</span>
-                    <AddIcon />
-                </button>
+                <div className="button-row">
+                    <button title="Import company JSON file" onClick={handleImport}>
+                        <span>⤴ Import</span>
+                    </button>
+                    <button title="Add company" onClick={handleAdd}>
+                        <span>Add</span>
+                        <AddIcon />
+                    </button>
+                </div>
             </div>
         </div>
     );

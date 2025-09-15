@@ -140,11 +140,12 @@ export function handleUpdate<
 export function handleDelete<
     StateType extends BaseAsyncState,
     ItemType extends { id?: string },
+    ArgType,
     EntitiesKey extends keyof StateType = keyof StateType,
     CurrentKey extends keyof StateType = keyof StateType,
 >(
     builder: ActionReducerMapBuilder<StateType>,
-    asyncThunk: AsyncThunk<string, string, { rejectValue: string }>,
+    asyncThunk: AsyncThunk<string, ArgType, { rejectValue: string }>,
     entitiesKey: EntitiesKey,
     currentKey?: CurrentKey,
 ) {
