@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAppDispatch } from "../store/hooks";
 import { addCompany } from "../store/actions/companies/addCompany";
 import { customToast } from "../utils/toast";
-import type { ICompanyDocument, ICompanyRootData } from "../core/interfaces";
+import type { ICompanyDocument } from "../core/interfaces";
 import "./AddCompanyForm.scss";
 
 interface AddCompanyFormProps {
@@ -10,7 +10,10 @@ interface AddCompanyFormProps {
     onCancel: () => void;
 }
 
-export default function AddCompanyForm({ onSuccess, onCancel }: AddCompanyFormProps) {
+export default function AddCompanyForm({
+    onSuccess,
+    onCancel,
+}: AddCompanyFormProps) {
     const dispatch = useAppDispatch();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -18,7 +21,7 @@ export default function AddCompanyForm({ onSuccess, onCancel }: AddCompanyFormPr
     const [formData, setFormData] = useState({
         // Company Basic Info
         companyCommonName: "",
-        
+
         // Actual Details
         actualISIN: "",
         actualSectorName: "",
@@ -51,7 +54,7 @@ export default function AddCompanyForm({ onSuccess, onCancel }: AddCompanyFormPr
         actualGroup: "",
         actualValueAtRisk: 0,
         actualCE: 0,
-        
+
         // Previous Details (similar structure)
         previousISIN: "",
         previousSectorName: "",
@@ -89,13 +92,13 @@ export default function AddCompanyForm({ onSuccess, onCancel }: AddCompanyFormPr
     const handleInputChange = (field: string, value: any) => {
         setFormData(prev => ({
             ...prev,
-            [field]: value
+            [field]: value,
         }));
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        
+
         if (!formData.companyCommonName.trim()) {
             customToast.error("Company name is required");
             return;
@@ -117,15 +120,20 @@ export default function AddCompanyForm({ onSuccess, onCancel }: AddCompanyFormPr
                                     "Z1 Mean": formData.actualZ1Mean,
                                     "Z2 Mean": formData.actualZ2Mean,
                                     "Steering Indices": {
-                                        Profitability: formData.actualSectorProfitability,
+                                        Profitability:
+                                            formData.actualSectorProfitability,
                                         Leverage: formData.actualSectorLeverage,
-                                        Environment: formData.actualSectorEnvironment,
+                                        Environment:
+                                            formData.actualSectorEnvironment,
                                         Social: formData.actualSectorSocial,
-                                        Controversies: formData.actualSectorControversies,
-                                    }
+                                        Controversies:
+                                            formData.actualSectorControversies,
+                                    },
                                 },
-                                "Market Capitalization": formData.actualMarketCapitalization,
-                                "Place of Exchange": formData.actualPlaceOfExchange
+                                "Market Capitalization":
+                                    formData.actualMarketCapitalization,
+                                "Place of Exchange":
+                                    formData.actualPlaceOfExchange,
                             },
                             Data: formData.actualData,
                             UCO1: formData.actualUCO1,
@@ -135,32 +143,32 @@ export default function AddCompanyForm({ onSuccess, onCancel }: AddCompanyFormPr
                             "Steering Indices": {
                                 Profitability: {
                                     Score: formData.actualSteeringProfitabilityScore,
-                                    Trends: formData.actualSteeringProfitabilityTrends
+                                    Trends: formData.actualSteeringProfitabilityTrends,
                                 },
                                 Leverage: {
                                     Score: formData.actualSteeringLeverageScore,
-                                    Trends: formData.actualSteeringLeverageTrends
+                                    Trends: formData.actualSteeringLeverageTrends,
                                 },
                                 Environment: {
                                     Score: formData.actualSteeringEnvironmentScore,
-                                    Trends: formData.actualSteeringEnvironmentTrends
+                                    Trends: formData.actualSteeringEnvironmentTrends,
                                 },
                                 Social: {
                                     Score: formData.actualSteeringSocialScore,
-                                    Trends: formData.actualSteeringSocialTrends
+                                    Trends: formData.actualSteeringSocialTrends,
                                 },
                                 Controversies: {
                                     Score: formData.actualSteeringControversiesScore,
-                                    Trends: formData.actualSteeringControversiesTrends
-                                }
+                                    Trends: formData.actualSteeringControversiesTrends,
+                                },
                             },
                             "Recent Changes": formData.actualRecentChanges,
                             Liquidity: formData.actualLiquidity,
                             Group: formData.actualGroup,
                             Risks: {
                                 "Value At Risk": formData.actualValueAtRisk,
-                                CE: formData.actualCE
-                            }
+                                CE: formData.actualCE,
+                            },
                         },
                         Previous: {
                             Details: {
@@ -170,15 +178,21 @@ export default function AddCompanyForm({ onSuccess, onCancel }: AddCompanyFormPr
                                     "Z1 Mean": formData.previousZ1Mean,
                                     "Z2 Mean": formData.previousZ2Mean,
                                     "Steering Indices": {
-                                        Profitability: formData.previousSectorProfitability,
-                                        Leverage: formData.previousSectorLeverage,
-                                        Environment: formData.previousSectorEnvironment,
+                                        Profitability:
+                                            formData.previousSectorProfitability,
+                                        Leverage:
+                                            formData.previousSectorLeverage,
+                                        Environment:
+                                            formData.previousSectorEnvironment,
                                         Social: formData.previousSectorSocial,
-                                        Controversies: formData.previousSectorControversies,
-                                    }
+                                        Controversies:
+                                            formData.previousSectorControversies,
+                                    },
                                 },
-                                "Market Capitalization": formData.previousMarketCapitalization,
-                                "Place of Exchange": formData.previousPlaceOfExchange
+                                "Market Capitalization":
+                                    formData.previousMarketCapitalization,
+                                "Place of Exchange":
+                                    formData.previousPlaceOfExchange,
                             },
                             Data: formData.previousData,
                             UCO1: formData.previousUCO1,
@@ -188,43 +202,45 @@ export default function AddCompanyForm({ onSuccess, onCancel }: AddCompanyFormPr
                             "Steering Indices": {
                                 Profitability: {
                                     Score: formData.previousSteeringProfitabilityScore,
-                                    Trends: formData.previousSteeringProfitabilityTrends
+                                    Trends: formData.previousSteeringProfitabilityTrends,
                                 },
                                 Leverage: {
                                     Score: formData.previousSteeringLeverageScore,
-                                    Trends: formData.previousSteeringLeverageTrends
+                                    Trends: formData.previousSteeringLeverageTrends,
                                 },
                                 Environment: {
                                     Score: formData.previousSteeringEnvironmentScore,
-                                    Trends: formData.previousSteeringEnvironmentTrends
+                                    Trends: formData.previousSteeringEnvironmentTrends,
                                 },
                                 Social: {
                                     Score: formData.previousSteeringSocialScore,
-                                    Trends: formData.previousSteeringSocialTrends
+                                    Trends: formData.previousSteeringSocialTrends,
                                 },
                                 Controversies: {
                                     Score: formData.previousSteeringControversiesScore,
-                                    Trends: formData.previousSteeringControversiesTrends
-                                }
+                                    Trends: formData.previousSteeringControversiesTrends,
+                                },
                             },
                             "Recent Changes": formData.previousRecentChanges,
                             Liquidity: formData.previousLiquidity,
                             Group: formData.previousGroup,
                             Risks: {
                                 "Value At Risk": formData.previousValueAtRisk,
-                                CE: formData.previousCE
-                            }
-                        }
-                    }
-                }
+                                CE: formData.previousCE,
+                            },
+                        },
+                    },
+                },
             };
 
             await dispatch(addCompany(companyData));
-            customToast.success(`Successfully added: ${formData.companyCommonName}`);
+            customToast.success(
+                `Successfully added: ${formData.companyCommonName}`,
+            );
             onSuccess();
         } catch (error) {
-            console.error('Error adding company:', error);
-            customToast.error('Failed to add company. Please try again.');
+            console.error("Error adding company:", error);
+            customToast.error("Failed to add company. Please try again.");
         } finally {
             setIsSubmitting(false);
         }
@@ -241,7 +257,12 @@ export default function AddCompanyForm({ onSuccess, onCancel }: AddCompanyFormPr
                         id="companyCommonName"
                         type="text"
                         value={formData.companyCommonName}
-                        onChange={(e) => handleInputChange('companyCommonName', e.target.value)}
+                        onChange={e =>
+                            handleInputChange(
+                                "companyCommonName",
+                                e.target.value,
+                            )
+                        }
                         required
                     />
                 </div>
@@ -257,7 +278,9 @@ export default function AddCompanyForm({ onSuccess, onCancel }: AddCompanyFormPr
                             id="actualISIN"
                             type="text"
                             value={formData.actualISIN}
-                            onChange={(e) => handleInputChange('actualISIN', e.target.value)}
+                            onChange={e =>
+                                handleInputChange("actualISIN", e.target.value)
+                            }
                         />
                     </div>
                     <div className="form-group">
@@ -266,28 +289,47 @@ export default function AddCompanyForm({ onSuccess, onCancel }: AddCompanyFormPr
                             id="actualSectorName"
                             type="text"
                             value={formData.actualSectorName}
-                            onChange={(e) => handleInputChange('actualSectorName', e.target.value)}
+                            onChange={e =>
+                                handleInputChange(
+                                    "actualSectorName",
+                                    e.target.value,
+                                )
+                            }
                         />
                     </div>
                 </div>
 
                 <div className="form-row">
                     <div className="form-group">
-                        <label htmlFor="actualMarketCapitalization">Market Capitalization</label>
+                        <label htmlFor="actualMarketCapitalization">
+                            Market Capitalization
+                        </label>
                         <input
                             id="actualMarketCapitalization"
                             type="number"
                             value={formData.actualMarketCapitalization}
-                            onChange={(e) => handleInputChange('actualMarketCapitalization', parseFloat(e.target.value) || 0)}
+                            onChange={e =>
+                                handleInputChange(
+                                    "actualMarketCapitalization",
+                                    parseFloat(e.target.value) || 0,
+                                )
+                            }
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="actualPlaceOfExchange">Place of Exchange</label>
+                        <label htmlFor="actualPlaceOfExchange">
+                            Place of Exchange
+                        </label>
                         <input
                             id="actualPlaceOfExchange"
                             type="text"
                             value={formData.actualPlaceOfExchange}
-                            onChange={(e) => handleInputChange('actualPlaceOfExchange', e.target.value)}
+                            onChange={e =>
+                                handleInputChange(
+                                    "actualPlaceOfExchange",
+                                    e.target.value,
+                                )
+                            }
                         />
                     </div>
                 </div>
@@ -300,7 +342,12 @@ export default function AddCompanyForm({ onSuccess, onCancel }: AddCompanyFormPr
                             type="number"
                             step="0.01"
                             value={formData.actualZ1}
-                            onChange={(e) => handleInputChange('actualZ1', parseFloat(e.target.value) || 0)}
+                            onChange={e =>
+                                handleInputChange(
+                                    "actualZ1",
+                                    parseFloat(e.target.value) || 0,
+                                )
+                            }
                         />
                     </div>
                     <div className="form-group">
@@ -310,7 +357,12 @@ export default function AddCompanyForm({ onSuccess, onCancel }: AddCompanyFormPr
                             type="number"
                             step="0.01"
                             value={formData.actualZ2}
-                            onChange={(e) => handleInputChange('actualZ2', parseFloat(e.target.value) || 0)}
+                            onChange={e =>
+                                handleInputChange(
+                                    "actualZ2",
+                                    parseFloat(e.target.value) || 0,
+                                )
+                            }
                         />
                     </div>
                 </div>
@@ -323,7 +375,12 @@ export default function AddCompanyForm({ onSuccess, onCancel }: AddCompanyFormPr
                             type="number"
                             step="0.1"
                             value={formData.actualLiquidity}
-                            onChange={(e) => handleInputChange('actualLiquidity', parseFloat(e.target.value) || 0)}
+                            onChange={e =>
+                                handleInputChange(
+                                    "actualLiquidity",
+                                    parseFloat(e.target.value) || 0,
+                                )
+                            }
                         />
                     </div>
                     <div className="form-group">
@@ -333,7 +390,12 @@ export default function AddCompanyForm({ onSuccess, onCancel }: AddCompanyFormPr
                             type="number"
                             step="0.01"
                             value={formData.actualValueAtRisk}
-                            onChange={(e) => handleInputChange('actualValueAtRisk', parseFloat(e.target.value) || 0)}
+                            onChange={e =>
+                                handleInputChange(
+                                    "actualValueAtRisk",
+                                    parseFloat(e.target.value) || 0,
+                                )
+                            }
                         />
                     </div>
                 </div>
@@ -342,26 +404,26 @@ export default function AddCompanyForm({ onSuccess, onCancel }: AddCompanyFormPr
             {/* Previous Data Section (simplified for brevity) */}
             <div className="form-section">
                 <h3>Previous Data</h3>
-                <p className="form-note">Previous period data (similar structure to actual data)</p>
+                <p className="form-note">
+                    Previous period data (similar structure to actual data)
+                </p>
                 {/* Add similar fields for previous data if needed */}
             </div>
 
             {/* Form Actions */}
             <div className="form-actions">
-                <button 
-                    type="button" 
+                <button
+                    type="button"
                     onClick={onCancel}
                     className="btn btn-secondary"
-                    disabled={isSubmitting}
-                >
+                    disabled={isSubmitting}>
                     Cancel
                 </button>
-                <button 
-                    type="submit" 
+                <button
+                    type="submit"
                     className="btn btn-primary"
-                    disabled={isSubmitting}
-                >
-                    {isSubmitting ? 'Adding...' : 'Add Company'}
+                    disabled={isSubmitting}>
+                    {isSubmitting ? "Adding..." : "Add Company"}
                 </button>
             </div>
         </form>

@@ -77,7 +77,7 @@ export default function MetricsSection() {
                     <div className="risk-item">
                         <div className="risk-label">Value At Risk</div>
                         <div className="risk-value">
-                            {currentData.Risks.ValueAtRisk}
+                            {currentData.Risks["Value At Risk"]}
                         </div>
                     </div>
                     <div className="risk-item">
@@ -91,7 +91,7 @@ export default function MetricsSection() {
                 <div className="changes-header">Recent Changes</div>
                 <div className="changes-content">
                     <div className="changes-label">
-                        {currentData.RecentChanges}
+                        {currentData["Recent Changes"]}
                     </div>
                     <div className="liquidity-section">
                         <div className="liquidity-label">Liquidity</div>

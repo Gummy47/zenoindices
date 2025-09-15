@@ -11,11 +11,10 @@ export default defineConfig({
         }),
     ],
     css: {
-    preprocessorOptions: {
-      scss: {
-        silenceDeprecations: ["legacy-js-api"], // Using Vite 4 for node 19. Should be removed when upgrading to Vite 5.
-      },
+        preprocessorOptions: {
+            scss: {
+                silenceDeprecations: ["legacy-js-api"], // Using Vite 4 for node 19. Should be removed when upgrading to Vite 5.
+            },
+        },
     },
-  },
-
 });

@@ -1,4 +1,4 @@
-@import '../styles/variables';
+@use "../styles/variables" as *;
 
 .add-company-form {
     max-height: 70vh;
@@ -7,7 +7,7 @@
 
 .form-section {
     margin-bottom: $spacing-3xl;
-    
+
     h3 {
         font-family: $font-heading;
         font-size: 1.2rem;
@@ -24,7 +24,7 @@
     grid-template-columns: 1fr 1fr;
     gap: $spacing-lg;
     margin-bottom: $spacing-lg;
-    
+
     @media (max-width: $breakpoint-md) {
         grid-template-columns: 1fr;
     }
@@ -32,7 +32,7 @@
 
 .form-group {
     margin-bottom: $spacing-lg;
-    
+
     label {
         display: block;
         font-weight: 500;
@@ -40,29 +40,30 @@
         margin-bottom: $spacing-sm;
         font-size: 0.9rem;
     }
-    
-    input, select {
+
+    input,
+    select {
         width: 100%;
         padding: $spacing-md;
         border: 1px solid $border-color;
         border-radius: $border-radius-md;
         font-size: 0.9rem;
         transition: border-color $transition-fast;
-        
+
         &:focus {
             outline: none;
             border-color: $accent-orange;
             box-shadow: 0 0 0 2px rgba($accent-orange, 0.1);
         }
-        
+
         &:invalid {
             border-color: $error-color;
         }
     }
-    
+
     input[type="number"] {
         -moz-appearance: textfield;
-        
+
         &::-webkit-outer-spin-button,
         &::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -95,26 +96,26 @@
     font-weight: 500;
     cursor: pointer;
     transition: all $transition-fast;
-    
+
     &:disabled {
         cursor: not-allowed;
         opacity: 0.6;
     }
-    
+
     &.btn-primary {
         background-color: $accent-orange;
         color: white;
-        
+
         &:hover:not(:disabled) {
             background-color: $accent-orange-light;
         }
     }
-    
+
     &.btn-secondary {
         background-color: transparent;
         color: $text-muted;
         border: 1px solid $border-color;
-        
+
         &:hover:not(:disabled) {
             background-color: $primary-bg;
             color: $text-dark;
