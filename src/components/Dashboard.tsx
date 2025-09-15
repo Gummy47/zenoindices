@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { loadCompanyData } from "../store/dashboardSlice";
+import { useAppDispatch, useTypedSelector } from "../store/hooks";
+import { fetchCompanies } from "../store/actions/companies/fetchCompanies";
 import Sidebar from "./Sidebar";
 import DashboardHeader from "./DashboardHeader";
 import SteeringIndices from "./SteeringIndices";
@@ -28,24 +28,23 @@ ChartJS.register(
     Tooltip,
     Legend,
 );
-import data from "../../data.json";
 import "./Dashboard.scss";
 
 export default function Dashboard() {
     const dispatch = useAppDispatch();
-    const { selectedCompany, viewMode, companies } = useAppSelector(
-        state => state.dashboard,
-    );
+    const {
+        current: currentCompany,
+        viewMode,
+    } = useTypedSelector(state => state.companies);
 
     useEffect(() => {
-        dispatch(loadCompanyData(data));
+        dispatch(fetchCompanies());
     }, [dispatch]);
 
-    const currentCompany = companies.find(c => c.name === selectedCompany);
     const currentData = currentCompany
         ? viewMode === "Actual"
-            ? currentCompany.actual
-            : currentCompany.previous
+            ? currentCompany.data?.Company?.Actual
+            : currentCompany.data?.Company?.Previous
         : null;
 
     return (
@@ -91,8 +90,9 @@ export default function Dashboard() {
                                                 Place of exchange :{" "}
                                                 <span className="accent">
                                                     {
-                                                        currentData.Details
-                                                            .PlaceOfExchange
+                                                        currentData.Details[
+                                                            "Place of Exchange"
+                                                        ]
                                                     }
                                                 </span>
                                             </p>
@@ -129,9 +129,9 @@ export default function Dashboard() {
                                     </div>
                                     <p>
                                         <span className="market-cap-value">
-                                            {currentData.Details.MarketCapitalization.toLocaleString(
-                                                "de-DE",
-                                            )}
+                                            {currentData.Details[
+                                                "Market Capitalization"
+                                            ].toLocaleString("de-DE")}
                                         </span>
                                         €
                                     </p>
@@ -147,7 +147,11 @@ export default function Dashboard() {
                                     <div className="legend-item">
                                         <span className="legend-color vallourec"></span>
                                         <span>
-                                            {currentCompany?.commonName}
+                                            {
+                                                currentCompany?.data?.Company?.[
+                                                    "Company Common Name"
+                                                ]
+                                            }
                                         </span>
                                     </div>
                                     <div className="legend-item">
@@ -162,8 +166,10 @@ export default function Dashboard() {
                                             datasets: [
                                                 {
                                                     label:
-                                                        currentCompany?.commonName ||
-                                                        "Company",
+                                                        currentCompany?.data
+                                                            ?.Company?.[
+                                                            "Company Common Name"
+                                                        ] || "Company",
                                                     data: [
                                                         {
                                                             x: currentData.Z1,
@@ -179,11 +185,13 @@ export default function Dashboard() {
                                                     data: [
                                                         {
                                                             x: currentData
-                                                                .Details.Sector
-                                                                .Z1Mean,
+                                                                .Details.Sector[
+                                                                "Z1 Mean"
+                                                            ],
                                                             y: currentData
-                                                                .Details.Sector
-                                                                .Z2Mean,
+                                                                .Details.Sector[
+                                                                "Z2 Mean"
+                                                            ],
                                                         },
                                                     ],
                                                     backgroundColor: "#5D699C",
@@ -268,7 +276,11 @@ export default function Dashboard() {
                                                 Value at risk
                                             </div>
                                             <p>
-                                                {currentData.Risks.ValueAtRisk}
+                                                {
+                                                    currentData.Risks[
+                                                        "Value At Risk"
+                                                    ]
+                                                }
                                             </p>
                                         </div>
                                         <div className="risk-values-item">
@@ -288,7 +300,7 @@ export default function Dashboard() {
                                         </div>
                                         <p>
                                             <span className="change-value">
-                                                {currentData.RecentChanges}
+                                                {currentData["Recent Changes"]}
                                             </span>
                                         </p>
                                     </div>

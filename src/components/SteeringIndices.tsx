@@ -1,18 +1,19 @@
-import { useAppSelector } from "../store/hooks";
+import { useTypedSelector } from "../store/hooks";
 import { UpIcon, DownIcon, EqualIcon } from "./icons";
 import { Radar } from "react-chartjs-2";
 import "./SteeringIndices.scss";
+import type { TrendDirection } from "../core/types";
+import { TrendDirections } from "../core/constants";
 
 export default function SteeringIndices() {
-    const { selectedCompany, viewMode, companies } = useAppSelector(
-        state => state.dashboard,
+    const { current: currentCompany, viewMode } = useTypedSelector(
+        state => state.companies,
     );
 
-    const currentCompany = companies.find(c => c.name === selectedCompany);
     const currentData = currentCompany
         ? viewMode === "Actual"
-            ? currentCompany.actual
-            : currentCompany.previous
+            ? currentCompany.data.Company.Actual
+            : currentCompany.data.Company.Previous
         : null;
 
     if (!currentData) {
@@ -27,26 +28,26 @@ export default function SteeringIndices() {
         { key: "Profitability", label: "Profitability", position: 5 },
     ];
 
-    const getTrendIcon = (trend: string) => {
+    const getTrendIcon = (trend: TrendDirection) => {
         switch (trend) {
-            case "Up":
+            case TrendDirections.UP:
                 return <UpIcon width={16} height={16} />;
-            case "Down":
+            case TrendDirections.DOWN:
                 return <DownIcon width={16} height={16} />;
-            case "Equal":
+            case TrendDirections.EQUAL:
                 return <EqualIcon width={16} height={16} />;
             default:
                 return <EqualIcon width={16} height={16} />;
         }
     };
 
-    const getTrendClass = (trend: string) => {
+    const getTrendClass = (trend: TrendDirection) => {
         switch (trend) {
-            case "Up":
+            case TrendDirections.UP:
                 return "trend-up";
-            case "Down":
+            case TrendDirections.DOWN:
                 return "trend-down";
-            case "Equal":
+            case TrendDirections.EQUAL:
                 return "trend-equal";
             default:
                 return "trend-equal";
@@ -65,11 +66,13 @@ export default function SteeringIndices() {
             {
                 label: "Sector Mean",
                 data: [
-                    currentData.Details.Sector.SteeringIndices.Environment,
-                    currentData.Details.Sector.SteeringIndices.Social,
-                    currentData.Details.Sector.SteeringIndices.Controversies,
-                    currentData.Details.Sector.SteeringIndices.Leverage,
-                    currentData.Details.Sector.SteeringIndices.Profitability,
+                    currentData.Details.Sector["Steering Indices"].Environment,
+                    currentData.Details.Sector["Steering Indices"].Social,
+                    currentData.Details.Sector["Steering Indices"]
+                        .Controversies,
+                    currentData.Details.Sector["Steering Indices"].Leverage,
+                    currentData.Details.Sector["Steering Indices"]
+                        .Profitability,
                 ],
                 backgroundColor: "rgba(93, 105, 156, 0.1)",
                 borderColor: "#5D699C",
@@ -78,13 +81,15 @@ export default function SteeringIndices() {
                 pointRadius: 0,
             },
             {
-                label: currentCompany?.commonName || "Company",
+                label:
+                    currentCompany?.data.Company["Company Common Name"] ||
+                    "Company",
                 data: [
-                    currentData.SteeringIndices.Environment.Score,
-                    currentData.SteeringIndices.Social.Score,
-                    currentData.SteeringIndices.Controversies.Score,
-                    currentData.SteeringIndices.Leverage.Score,
-                    currentData.SteeringIndices.Profitability.Score,
+                    currentData["Steering Indices"].Environment.Score,
+                    currentData["Steering Indices"].Social.Score,
+                    currentData["Steering Indices"].Controversies.Score,
+                    currentData["Steering Indices"].Leverage.Score,
+                    currentData["Steering Indices"].Profitability.Score,
                 ],
                 backgroundColor: "rgba(222, 77, 18, 0.1)",
                 borderColor: "#DE4D12",
@@ -115,8 +120,8 @@ export default function SteeringIndices() {
                 <div className="indices-list">
                     {indices.map(index => {
                         const data =
-                            currentData.SteeringIndices[
-                                index.key as keyof typeof currentData.SteeringIndices
+                            currentData["Steering Indices"][
+                                index.key as keyof (typeof currentData)["Steering Indices"]
                             ];
                         return (
                             <div key={index.key} className="index-item">

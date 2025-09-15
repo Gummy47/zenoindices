@@ -1,15 +1,14 @@
-import { useAppSelector, useAppDispatch } from "../store/hooks";
-import { setViewMode } from "../store/dashboardSlice";
+import { useTypedSelector, useAppDispatch } from "../store/hooks";
+import { setViewMode } from "../store/companiesSlice";
 import { EditIcon, TrashIcon } from "./icons";
 import "./DashboardHeader.scss";
 
 export default function DashboardHeader() {
     const dispatch = useAppDispatch();
-    const { selectedCompany, viewMode, companies } = useAppSelector(
-        state => state.dashboard,
+    
+    const { current: currentCompany, viewMode } = useTypedSelector(
+        state => state.companies,
     );
-
-    const currentCompany = companies.find(c => c.name === selectedCompany);
 
     const handleEdit = () => {
         alert("Edit company - feature not implemented yet.");
@@ -22,7 +21,7 @@ export default function DashboardHeader() {
     return (
         <div className="dashboard-header">
             <div className="company-title">
-                <h1 className="company-name">{currentCompany?.commonName}</h1>
+                <h1 className="company-name">{currentCompany?.data?.Company?.["Company Common Name"]}</h1>
             </div>
 
             <div className="header-actions">

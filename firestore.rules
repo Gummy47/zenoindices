@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow read/write access for authenticated users
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Example: Public read access to a 'public' collection
+    // match /public/{document} {
+    //   allow read: if true;
+    //   allow write: if request.auth != null;
+    // }
+    
+    // Example: User-specific documents
+    // match /users/{userId} {
+    //   allow read, write: if request.auth != null && request.auth.uid == userId;
+    // }
+    
+    // Example: Public data with authenticated writes
+    // match /metrics/{document} {
+    //   allow read: if true;
+    //   allow write: if request.auth != null;
+    // }
+  }
+}

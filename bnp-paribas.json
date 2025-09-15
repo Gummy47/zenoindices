@@ -1,0 +1,111 @@
+{
+    "Company": {
+        "Company Common Name": "BNP Paribas",
+        "Actual": {
+            "Details": {
+                "ISIN": "FR0000131104",
+                "Sector": {
+                    "Name": "Banking",
+                    "Z1 Mean": 0.4,
+                    "Z2 Mean": 0.6,
+                    "Steering Indices": {
+                        "Profitability": 65,
+                        "Leverage": 80,
+                        "Environment": 45,
+                        "Social": 60,
+                        "Controversies": 35
+                    }
+                },
+                "Market Capitalization": 74285961327,
+                "Place of Exchange": "Paris"
+            },
+            "Data": "S&P Global",
+            "UCO1": "Société Générale",
+            "Z1": 0.35,
+            "UCO2": "State Street",
+            "Z2": 0.72,
+            "Steering Indices": {
+                "Profitability": {
+                    "Score": 69,
+                    "Trends": "Up"
+                },
+                "Leverage": {
+                    "Score": 85,
+                    "Trends": "Down"
+                },
+                "Environment": {
+                    "Score": 42,
+                    "Trends": "Up"
+                },
+                "Social": {
+                    "Score": 64,
+                    "Trends": "Equal"
+                },
+                "Controversies": {
+                    "Score": 38,
+                    "Trends": "Up"
+                }
+            },
+            "Recent Changes": "Digital Transformation",
+            "Liquidity": 68.7,
+            "Group": "Société Générale",
+            "Risks": {
+                "Value At Risk": 1.2,
+                "CE": 62
+            }
+        },
+        "Previous": {
+            "Details": {
+                "ISIN": "FR0000131104",
+                "Sector": {
+                    "Name": "Banking",
+                    "Z1 Mean": 0.3,
+                    "Z2 Mean": 0.5,
+                    "Steering Indices": {
+                        "Profitability": 60,
+                        "Leverage": 85,
+                        "Environment": 40,
+                        "Social": 55,
+                        "Controversies": 40
+                    }
+                },
+                "Market Capitalization": 68924715389,
+                "Place of Exchange": "Paris"
+            },
+            "Data": "S&P Global",
+            "UCO1": "Société Générale",
+            "Z1": 0.28,
+            "UCO2": "State Street",
+            "Z2": 0.65,
+            "Steering Indices": {
+                "Profitability": {
+                    "Score": 58,
+                    "Trends": "Equal"
+                },
+                "Leverage": {
+                    "Score": 92,
+                    "Trends": "Up"
+                },
+                "Environment": {
+                    "Score": 35,
+                    "Trends": "Down"
+                },
+                "Social": {
+                    "Score": 52,
+                    "Trends": "Up"
+                },
+                "Controversies": {
+                    "Score": 45,
+                    "Trends": "Down"
+                }
+            },
+            "Recent Changes": "Regulatory Changes",
+            "Liquidity": 72.1,
+            "Group": "Société Générale",
+            "Risks": {
+                "Value At Risk": 1.5,
+                "CE": 58
+            }
+        }
+    }
+}
