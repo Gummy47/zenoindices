@@ -101,6 +101,7 @@ export function handleAdd<
     handleAsyncThunk(builder, asyncThunk, {
         onFulfilled: (state, action) => {
             ((state as any)[entitiesKey] as ItemType[]).push(action.payload);
+            (state as any).current= action.payload;
         },
     });
 }

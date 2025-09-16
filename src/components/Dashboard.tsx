@@ -248,6 +248,9 @@ export default function Dashboard() {
                                                     align: "end",
                                                     text: "Z1",
                                                     color: "#000",
+                                                    font: {
+                                                        weight: "bold",
+                                                    },
                                                 },
                                                 ticks: {
                                                     color: "#000",
@@ -269,6 +272,9 @@ export default function Dashboard() {
                                                     align: "end",
                                                     text: "Z2",
                                                     color: "#000",
+                                                    font: {
+                                                        weight: "bold",
+                                                    },
                                                 },
                                                 ticks: {
                                                     color: "#000",
