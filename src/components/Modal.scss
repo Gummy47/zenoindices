@@ -22,41 +22,41 @@
     width: 95%;
     max-width: 600px;
     margin: 0 auto;
-    
+
     &.modal-small {
         max-width: 400px;
         width: 90%;
     }
-    
+
     &.modal-medium {
         max-width: 600px;
         width: 90%;
     }
-    
+
     &.modal-large {
         max-width: 1200px;
         width: 95%;
-        
+
         @media (max-width: 1280px) {
             width: 98%;
             max-width: 95vw;
         }
-        
+
         @media (max-width: 768px) {
             width: 95%;
             max-width: 95vw;
         }
     }
-    
+
     &.modal-xlarge {
         max-width: 1400px;
         width: 95%;
-        
+
         @media (max-width: 1500px) {
             width: 98%;
             max-width: 95vw;
         }
-        
+
         @media (max-width: 768px) {
             width: 95%;
             max-width: 95vw;
@@ -70,6 +70,7 @@
     align-items: center;
     padding: $spacing-2xl;
     border-bottom: 1px solid $border-color;
+    height: $modal-header-height;
 }
 
 .modal-title {
@@ -93,7 +94,7 @@
     align-items: center;
     justify-content: center;
     transition: all $transition-fast;
-    
+
     &:hover {
         background-color: $primary-bg;
         color: $text-dark;
