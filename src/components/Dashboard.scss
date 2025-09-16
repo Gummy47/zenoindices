@@ -134,6 +134,10 @@
   & > div {
     border-left: 4px solid variables.$secondary-bg;
     padding-left: variables.$spacing-xl;
+    p {
+      margin-top: .5rem;
+      line-height: 1;
+    }
   }
 
   color: variables.$text-dark;
