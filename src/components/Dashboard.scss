@@ -63,6 +63,8 @@
   background-color: white;
   border-radius: 10px;
   color: variables.$text-dark;
+  display: flex;
+  align-items: center;
 }
 
 .uco-z-details {
@@ -71,6 +73,9 @@
   border-radius: 10px;
   padding: variables.$spacing-xl variables.$spacing-xl;
   grid-area: ucoZDetails;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   .uco-details {
     @include mixins.flex-column;
@@ -95,7 +100,6 @@
   }
 
   .z-details {
-    margin-top: variables.$spacing-4xl;
     display: flex;
     justify-content: space-between;
     color: variables.$text-dark;
@@ -123,6 +127,7 @@
 
 .market-cap-details {
   @include mixins.flex-column;
+  justify-content: center;
   grid-area: marketCapDetails;
   gap: 5px;
 
