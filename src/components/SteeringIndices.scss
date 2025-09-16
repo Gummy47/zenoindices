@@ -4,7 +4,19 @@
 .steering-indices {
   @include mixins.card;
   flex: 1;
+  grid-area: steeringIndices;
   border-radius: 10px;
+  position: relative;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    border-bottom: 8px solid variables.$accent-orange;
+    position: absolute;
+    left: 0;
+    bottom: -(variables.$spacing-2xl);
+  }
 }
 
 .steering-header {
@@ -31,14 +43,14 @@
 .legend-item {
   display: flex;
   align-items: center;
-  gap: variables.$spacing-sm;
+  gap: variables.$spacing-xs;
   @include mixins.text-small;
   color: variables.$text-dark;
 }
 
 .legend-color {
   width: 12px;
-  height: 12px;
+  height: 24px;
   border-radius: 2px;
 
   &.vallourec {

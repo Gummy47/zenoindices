@@ -1,9 +1,9 @@
-import { useTypedSelector } from "../store/hooks";
-import { UpIcon, DownIcon, EqualIcon } from "./icons";
 import { Radar } from "react-chartjs-2";
-import "./SteeringIndices.scss";
-import type { TrendDirection } from "../core/types";
 import { TrendDirections } from "../core/constants";
+import type { TrendDirection } from "../core/types";
+import { useTypedSelector } from "../store/hooks";
+import { DownIcon, EqualIcon, UpIcon } from "./icons";
+import "./SteeringIndices.scss";
 
 export default function SteeringIndices() {
     const { current: currentCompany, viewMode } = useTypedSelector(
