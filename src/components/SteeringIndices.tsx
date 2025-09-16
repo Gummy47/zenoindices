@@ -1,9 +1,9 @@
-import { useTypedSelector } from "../store/hooks";
-import { UpIcon, DownIcon, EqualIcon } from "./icons";
 import { Radar } from "react-chartjs-2";
-import "./SteeringIndices.scss";
-import type { TrendDirection } from "../core/types";
 import { TrendDirections } from "../core/constants";
+import type { TrendDirection } from "../core/types";
+import { useTypedSelector } from "../store/hooks";
+import { DownIcon, EqualIcon, UpIcon } from "./icons";
+import "./SteeringIndices.scss";
 
 export default function SteeringIndices() {
     const { current: currentCompany, viewMode } = useTypedSelector(
@@ -103,17 +103,7 @@ export default function SteeringIndices() {
     return (
         <div className="steering-indices">
             <div className="steering-header">
-                <h3>Steering Indices</h3>
-                <div className="legend">
-                    <div className="legend-item">
-                        <span className="legend-color vallourec"></span>
-                        <span>Vallourec SA Current</span>
-                    </div>
-                    <div className="legend-item">
-                        <span className="legend-color sector"></span>
-                        <span>Sector Mean</span>
-                    </div>
-                </div>
+                <h3>Steering indices</h3>
             </div>
 
             <div className="radar-container">
@@ -125,15 +115,17 @@ export default function SteeringIndices() {
                             ];
                         return (
                             <div key={index.key} className="index-item">
-                                <div className="index-position">
-                                    {index.position}
-                                </div>
-                                <div className="index-label">{index.label}</div>
-                                <div className="index-score">{data.Score}</div>
                                 <div
                                     className={`index-trend ${getTrendClass(data.Trends)}`}>
                                     {getTrendIcon(data.Trends)}
                                 </div>
+                                <div className="index-label">
+                                    <div className="index-position">
+                                        {index.position}
+                                    </div>
+                                    {index.label}
+                                </div>
+                                <div className="index-score">{data.Score}</div>
                             </div>
                         );
                     })}
@@ -167,24 +159,26 @@ export default function SteeringIndices() {
                                         font: {
                                             size: 10,
                                         },
-                                        color: "#999",
+                                        color: "#000",
+                                        showLabelBackdrop: false,
+                                        backdropPadding: 0,
                                     },
                                     grid: {
-                                        color: "#e0e0e0",
+                                        color: "#777",
                                         lineWidth: 1,
                                         // borderDash: [2, 2], should work but doesnt?
                                     },
                                     /** @ts-expect-error this works but shouldnt...? cfr https://github.com/reactchartjs/react-chartjs-2/issues/1155#issuecomment-1513154353 */
-                                    border: { dash: [2, 2] },
+                                    border: { dash: [4, 2] },
                                     angleLines: {
-                                        color: "#e0e0e0",
+                                        color: "#000",
                                     },
                                     pointLabels: {
                                         display: true,
                                         font: {
-                                            size: 12,
+                                            size: 18,
                                         },
-                                        color: "#666",
+                                        color: "#555",
                                         callback: function (_label, index) {
                                             return (index + 1).toString();
                                         },
@@ -193,6 +187,17 @@ export default function SteeringIndices() {
                             },
                         }}
                     />
+                </div>
+
+                <div className="legend">
+                    <div className="legend-item">
+                        <span className="legend-color companyname"></span>
+                        <span>{currentCompany?.data.Company["Company Common Name"]}</span>
+                    </div>
+                    <div className="legend-item">
+                        <span className="legend-color sector"></span>
+                        <span>Sector Mean</span>
+                    </div>
                 </div>
             </div>
         </div>

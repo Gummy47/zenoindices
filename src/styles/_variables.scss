@@ -6,6 +6,7 @@ $border-color: #F0F1F2;
 $text-primary: #ffffff;
 $text-dark: #1E1E1E;
 $text-secondary: #cccccc;
+$text-tertiary: #dddddd;
 $text-muted: #777;
 $accent-orange: #DE4D12;
 $accent-orange-light: #f97316;
@@ -13,12 +14,13 @@ $accent-blue: #5D699C;
 $accent-blue-dark: #232956;
 
 // Status Colors
-$success-color: #10b981;
-$error-color: #ef4444;
+$success-color: #67B32E;
+$error-color: #E5221C;
 $neutral-color: #6b7280;
 
 // Layout
 $sidebar-width: 320px;
+$modal-header-height: 80px;
 
 // Typography
 $font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;

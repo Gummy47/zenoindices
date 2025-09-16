@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { useAppDispatch } from "../store/hooks";
+import { useEffect, useState } from "react";
+import type { ICompanyDocument } from "../core/interfaces";
 import { addCompany } from "../store/actions/companies/addCompany";
 import { updateCompany } from "../store/actions/companies/updateCompany";
+import { useAppDispatch } from "../store/hooks";
 import { customToast } from "../utils/toast";
-import type { ICompanyDocument } from "../core/interfaces";
 import "./AddCompanyForm.scss";
 
 interface AddCompanyFormProps {
@@ -180,8 +180,10 @@ export default function AddCompanyForm({
         } else {
             setFormData(defaultFormData);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [company]);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleInputChange = (field: string, value: any) => {
         setFormData(prev => ({
             ...prev,
@@ -348,7 +350,7 @@ export default function AddCompanyForm({
     const renderFieldGroup = (prefix: "actual" | "previous", title: string) => (
         <div className="column">
             <h4 className="column-header">{title}</h4>
-            
+
             {/* Details Section */}
             <div className="field-group">
                 <div className="field-group-title">Details</div>
@@ -397,25 +399,31 @@ export default function AddCompanyForm({
             {/* Sector Means */}
             <div className="field-group">
                 <div className="field-group-title">Sector Means</div>
-                <div className="form-group">
-                    <label htmlFor={`${prefix}Z1Mean`}>Z1 Mean</label>
-                    <input
-                        id={`${prefix}Z1Mean`}
-                        type="number"
-                        step="0.01"
-                        value={formData[`${prefix}Z1Mean` as keyof typeof formData] as number}
-                        onChange={e => handleInputChange(`${prefix}Z1Mean`, parseFloat(e.target.value) || 0)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor={`${prefix}Z2Mean`}>Z2 Mean</label>
-                    <input
-                        id={`${prefix}Z2Mean`}
-                        type="number"
-                        step="0.01"
-                        value={formData[`${prefix}Z2Mean` as keyof typeof formData] as number}
-                        onChange={e => handleInputChange(`${prefix}Z2Mean`, parseFloat(e.target.value) || 0)}
-                    />
+                <div className="form-row">
+                    <div className="form-group">
+                        <label htmlFor={`${prefix}Z1Mean`}>Z1 Mean</label>
+                        <input
+                            id={`${prefix}Z1Mean`}
+                            type="number"
+                            step="0.01"
+                            min="0"
+                            max="1"
+                            value={formData[`${prefix}Z1Mean` as keyof typeof formData] as number}
+                            onChange={e => handleInputChange(`${prefix}Z1Mean`, parseFloat(e.target.value) || 0)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor={`${prefix}Z2Mean`}>Z2 Mean</label>
+                        <input
+                            id={`${prefix}Z2Mean`}
+                            type="number"
+                            step="0.01"
+                            min="0"
+                            max="1"
+                            value={formData[`${prefix}Z2Mean` as keyof typeof formData] as number}
+                            onChange={e => handleInputChange(`${prefix}Z2Mean`, parseFloat(e.target.value) || 0)}
+                        />
+                    </div>
                 </div>
             </div>
 
@@ -441,16 +449,6 @@ export default function AddCompanyForm({
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor={`${prefix}Z1`}>Z1</label>
-                    <input
-                        id={`${prefix}Z1`}
-                        type="number"
-                        step="0.01"
-                        value={formData[`${prefix}Z1` as keyof typeof formData] as number}
-                        onChange={e => handleInputChange(`${prefix}Z1`, parseFloat(e.target.value) || 0)}
-                    />
-                </div>
-                <div className="form-group">
                     <label htmlFor={`${prefix}UCO2`}>UCO2</label>
                     <input
                         id={`${prefix}UCO2`}
@@ -459,15 +457,31 @@ export default function AddCompanyForm({
                         onChange={e => handleInputChange(`${prefix}UCO2`, e.target.value)}
                     />
                 </div>
-                <div className="form-group">
-                    <label htmlFor={`${prefix}Z2`}>Z2</label>
-                    <input
-                        id={`${prefix}Z2`}
-                        type="number"
-                        step="0.01"
-                        value={formData[`${prefix}Z2` as keyof typeof formData] as number}
-                        onChange={e => handleInputChange(`${prefix}Z2`, parseFloat(e.target.value) || 0)}
-                    />
+                <div className="form-row">
+                    <div className="form-group">
+                        <label htmlFor={`${prefix}Z1`}>Z1</label>
+                        <input
+                            id={`${prefix}Z1`}
+                            type="number"
+                            step="0.01"
+                            min="0"
+                            max="1"
+                            value={formData[`${prefix}Z1` as keyof typeof formData] as number}
+                            onChange={e => handleInputChange(`${prefix}Z1`, parseFloat(e.target.value) || 0)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor={`${prefix}Z2`}>Z2</label>
+                        <input
+                            id={`${prefix}Z2`}
+                            type="number"
+                            step="0.01"
+                            min="0"
+                            max="1"
+                            value={formData[`${prefix}Z2` as keyof typeof formData] as number}
+                            onChange={e => handleInputChange(`${prefix}Z2`, parseFloat(e.target.value) || 0)}
+                        />
+                    </div>
                 </div>
             </div>
 
@@ -529,115 +543,135 @@ export default function AddCompanyForm({
             {/* Steering Indices */}
             <div className="field-group">
                 <div className="field-group-title">Steering Indices</div>
-                <div className="form-group">
-                    <label htmlFor={`${prefix}SteeringProfitabilityScore`}>Profitability Score</label>
-                    <input
-                        id={`${prefix}SteeringProfitabilityScore`}
-                        type="number"
-                        step="0.01"
-                        value={formData[`${prefix}SteeringProfitabilityScore` as keyof typeof formData] as number}
-                        onChange={e => handleInputChange(`${prefix}SteeringProfitabilityScore`, parseFloat(e.target.value) || 0)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor={`${prefix}SteeringProfitabilityTrends`}>Profitability Trends</label>
-                    <select
-                        id={`${prefix}SteeringProfitabilityTrends`}
-                        value={formData[`${prefix}SteeringProfitabilityTrends` as keyof typeof formData] as string}
-                        onChange={e => handleInputChange(`${prefix}SteeringProfitabilityTrends`, e.target.value as "Up" | "Down" | "Equal")}
-                    >
+                <div className="form-row">
+                    <div className="form-group">
+                        <label htmlFor={`${prefix}SteeringProfitabilityScore`}>Profitability Score</label>
+                        <input
+                            id={`${prefix}SteeringProfitabilityScore`}
+                            type="number"
+                            step="0.01"
+                            min="0"
+                            max="200"
+                            value={formData[`${prefix}SteeringProfitabilityScore` as keyof typeof formData] as number}
+                            onChange={e => handleInputChange(`${prefix}SteeringProfitabilityScore`, parseFloat(e.target.value) || 0)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor={`${prefix}SteeringProfitabilityTrends`}>Profitability Trends</label>
+                        <select
+                            id={`${prefix}SteeringProfitabilityTrends`}
+                            value={formData[`${prefix}SteeringProfitabilityTrends` as keyof typeof formData] as string}
+                            onChange={e => handleInputChange(`${prefix}SteeringProfitabilityTrends`, e.target.value as "Up" | "Down" | "Equal")}
+                        >
                         <option value="Equal">Equal</option>
-                        <option value="Up">Up</option>
-                        <option value="Down">Down</option>
-                    </select>
+                            <option value="Up">Up</option>
+                            <option value="Down">Down</option>
+                        </select>
+                    </div>
                 </div>
-                <div className="form-group">
-                    <label htmlFor={`${prefix}SteeringLeverageScore`}>Leverage Score</label>
-                    <input
-                        id={`${prefix}SteeringLeverageScore`}
-                        type="number"
-                        step="0.01"
-                        value={formData[`${prefix}SteeringLeverageScore` as keyof typeof formData] as number}
-                        onChange={e => handleInputChange(`${prefix}SteeringLeverageScore`, parseFloat(e.target.value) || 0)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor={`${prefix}SteeringLeverageTrends`}>Leverage Trends</label>
-                    <select
-                        id={`${prefix}SteeringLeverageTrends`}
-                        value={formData[`${prefix}SteeringLeverageTrends` as keyof typeof formData] as string}
-                        onChange={e => handleInputChange(`${prefix}SteeringLeverageTrends`, e.target.value as "Up" | "Down" | "Equal")}
-                    >
+                <div className="form-row">
+                    <div className="form-group">
+                        <label htmlFor={`${prefix}SteeringLeverageScore`}>Leverage Score</label>
+                        <input
+                            id={`${prefix}SteeringLeverageScore`}
+                            type="number"
+                            step="0.01"
+                            min="0"
+                            max="200"
+                            value={formData[`${prefix}SteeringLeverageScore` as keyof typeof formData] as number}
+                            onChange={e => handleInputChange(`${prefix}SteeringLeverageScore`, parseFloat(e.target.value) || 0)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor={`${prefix}SteeringLeverageTrends`}>Leverage Trends</label>
+                        <select
+                            id={`${prefix}SteeringLeverageTrends`}
+                            value={formData[`${prefix}SteeringLeverageTrends` as keyof typeof formData] as string}
+                            onChange={e => handleInputChange(`${prefix}SteeringLeverageTrends`, e.target.value as "Up" | "Down" | "Equal")}
+                        >
                         <option value="Equal">Equal</option>
-                        <option value="Up">Up</option>
-                        <option value="Down">Down</option>
-                    </select>
+                            <option value="Up">Up</option>
+                            <option value="Down">Down</option>
+                        </select>
+                    </div>
                 </div>
-                <div className="form-group">
-                    <label htmlFor={`${prefix}SteeringEnvironmentScore`}>Environment Score</label>
-                    <input
-                        id={`${prefix}SteeringEnvironmentScore`}
-                        type="number"
-                        step="0.01"
-                        value={formData[`${prefix}SteeringEnvironmentScore` as keyof typeof formData] as number}
-                        onChange={e => handleInputChange(`${prefix}SteeringEnvironmentScore`, parseFloat(e.target.value) || 0)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor={`${prefix}SteeringEnvironmentTrends`}>Environment Trends</label>
-                    <select
-                        id={`${prefix}SteeringEnvironmentTrends`}
-                        value={formData[`${prefix}SteeringEnvironmentTrends` as keyof typeof formData] as string}
-                        onChange={e => handleInputChange(`${prefix}SteeringEnvironmentTrends`, e.target.value as "Up" | "Down" | "Equal")}
-                    >
+                <div className="form-row">
+                    <div className="form-group">
+                        <label htmlFor={`${prefix}SteeringEnvironmentScore`}>Environment Score</label>
+                        <input
+                            id={`${prefix}SteeringEnvironmentScore`}
+                            type="number"
+                            step="0.01"
+                            min="0"
+                            max="200"
+                            value={formData[`${prefix}SteeringEnvironmentScore` as keyof typeof formData] as number}
+                            onChange={e => handleInputChange(`${prefix}SteeringEnvironmentScore`, parseFloat(e.target.value) || 0)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor={`${prefix}SteeringEnvironmentTrends`}>Environment Trends</label>
+                        <select
+                            id={`${prefix}SteeringEnvironmentTrends`}
+                            value={formData[`${prefix}SteeringEnvironmentTrends` as keyof typeof formData] as string}
+                            onChange={e => handleInputChange(`${prefix}SteeringEnvironmentTrends`, e.target.value as "Up" | "Down" | "Equal")}
+                        >
                         <option value="Equal">Equal</option>
-                        <option value="Up">Up</option>
-                        <option value="Down">Down</option>
-                    </select>
+                            <option value="Up">Up</option>
+                            <option value="Down">Down</option>
+                        </select>
+                    </div>
                 </div>
-                <div className="form-group">
-                    <label htmlFor={`${prefix}SteeringSocialScore`}>Social Score</label>
-                    <input
-                        id={`${prefix}SteeringSocialScore`}
-                        type="number"
-                        step="0.01"
-                        value={formData[`${prefix}SteeringSocialScore` as keyof typeof formData] as number}
-                        onChange={e => handleInputChange(`${prefix}SteeringSocialScore`, parseFloat(e.target.value) || 0)}
-                    />
+                <div className="form-row">
+                    <div className="form-group">
+                        <label htmlFor={`${prefix}SteeringSocialScore`}>Social Score</label>
+                        <input
+                            id={`${prefix}SteeringSocialScore`}
+                            type="number"
+                            step="0.01"
+                            min="0"
+                            max="200"
+                            value={formData[`${prefix}SteeringSocialScore` as keyof typeof formData] as number}
+                            onChange={e => handleInputChange(`${prefix}SteeringSocialScore`, parseFloat(e.target.value) || 0)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor={`${prefix}SteeringSocialTrends`}>Social Trends</label>
+                        <select
+                            id={`${prefix}SteeringSocialTrends`}
+                            value={formData[`${prefix}SteeringSocialTrends` as keyof typeof formData] as string}
+                            onChange={e => handleInputChange(`${prefix}SteeringSocialTrends`, e.target.value as "Up" | "Down" | "Equal")}
+                        >
+                            <option value="Equal">Equal</option>
+                            <option value="Up">Up</option>
+                            <option value="Down">Down</option>
+                        </select>
+                    </div>
                 </div>
-                <div className="form-group">
-                    <label htmlFor={`${prefix}SteeringSocialTrends`}>Social Trends</label>
-                    <select
-                        id={`${prefix}SteeringSocialTrends`}
-                        value={formData[`${prefix}SteeringSocialTrends` as keyof typeof formData] as string}
-                        onChange={e => handleInputChange(`${prefix}SteeringSocialTrends`, e.target.value as "Up" | "Down" | "Equal")}
-                    >
-                        <option value="Equal">Equal</option>
-                        <option value="Up">Up</option>
-                        <option value="Down">Down</option>
-                    </select>
-                </div>
-                <div className="form-group">
-                    <label htmlFor={`${prefix}SteeringControversiesScore`}>Controversies Score</label>
-                    <input
-                        id={`${prefix}SteeringControversiesScore`}
-                        type="number"
-                        step="0.01"
-                        value={formData[`${prefix}SteeringControversiesScore` as keyof typeof formData] as number}
-                        onChange={e => handleInputChange(`${prefix}SteeringControversiesScore`, parseFloat(e.target.value) || 0)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor={`${prefix}SteeringControversiesTrends`}>Controversies Trends</label>
-                    <select
-                        id={`${prefix}SteeringControversiesTrends`}
-                        value={formData[`${prefix}SteeringControversiesTrends` as keyof typeof formData] as string}
-                        onChange={e => handleInputChange(`${prefix}SteeringControversiesTrends`, e.target.value as "Up" | "Down" | "Equal")}
-                    >
-                        <option value="Equal">Equal</option>
-                        <option value="Up">Up</option>
-                        <option value="Down">Down</option>
-                    </select>
+                <div className="form-row">
+                    <div className="form-group">
+                        <label htmlFor={`${prefix}SteeringControversiesScore`}>Controversies Score</label>
+                        <input
+                            id={`${prefix}SteeringControversiesScore`}
+                            type="number"
+                            step="0.01"
+                            min="0"
+                            max="200"
+                            value={formData[`${prefix}SteeringControversiesScore` as keyof typeof formData] as number}
+                            onChange={e => handleInputChange(`${prefix}SteeringControversiesScore`, parseFloat(e.target.value) || 0)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor={`${prefix}SteeringControversiesTrends`}>Controversies Trends</label>
+                        <select
+                            id={`${prefix}SteeringControversiesTrends`}
+                            value={formData[`${prefix}SteeringControversiesTrends` as keyof typeof formData] as string}
+                            onChange={e => handleInputChange(`${prefix}SteeringControversiesTrends`, e.target.value as "Up" | "Down" | "Equal")}
+                        >
+                            <option value="Equal">Equal</option>
+                            <option value="Up">Up</option>
+                            <option value="Down">Down</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
@@ -654,11 +688,13 @@ export default function AddCompanyForm({
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor={`${prefix}Liquidity`}>Liquidity</label>
+                    <label htmlFor={`${prefix}Liquidity`}>Liquidity %</label>
                     <input
                         id={`${prefix}Liquidity`}
                         type="number"
                         step="0.01"
+                        min="0"
+                        max="100"
                         value={formData[`${prefix}Liquidity` as keyof typeof formData] as number}
                         onChange={e => handleInputChange(`${prefix}Liquidity`, parseFloat(e.target.value) || 0)}
                     />
@@ -677,25 +713,27 @@ export default function AddCompanyForm({
             {/* Risks */}
             <div className="field-group">
                 <div className="field-group-title">Risks</div>
-                <div className="form-group">
-                    <label htmlFor={`${prefix}ValueAtRisk`}>Value At Risk</label>
-                    <input
-                        id={`${prefix}ValueAtRisk`}
-                        type="number"
-                        step="0.01"
-                        value={formData[`${prefix}ValueAtRisk` as keyof typeof formData] as number}
-                        onChange={e => handleInputChange(`${prefix}ValueAtRisk`, parseFloat(e.target.value) || 0)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor={`${prefix}CE`}>CE</label>
-                    <input
-                        id={`${prefix}CE`}
-                        type="number"
-                        step="0.01"
-                        value={formData[`${prefix}CE` as keyof typeof formData] as number}
-                        onChange={e => handleInputChange(`${prefix}CE`, parseFloat(e.target.value) || 0)}
-                    />
+                <div className="form-row">
+                    <div className="form-group">
+                        <label htmlFor={`${prefix}ValueAtRisk`}>Value At Risk</label>
+                        <input
+                            id={`${prefix}ValueAtRisk`}
+                            type="number"
+                            step="0.01"
+                            value={formData[`${prefix}ValueAtRisk` as keyof typeof formData] as number}
+                            onChange={e => handleInputChange(`${prefix}ValueAtRisk`, parseFloat(e.target.value) || 0)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor={`${prefix}CE`}>CE</label>
+                        <input
+                            id={`${prefix}CE`}
+                            type="number"
+                            step="0.01"
+                            value={formData[`${prefix}CE` as keyof typeof formData] as number}
+                            onChange={e => handleInputChange(`${prefix}CE`, parseFloat(e.target.value) || 0)}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

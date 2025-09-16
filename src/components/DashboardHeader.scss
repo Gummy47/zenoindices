@@ -4,19 +4,23 @@
 .dashboard-header {
   @include mixins.flex-between;
   background-color: transparent;
-  padding: 23px 0;
-  border-bottom: 1px solid variables.$secondary-bg;
+  padding: 23px 0 10px 0;
 }
 
 .company-title {
-  width: 75%;
-  border-left: 4px solid variables.$accent-orange;
-  padding-left: variables.$spacing-md
+  width: 77%;
+  padding-bottom: 7px;
+  border-bottom: 1px solid variables.$text-secondary;
 }
 
 .company-name {
   @include mixins.heading-large;
+  font-weight: normal;
   color: variables.$text-dark;
+  padding-left: 20px;
+  margin-left: 22px;
+  padding-top: 10px;
+  border-left: 4px solid variables.$accent-orange;
 }
 
 .header-actions {
@@ -33,10 +37,10 @@
 .toggle-btn {
   @include mixins.button-base;
   padding: variables.$spacing-md variables.$spacing-xl;
-  background: variables.$text-secondary;
+  background: variables.$text-tertiary;
   color: variables.$text-muted;
   width: 100px;
-  border-left: 6px solid transparent;
+  border-radius: 25px;
   &:hover {
     color: variables.$accent-orange;
   }
@@ -46,7 +50,6 @@
   &.active {
     background-color: variables.$accent-orange;
     color: variables.$text-primary;
-    border-left: 6px solid black;
   }
 }
 
@@ -57,8 +60,9 @@
 
 .icon-btn {
   @include mixins.button-base;
-  background: variables.$text-secondary;
+  background: variables.$text-tertiary;
   color: variables.$text-muted;
+  border-radius: 25px;
   height: 41px;
   width: 41px;
 
