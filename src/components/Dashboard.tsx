@@ -32,10 +32,9 @@ import "./Dashboard.scss";
 
 export default function Dashboard() {
     const dispatch = useAppDispatch();
-    const {
-        current: currentCompany,
-        viewMode,
-    } = useTypedSelector(state => state.companies);
+    const { current: currentCompany, viewMode } = useTypedSelector(
+        state => state.companies,
+    );
 
     useEffect(() => {
         dispatch(fetchCompanies());
@@ -99,51 +98,61 @@ export default function Dashboard() {
                                         </li>
                                     </ul>
                                 </div>
-                                <div className="uco-details">
-                                    <div className="uco-item">
-                                        <div className="uco-label">UCO1</div>
-                                        <p>{currentData.UCO1}</p>
+                                <div className="uco-z-details">
+                                    <div className="uco-details">
+                                        <div className="uco-item">
+                                            <div className="uco-label">
+                                                UCO1
+                                            </div>
+                                            <p>{currentData.UCO1}</p>
+                                        </div>
+                                        <div className="uco-item">
+                                            <div className="uco-label">
+                                                UCO2
+                                            </div>
+                                            <p>{currentData.UCO2}</p>
+                                        </div>
                                     </div>
-                                    <div className="uco-item">
-                                        <div className="uco-label">UCO2</div>
-                                        <p>{currentData.UCO2}</p>
-                                    </div>
-                                </div>
-                                <div className="z-details">
-                                    <div className="z-item">
-                                        <div className="z-label">Z1</div>
-                                        <p>{currentData.Z1}</p>
-                                    </div>
-                                    <div className="z-item">
-                                        <div className="z-label">Z2</div>
-                                        <p>{currentData.Z2}</p>
+                                    <div className="z-details">
+                                        <div className="z-item">
+                                            <div className="z-label">Z1</div>
+                                            <p>{currentData.Z1}</p>
+                                        </div>
+                                        <div className="z-item">
+                                            <div className="z-label">Z2</div>
+                                            <p>{currentData.Z2}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Market details column */}
-                            <div className="grid-item col space-between">
+                            <div className="grid-item col">
                                 <div className="market-cap-details">
-                                    <div className="market-cap-label">
-                                        Market capitalization
+                                    <div>
+                                        <div className="market-cap-label">
+                                            Market capitalization
+                                        </div>
+                                        <p>
+                                            <span className="market-cap-value">
+                                                {currentData.Details[
+                                                    "Market Capitalization"
+                                                ].toLocaleString("de-DE")}
+                                            </span>
+                                            €
+                                        </p>
                                     </div>
-                                    <p>
-                                        <span className="market-cap-value">
-                                            {currentData.Details[
-                                                "Market Capitalization"
-                                            ].toLocaleString("de-DE")}
-                                        </span>
-                                        €
-                                    </p>
                                 </div>
                                 <div className="data-details">
-                                    <div className="data-label">Data</div>
-                                    <p>{currentData.Data}</p>
+                                    <div>
+                                        <div className="data-label">Data</div>
+                                        <p>{currentData.Data}</p>
+                                    </div>
                                 </div>
                             </div>
 
                             <div className="grid-item col space-between">
-                                <div className="legend">
+                                <div className="triangle-graph-legend">
                                     <div className="legend-item">
                                         <span className="legend-color vallourec"></span>
                                         <span>
@@ -206,8 +215,8 @@ export default function Dashboard() {
                                                         { x: 1.0, y: 0.0 },
                                                     ],
                                                     showLine: true,
-                                                    borderColor: "#bbb",
-                                                    borderDash: [4, 4],
+                                                    borderColor: "#999",
+                                                    borderDash: [3, 4],
                                                     borderWidth: 1,
                                                     backgroundColor:
                                                         "transparent",
@@ -243,21 +252,34 @@ export default function Dashboard() {
                                                         display: true,
                                                         align: "end",
                                                         text: "Z1",
+                                                        color: "#000",
+                                                    },
+                                                    ticks: {
+                                                        color: "#000",
                                                     },
                                                     grid: {
-                                                        display: false,
+                                                        display: true,
+                                                        color: "#000",
+                                                    },
+                                                    border: {
+                                                        color: "#000",
                                                     },
                                                 },
                                                 y: {
                                                     type: "linear",
                                                     min: 0,
-                                                    max: 1,
+                                                    max: 0.6,
                                                     title: {
                                                         display: true,
                                                         align: "end",
                                                         text: "Z2",
+                                                        color: "#000",
+                                                    },
+                                                    ticks: {
+                                                        color: "#000",
                                                     },
                                                     grid: {
+                                                        color: "#000",
                                                         display: false,
                                                     },
                                                 },
@@ -316,12 +338,14 @@ export default function Dashboard() {
                                     </div>
                                 </div>
                                 <div className="group-details">
-                                    <div className="group-label">Group</div>
-                                    <p>
-                                        <span className="group-value">
-                                            {currentData.Group}
-                                        </span>
-                                    </p>
+                                    <div>
+                                        <div className="group-label">Group</div>
+                                        <p>
+                                            <span className="group-value">
+                                                {currentData.Group}
+                                            </span>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
 

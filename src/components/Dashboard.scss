@@ -16,7 +16,7 @@
 
 .dashboard-body {
   flex: 1;
-  padding: variables.$spacing-3xl 0;
+  padding: variables.$spacing-md 0;
   @include mixins.scrollable;
   @include mixins.flex-column;
   gap: variables.$spacing-3xl;
@@ -26,25 +26,27 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto auto;
-  gap: variables.$spacing-3xl;
+  gap: variables.$spacing-lg;
 }
 
 .grid-item {
-  padding-bottom: variables.$spacing-lg;
+  // padding-bottom: variables.$spacing-lg;
 
-  &:nth-child(-n + 2) {
-    border-bottom: 6px solid variables.$text-secondary;
-  }
+  // &:nth-child(-n + 2) {
+  //   border-bottom: 6px solid variables.$text-secondary;
+  // }
   &:nth-child(5) {
-    border-bottom: 10px solid variables.$secondary-bg;
+    border-bottom: 8px solid variables.$accent-blue-dark;
+    padding-bottom: variables.$spacing-lg;
   }
   &:nth-child(6) {
-    border-bottom: 10px solid variables.$accent-orange;
+    border-bottom: 8px solid variables.$accent-orange;
+    padding-bottom: variables.$spacing-lg;
   }
 
   &.col {
     @include mixins.flex-column;
-    gap: variables.$spacing-5xl;
+    gap: variables.$spacing-lg;
 
     &.space-between {
       justify-content: space-between;
@@ -60,7 +62,7 @@
   &.steering-panel {
     grid-column: span 3;
     display: flex;
-    justify-content: flex-end;
+    // justify-content: flex-end;
   }
 }
 
@@ -88,73 +90,92 @@
 .company-details {
   ul {
     list-style: none;
+    border-left: 4px solid variables.$secondary-bg;
+    padding-left: variables.$spacing-xl;
     li {
-      margin: variables.$spacing-xs 0;
+      margin: 2px 0;
     }
   }
 
-  border-left: 4px solid variables.$secondary-bg;
-  padding-left: variables.$spacing-xl;
+  padding: variables.$spacing-md variables.$spacing-xl;
+  background-color: white;
+  border-radius: 10px;
   color: variables.$text-dark;
 }
 
-.uco-details {
-  @include mixins.flex-column;
-  color: variables.$text-dark;
-  gap: variables.$spacing-xs;
+.uco-z-details {
+  background: white;
+  height: 100%;
+  border-radius: 10px;
+  padding: variables.$spacing-xl variables.$spacing-xl;
 
-  .uco-item {
-    display: flex;
-    align-items: center;
-    color: variables.$text-dark;
-    gap: variables.$spacing-sm;
-
-    .uco-label {
-      background-color: variables.$accent-blue-dark;
-      color: variables.$text-primary;
-      padding: variables.$spacing-xs variables.$spacing-sm;
-      @include mixins.text-small;
-      font-weight: 600;
-      text-align: center;
-    }
-  }
-}
-
-.z-details {
-  display: flex;
-  justify-content: space-between;
-  color: variables.$text-dark;
-
-  .z-item {
-    width: 50%;
+  .uco-details {
     @include mixins.flex-column;
     color: variables.$text-dark;
-    gap: variables.$spacing-sm;
+    gap: variables.$spacing-xs;
 
-    .z-label {
-      @include mixins.text-medium;
+    .uco-item {
+      display: flex;
+      align-items: center;
       color: variables.$text-dark;
-      font-weight: 400;
-    }
+      gap: variables.$spacing-sm;
 
-    p {
-      @include mixins.heading-large;
-      font-weight: 600;
-      color: variables.$accent-orange;
+      .uco-label {
+        background-color: variables.$accent-blue-dark;
+        color: variables.$text-primary;
+        padding: variables.$spacing-xs variables.$spacing-sm;
+        @include mixins.text-small;
+        font-weight: 600;
+        text-align: center;
+      }
+    }
+  }
+
+  .z-details {
+    margin-top: variables.$spacing-4xl;
+    display: flex;
+    justify-content: space-between;
+    color: variables.$text-dark;
+
+    .z-item {
+      width: 50%;
+      @include mixins.flex-column;
+      color: variables.$text-dark;
+      gap: variables.$spacing-sm;
+
+      .z-label {
+        @include mixins.text-medium;
+        color: variables.$text-dark;
+        font-weight: 400;
+      }
+
+      p {
+        @include mixins.heading-large;
+        font-weight: 600;
+        color: variables.$accent-orange;
+      }
     }
   }
 }
 
 .market-cap-details {
   @include mixins.flex-column;
-  gap: variables.$spacing-sm;
-  border-left: 4px solid variables.$secondary-bg;
-  padding-left: variables.$spacing-xl;
+  gap: 5px;
+
+  & > div {
+    border-left: 4px solid variables.$secondary-bg;
+    padding-left: variables.$spacing-xl;
+  }
+
   color: variables.$text-dark;
   font-size: 24px;
+  padding: 11px variables.$spacing-xl;
+  background-color: white;
+  border-radius: 10px;
 
   .market-cap-label {
     @include mixins.text-medium;
+    font-size: 20px;
     color: variables.$text-dark;
     font-weight: normal;
   }
@@ -168,15 +189,25 @@
 
 .data-details {
   @include mixins.flex-column;
-  gap: variables.$spacing-sm;
-  border-left: 4px solid variables.$secondary-bg;
-  padding-left: variables.$spacing-xl;
+  @include mixins.text-medium;
+  gap: variables.$spacing-xs;
+  padding: variables.$spacing-xl variables.$spacing-xl;
   color: variables.$text-dark;
-  font-size: 24px;
+
+  background: white;
+  height: 100%;
+  border-radius: 10px;
+  justify-content: flex-end;
+
+  & > div {
+    padding-left: variables.$spacing-xl;
+    border-left: 4px solid variables.$secondary-bg;
+  }
 
   .data-label {
     @include mixins.text-medium;
     color: variables.$text-dark;
+    font-size: 24px;
     font-weight: normal;
   }
 
@@ -186,8 +217,17 @@
   }
 }
 
+.triangle-graph-legend {
+  padding: variables.$spacing-xl variables.$spacing-xl;
+  background-color: white;
+  border-radius: 10px;
+}
+
 .triangle-graph {
-  height: 200px;
+  background: white;
+  height: 100%;
+  padding: variables.$spacing-3xl variables.$spacing-sm variables.$spacing-md 0;
+  border-radius: 10px;
 }
 
 .risks-details {
@@ -195,31 +235,32 @@
 
   h1 {
     @include mixins.heading-large;
-    padding: variables.$spacing-lg variables.$spacing-sm variables.$spacing-sm variables.$spacing-xl;
+    font-weight: 300;
+    padding: variables.$spacing-3xl variables.$spacing-sm variables.$spacing-sm variables.$spacing-xl;
     color: variables.$accent-orange;
     text-transform: uppercase;
-    border: 2px solid variables.$text-dark;
+    border-radius: 10px;
     margin-bottom: variables.$spacing-sm;
+    background-color: variables.$text-tertiary;
   }
 
   .risks-values {
     @include mixins.flex-column;
     justify-content: space-evenly;
-
+    border-radius: 10px;
     background-color: variables.$accent-blue-dark;
-    padding: variables.$spacing-lg;
-    gap: 2rem;
+    gap: variables.$spacing-xs;
     padding: variables.$spacing-3xl variables.$spacing-xl;
 
     .risk-values-item {
       .risk-label {
         @include mixins.text-medium;
-        font-weight: normal;
+        font-weight: 300;
       }
 
       p {
         @include mixins.heading-xlarge;
-        font-weight: normal;
+        font-weight: 300;
       }
     }
   }
@@ -228,34 +269,55 @@
 .change-liquidity-group {
   @include mixins.flex-column;
   gap: variables.$spacing-2xl;
+  background: variables.$text-tertiary;
+  padding: variables.$spacing-2xl variables.$spacing-xl variables.$spacing-xl variables.$spacing-xl;
+  border-radius: 10px;
 }
 
-.market-cap-details,
 .change-details,
-.group-details,
 .liquidity-details {
   @include mixins.flex-column;
-  gap: variables.$spacing-sm;
   border-left: 4px solid variables.$secondary-bg;
   padding-left: variables.$spacing-xl;
   color: variables.$text-dark;
-  font-size: 24px;
 
-  .market-cap-label,
   .change-label,
-  .group-label,
   .liquidity-label {
     @include mixins.text-medium;
     color: variables.$text-dark;
+    font-size: 20px;
     font-weight: normal;
   }
 
-  .market-cap-value,
   .change-value,
-  .group-value,
   .liquidity-value {
     @include mixins.heading-large;
-    font-weight: 500;
+    font-weight: 300;
+    color: variables.$accent-orange;
+  }
+}
+
+.group-details {
+  @include mixins.flex-column;
+  background: white;
+  padding: variables.$spacing-2xl variables.$spacing-xl variables.$spacing-xl variables.$spacing-xl;
+  border-radius: 10px;
+
+  & > div {
+    border-left: 4px solid variables.$secondary-bg;
+    padding-left: variables.$spacing-xl;
+  }
+
+  .group-label {
+    @include mixins.text-medium;
+    color: variables.$text-dark;
+    font-size: 20px;
+    font-weight: normal;
+  }
+
+  .group-value {
+    @include mixins.heading-large;
+    font-weight: 300;
     color: variables.$accent-orange;
   }
 }

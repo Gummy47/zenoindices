@@ -21,7 +21,7 @@
 }
 
 .logo-image {
-  height: 80px;
+  height: 70px;
   width: auto;
   max-width: 100%;
   object-fit: contain;
@@ -83,7 +83,7 @@
     align-items: center;
 
     &:hover {
-      background-color: variables.$primary-bg;
+      background-color: variables.$secondary-bg-hover;
     }
 
     svg {
