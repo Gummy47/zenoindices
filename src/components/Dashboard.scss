@@ -92,7 +92,7 @@
         background-color: variables.$accent-blue-dark;
         color: variables.$text-primary;
         padding: variables.$spacing-xs variables.$spacing-sm;
-        @include mixins.text-small;
+        @include mixins.text-mid;
         font-weight: 600;
         text-align: center;
       }
@@ -118,7 +118,7 @@
 
       p {
         @include mixins.heading-large;
-        font-weight: 600;
+        font-weight: 300;
         color: variables.$accent-orange;
       }
     }
@@ -151,7 +151,8 @@
 
   .market-cap-value {
     @include mixins.heading-large;
-    font-weight: 500;
+    font-weight: 300;
+    font-size: 38px;
     color: variables.$accent-orange;
   }
 }
@@ -177,13 +178,13 @@
   .data-label {
     @include mixins.text-medium;
     color: variables.$text-dark;
-    font-size: 24px;
-    font-weight: normal;
+    font-size: 20px;
+    font-weight: 500;
   }
 
   p {
     @include mixins.heading-large;
-    font-weight: 500;
+    font-weight: 300;
   }
 }
 
