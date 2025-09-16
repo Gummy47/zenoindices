@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { useAppDispatch } from "../store/hooks";
+import { useEffect, useState } from "react";
+import type { ICompanyDocument } from "../core/interfaces";
 import { addCompany } from "../store/actions/companies/addCompany";
 import { updateCompany } from "../store/actions/companies/updateCompany";
+import { useAppDispatch } from "../store/hooks";
 import { customToast } from "../utils/toast";
-import type { ICompanyDocument } from "../core/interfaces";
 import "./AddCompanyForm.scss";
 
 interface AddCompanyFormProps {
@@ -439,16 +439,25 @@ export default function AddCompanyForm({
                         onChange={e => handleInputChange(`${prefix}Data`, e.target.value)}
                     />
                 </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}UCO1`}>UCO1</label>
+                    <input
+                        id={`${prefix}UCO1`}
+                        type="text"
+                        value={formData[`${prefix}UCO1` as keyof typeof formData] as string}
+                        onChange={e => handleInputChange(`${prefix}UCO1`, e.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`${prefix}UCO2`}>UCO2</label>
+                    <input
+                        id={`${prefix}UCO2`}
+                        type="text"
+                        value={formData[`${prefix}UCO2` as keyof typeof formData] as string}
+                        onChange={e => handleInputChange(`${prefix}UCO2`, e.target.value)}
+                    />
+                </div>
                 <div className="form-row">
-                    <div className="form-group">
-                        <label htmlFor={`${prefix}UCO1`}>UCO1</label>
-                        <input
-                            id={`${prefix}UCO1`}
-                            type="text"
-                            value={formData[`${prefix}UCO1` as keyof typeof formData] as string}
-                            onChange={e => handleInputChange(`${prefix}UCO1`, e.target.value)}
-                        />
-                    </div>
                     <div className="form-group">
                         <label htmlFor={`${prefix}Z1`}>Z1</label>
                         <input
@@ -459,17 +468,6 @@ export default function AddCompanyForm({
                             max="1"
                             value={formData[`${prefix}Z1` as keyof typeof formData] as number}
                             onChange={e => handleInputChange(`${prefix}Z1`, parseFloat(e.target.value) || 0)}
-                        />
-                    </div>
-                </div>
-                <div className="form-row">
-                    <div className="form-group">
-                        <label htmlFor={`${prefix}UCO2`}>UCO2</label>
-                        <input
-                            id={`${prefix}UCO2`}
-                            type="text"
-                            value={formData[`${prefix}UCO2` as keyof typeof formData] as string}
-                            onChange={e => handleInputChange(`${prefix}UCO2`, e.target.value)}
                         />
                     </div>
                     <div className="form-group">
