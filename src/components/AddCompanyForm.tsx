@@ -688,7 +688,7 @@ export default function AddCompanyForm({
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor={`${prefix}Liquidity`}>Liquidity</label>
+                    <label htmlFor={`${prefix}Liquidity`}>Liquidity %</label>
                     <input
                         id={`${prefix}Liquidity`}
                         type="number"

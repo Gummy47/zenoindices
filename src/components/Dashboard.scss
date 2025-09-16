@@ -156,7 +156,7 @@
   .market-cap-value {
     @include mixins.heading-large;
     font-weight: 300;
-    font-size: 38px;
+    font-size: 36px;
     color: variables.$accent-orange;
   }
 }
@@ -205,7 +205,7 @@
   grid-area: triangleGraph;
   background: white;
   height: 100%;
-  padding: variables.$spacing-3xl variables.$spacing-sm variables.$spacing-md 0;
+  padding: variables.$spacing-3xl variables.$spacing-sm variables.$spacing-md variables.$spacing-md;
   border-radius: 10px;
 }
 

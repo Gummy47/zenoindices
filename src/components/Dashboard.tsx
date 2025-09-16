@@ -244,16 +244,19 @@ export default function Dashboard() {
                                                 min: 0,
                                                 max: 1,
                                                 title: {
-                                                    display: true,
-                                                    align: "end",
-                                                    text: "Z1",
-                                                    color: "#000",
-                                                    font: {
-                                                        weight: "bold",
-                                                    },
+                                                    display: false,
                                                 },
                                                 ticks: {
                                                     color: "#000",
+                                                    font: {
+                                                        weight: "bold"
+                                                    },
+                                                    callback: function(value: any, index: number, ticks: any[]) {
+                                                        if (index === ticks.length - 1 && value === 1) {
+                                                            return "Z1";
+                                                        }
+                                                        return value;
+                                                    },
                                                 },
                                                 grid: {
                                                     display: true,
@@ -268,16 +271,19 @@ export default function Dashboard() {
                                                 min: 0,
                                                 max: 0.6,
                                                 title: {
-                                                    display: true,
-                                                    align: "end",
-                                                    text: "Z2",
-                                                    color: "#000",
-                                                    font: {
-                                                        weight: "bold",
-                                                    },
+                                                    display: false,
                                                 },
                                                 ticks: {
                                                     color: "#000",
+                                                    font: {
+                                                        weight: "bold"
+                                                    },
+                                                    callback: function(value: any, index: number, ticks: any[]) {
+                                                        if (index === ticks.length - 1 && value === 0.6) {
+                                                            return "Z2";
+                                                        }
+                                                        return value;
+                                                    },
                                                 },
                                                 grid: {
                                                     color: "#000",

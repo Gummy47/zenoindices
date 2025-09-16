@@ -176,9 +176,9 @@ export default function SteeringIndices() {
                                     pointLabels: {
                                         display: true,
                                         font: {
-                                            size: 16,
+                                            size: 18,
                                         },
-                                        color: "#000",
+                                        color: "#555",
                                         callback: function (_label, index) {
                                             return (index + 1).toString();
                                         },

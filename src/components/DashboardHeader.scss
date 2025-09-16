@@ -17,7 +17,8 @@
   @include mixins.heading-large;
   font-weight: normal;
   color: variables.$text-dark;
-  padding-left: 10px;
+  padding-left: 20px;
+  margin-left: 22px;
   padding-top: 10px;
   border-left: 4px solid variables.$accent-orange;
 }
