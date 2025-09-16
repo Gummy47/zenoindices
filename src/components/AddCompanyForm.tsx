@@ -406,6 +406,8 @@ export default function AddCompanyForm({
                             id={`${prefix}Z1Mean`}
                             type="number"
                             step="0.01"
+                            min="0"
+                            max="1"
                             value={formData[`${prefix}Z1Mean` as keyof typeof formData] as number}
                             onChange={e => handleInputChange(`${prefix}Z1Mean`, parseFloat(e.target.value) || 0)}
                         />
@@ -416,6 +418,8 @@ export default function AddCompanyForm({
                             id={`${prefix}Z2Mean`}
                             type="number"
                             step="0.01"
+                            min="0"
+                            max="1"
                             value={formData[`${prefix}Z2Mean` as keyof typeof formData] as number}
                             onChange={e => handleInputChange(`${prefix}Z2Mean`, parseFloat(e.target.value) || 0)}
                         />
@@ -451,6 +455,8 @@ export default function AddCompanyForm({
                             id={`${prefix}Z1`}
                             type="number"
                             step="0.01"
+                            min="0"
+                            max="1"
                             value={formData[`${prefix}Z1` as keyof typeof formData] as number}
                             onChange={e => handleInputChange(`${prefix}Z1`, parseFloat(e.target.value) || 0)}
                         />
@@ -472,6 +478,8 @@ export default function AddCompanyForm({
                             id={`${prefix}Z2`}
                             type="number"
                             step="0.01"
+                            min="0"
+                            max="1"
                             value={formData[`${prefix}Z2` as keyof typeof formData] as number}
                             onChange={e => handleInputChange(`${prefix}Z2`, parseFloat(e.target.value) || 0)}
                         />
@@ -544,6 +552,8 @@ export default function AddCompanyForm({
                             id={`${prefix}SteeringProfitabilityScore`}
                             type="number"
                             step="0.01"
+                            min="0"
+                            max="200"
                             value={formData[`${prefix}SteeringProfitabilityScore` as keyof typeof formData] as number}
                             onChange={e => handleInputChange(`${prefix}SteeringProfitabilityScore`, parseFloat(e.target.value) || 0)}
                         />
@@ -568,6 +578,8 @@ export default function AddCompanyForm({
                             id={`${prefix}SteeringLeverageScore`}
                             type="number"
                             step="0.01"
+                            min="0"
+                            max="200"
                             value={formData[`${prefix}SteeringLeverageScore` as keyof typeof formData] as number}
                             onChange={e => handleInputChange(`${prefix}SteeringLeverageScore`, parseFloat(e.target.value) || 0)}
                         />
@@ -592,6 +604,8 @@ export default function AddCompanyForm({
                             id={`${prefix}SteeringEnvironmentScore`}
                             type="number"
                             step="0.01"
+                            min="0"
+                            max="200"
                             value={formData[`${prefix}SteeringEnvironmentScore` as keyof typeof formData] as number}
                             onChange={e => handleInputChange(`${prefix}SteeringEnvironmentScore`, parseFloat(e.target.value) || 0)}
                         />
@@ -616,6 +630,8 @@ export default function AddCompanyForm({
                             id={`${prefix}SteeringSocialScore`}
                             type="number"
                             step="0.01"
+                            min="0"
+                            max="200"
                             value={formData[`${prefix}SteeringSocialScore` as keyof typeof formData] as number}
                             onChange={e => handleInputChange(`${prefix}SteeringSocialScore`, parseFloat(e.target.value) || 0)}
                         />
@@ -640,6 +656,8 @@ export default function AddCompanyForm({
                             id={`${prefix}SteeringControversiesScore`}
                             type="number"
                             step="0.01"
+                            min="0"
+                            max="200"
                             value={formData[`${prefix}SteeringControversiesScore` as keyof typeof formData] as number}
                             onChange={e => handleInputChange(`${prefix}SteeringControversiesScore`, parseFloat(e.target.value) || 0)}
                         />
@@ -677,6 +695,8 @@ export default function AddCompanyForm({
                         id={`${prefix}Liquidity`}
                         type="number"
                         step="0.01"
+                        min="0"
+                        max="100"
                         value={formData[`${prefix}Liquidity` as keyof typeof formData] as number}
                         onChange={e => handleInputChange(`${prefix}Liquidity`, parseFloat(e.target.value) || 0)}
                     />
