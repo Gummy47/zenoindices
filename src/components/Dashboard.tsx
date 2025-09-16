@@ -149,7 +149,7 @@ export default function Dashboard() {
 
                             <div className="triangle-graph-legend">
                                 <div className="legend-item">
-                                    <span className="legend-color vallourec"></span>
+                                    <span className="legend-color companyname"></span>
                                     <span>
                                         {
                                             currentCompany?.data?.Company?.[

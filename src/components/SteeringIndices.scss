@@ -21,7 +21,6 @@
 
 .steering-header {
   @include mixins.flex-between;
-  // margin-bottom: variables.$spacing-2xl;
 
   h3 {
     @include mixins.text-medium;
@@ -30,7 +29,7 @@
     font-weight: normal;
     border-left: 4px solid variables.$secondary-bg;
     margin-top: variables.$spacing-xl;
-    padding-left: variables.$spacing-sm;
+    padding-left: variables.$spacing-xl;
     padding-bottom: variables.$spacing-xl;
   }
 }
@@ -38,6 +37,8 @@
 .legend {
   @include mixins.flex-column;
   gap: variables.$spacing-sm;
+  align-items: flex-start;
+  align-self: flex-start;
 }
 
 .legend-item {
@@ -53,8 +54,8 @@
   height: 24px;
   border-radius: 2px;
 
-  &.vallourec {
-    background-color: variables.$accent-orange-light;
+  &.companyname {
+    background-color: variables.$accent-orange;
   }
 
   &.sector {
@@ -64,7 +65,7 @@
 
 .radar-container {
   display: flex;
-  gap: variables.$spacing-3xl;
+  gap: variables.$spacing-lg;
   align-items: center;
   margin-top: -2.4rem;
   margin-left: 1.2rem;
@@ -85,7 +86,7 @@
 .indices-list {
   @include mixins.flex-column;
   gap: variables.$spacing-md;
-  min-width: 200px;
+  min-width: 300px;
 }
 
 .index-item {

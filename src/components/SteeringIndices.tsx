@@ -104,16 +104,6 @@ export default function SteeringIndices() {
         <div className="steering-indices">
             <div className="steering-header">
                 <h3>Steering indices</h3>
-                <div className="legend">
-                    <div className="legend-item">
-                        <span className="legend-color vallourec"></span>
-                        <span>{currentCompany?.data.Company["Company Common Name"]}</span>
-                    </div>
-                    <div className="legend-item">
-                        <span className="legend-color sector"></span>
-                        <span>Sector Mean</span>
-                    </div>
-                </div>
             </div>
 
             <div className="radar-container">
@@ -197,6 +187,17 @@ export default function SteeringIndices() {
                             },
                         }}
                     />
+                </div>
+
+                <div className="legend">
+                    <div className="legend-item">
+                        <span className="legend-color companyname"></span>
+                        <span>{currentCompany?.data.Company["Company Common Name"]}</span>
+                    </div>
+                    <div className="legend-item">
+                        <span className="legend-color sector"></span>
+                        <span>Sector Mean</span>
+                    </div>
                 </div>
             </div>
         </div>
